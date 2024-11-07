@@ -63,7 +63,12 @@ interesting to compare songs that are included in both 2023 and 2024
 
 ## The planned timeline
 
-- November 11-15 Project review meeting w/ TA
-- December 7: Written report giving detailed project description Webpage
-  overview of project, with short explanatory video (published online)
-  Brief assessment of your teammates contributions (as a short document)
+- Internal timeline for report creation (meet 11/14 @12pm, 11/21 @12pm,
+  and 12/3 @11:30am tentatively) 11/14 - Complete basic website
+  framework 11/21 - Complete analyses and graphics 12/3 - Finalize
+  website and record screencast
+- DUE DATES November 11-15 Project review meeting w/ TA December 7:
+  Written report giving detailed project description Webpage overview of
+  project, with short explanatory video (published online) Brief
+  assessment of your teammates contributions (as a short document)
+  December 12: “in class” discussion of projects
