@@ -271,12 +271,54 @@ $(document).ready(function () {
 </div>
 
 
-<div id="about-this-site" class="section level3">
-<h3>About this site</h3>
-<p>Sometimes you need to say a bit about the site – how it was made,
-where it’s hosted, where the source code can be found.</p>
-<p>If this is for a project or analysis, I recommend giving some details
-about the R package versions that you used to create the content.</p>
+<div id="about-our-data" class="section level2">
+<h2>About our Data</h2>
+<p>The data from this project were obtained from <a
+href="https://www.kaggle.com/">Kaggle</a>, an AI/ML community with
+several datasets available for public access. The aim of our project is
+to quantify and understand several predictor variables of Spotify’s most
+streamed songs across 2023 and 2024. We R very excited to crack the code
+for what makes a big hit on Spotify!</p>
+</div>
+<div id="variables-and-codebook" class="section level2">
+<h2>Variables and Codebook</h2>
+<p>We used two raw datasets, one from <a
+href="https://www.kaggle.com/datasets/nelgiriyewithana/top-spotify-songs-2023">2023</a>,
+and one from <a
+href="https://www.kaggle.com/datasets/nelgiriyewithana/most-streamed-spotify-songs-2024">2024</a>.
+The cleaned datasets, available on our <a
+href="https://github.com/akgorman/spotify_data.github.io.git">GitHub
+project</a> have ____ observations. We ran several analyses on the
+following variables, defined below.</p>
+<p>The following variables were present in the 2023 dataset:</p>
+<ul>
+<li><code>track_name</code>: name of the song</li>
+<li><code>artist(s)_name</code>: name artist(s) of the song</li>
+<li><code>artist_count</code>: number of artists contributing to the
+song</li>
+<li><code>released_year</code>: year song was released</li>
+<li><code>released_month</code>: month song was released</li>
+<li><code>released_day</code>: day song was released</li>
+<li><code>in_spotify_playlists</code>: number of Spotify playlists song
+is included in</li>
+<li><code>in_spotify_charts</code>: presence and rank of song on Spotify
+charts</li>
+<li><code>streams</code>: total number of streams on Spotify</li>
+<li><code>bpm</code>: beats per minute, measure of tempo</li>
+<li><code>key</code>: key of the song</li>
+<li><code>mode</code>: mode of the song (major or minor)</li>
+<li><code>danceability_%</code>: percentage indicating how suitable song
+is for dancing</li>
+<li><code>valence</code>: positivity of song’s musical content</li>
+<li><code>energy_%</code>: perceived energy level of the song</li>
+<li><code>acousticness_%</code>: amount of acoustic sound in the
+song</li>
+<li><code>instrumentalness_%</code>: amount of instrumental content in
+the song</li>
+<li><code>liveness_%</code>: presence of live performance elements in
+song</li>
+<li><code>speechiness_%</code>: amount of spoken words in the song</li>
+</ul>
 </div>
 
 
