@@ -1,0 +1,14 @@
+name: "Spotify Analysis"
+output_dir: "."
+navbar:
+  title: "Home"
+  right:
+    - text: "About"
+      href: about.html
+    - text: "2023 Analysis"
+      href: mailto:<you@youremail.com>
+    - text: "2024 Analysis"
+      href: http://github.com/<YOUR_GH_NAME>/
+output:
+  html_document:
+    theme: journal
