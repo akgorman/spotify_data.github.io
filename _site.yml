@@ -6,9 +6,11 @@ navbar:
     - text: "About"
       href: about.html
     - text: "2023 Analysis"
-      href: mailto:<you@youremail.com>
+      href: 2023.html
     - text: "2024 Analysis"
-      href: http://github.com/<YOUR_GH_NAME>/
+      href: 2024.html
+    - text: "Report"
+      href: 2024.html      
 output:
   html_document:
-    theme: journal
+    theme: darkly
