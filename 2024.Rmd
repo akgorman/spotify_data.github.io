@@ -4,7 +4,251 @@ output:
   html_document:
     toc: true
     toc_float: true
+editor_options: 
+  chunk_output_type: inline
 ---
+```{r importing and cleaning the data}
+library(readr)
+library(janitor)
+library(dplyr)
+library(ggplot2)
+library(gt)
+library(tidyr)
 
-This will be the rmd for 2024 analysis...
-## Test
+dataset_2024 <- read_csv("./2024_data.csv") |>
+                clean_names() |>
+                select(-tidal_popularity)|>
+  mutate(
+    track = iconv(track, from = "UTF-8", to = "ASCII//TRANSLIT"),
+    artist = iconv(artist, from = "UTF-8", to = "ASCII//TRANSLIT")
+  )
+
+
+```
+
+Some issues that came up was with vlaues having unsupported characters and that did not allow for analysis for the all time rank analysis. 
+
+## Summary 2024 Analysis: 
+
+*Top 10 Songs All-Time Rank*
+```{r all time rank}
+top10rank_songs=
+  dataset_2024 |>
+  slice_head(n = 10)
+
+table_top10rank =
+  top10rank_songs |>
+  select(track, artist, all_time_rank) |>
+         gt() |>
+         tab_header(
+           title = "Top 10 All Time Rank in 2024") |>
+         fmt_number(
+           columns = all_time_rank,
+           decimals = 0
+         ) |>
+         cols_label(
+           track = "Song Title",
+           artist = "Artist",
+           all_time_rank = "All Time Rank"
+         )
+
+table_top10rank
+```
+
+*Top 10 Streamed Songs*
+```{r top 10 streams}
+dataset_2024 =
+  dataset_2024 |>
+  mutate(
+    cumulative_streams = rowSums(across(c(pandora_streams, spotify_streams, soundcloud_streams, you_tube_views, tik_tok_views)), na.rm = TRUE)
+  )
+
+top10stream_songs=
+  dataset_2024 |>
+  arrange(desc(cumulative_streams)) |>
+  slice_head(n = 10)
+
+table_top10streams =
+  top10stream_songs |>
+  select(track, artist, cumulative_streams) |>
+         gt() |>
+         tab_header(
+           title = "Top 10 Streamed Songs in 2024",
+           subtitle = "Aggregated across Spotify, Pandora, YouTube, TikTok, and Soundcloud"
+         ) |>
+         fmt_number(
+           columns = cumulative_streams,
+           decimals = 0
+         ) |>
+         cols_label(
+           track = "Song Title",
+           artist = "Artist",
+           cumulative_streams = "Cumulative Streams"
+         )
+
+table_top10streams
+```
+
+This table aggregates the views and streams from Spotify, Pandora, YouTube, TikTok and SoundCloud to show which song had the most streams. Streaming is defined losely to inlcude views as streams, both of which are arguably passive consumption compared to a like.  
+
+
+*Top 10 Liked Songs (Based on TikTok Likes)*
+
+```{r top 10 tiktok}
+top10tiktok_songs=
+  dataset_2024 |>
+  arrange(desc(tik_tok_likes)) |>
+  slice_head(n = 10)
+
+table_top10tiktok =
+  top10tiktok_songs |>
+  select(track, artist, tik_tok_likes) |>
+         gt() |>
+         tab_header(
+           title = "Top 10 Songs by TikTok Likes"
+         ) |>
+         fmt_number(
+           columns = tik_tok_likes,
+           decimals = 0
+         ) |>
+         cols_label(
+           track = "Song Title",
+           artist = "Artist",
+           tik_tok_likes = "TikTok Likes"
+         )
+
+table_top10tiktok
+
+```
+
+*Top 10 Songs Liked on YouTube*
+
+```{r top 10 youtube}
+top10yt_songs=
+  dataset_2024 |>
+  arrange(desc(you_tube_likes)) |>
+  slice_head(n = 10)
+
+table_top10yt =
+  top10yt_songs |>
+  select(track, artist, you_tube_likes) |>
+         gt() |>
+         tab_header(
+           title = "Top 10 Songs by YouTube Likes"
+         ) |>
+         fmt_number(
+           columns = you_tube_likes,
+           decimals = 0
+         ) |>
+         cols_label(
+           track = "Song Title",
+           artist = "Artist",
+           you_tube_likes = "YouTube Likes"
+         )
+
+table_top10yt
+```
+
+*Percentage of Explicit Tracks*
+
+```{ r percent explicit}
+explicit_song =
+  dataset_2024 |>
+  mutate(explicit_track = ifelse(explicit_track == 1, "Explicit", "Non-Explicit"))|>
+  count(explicit_track) |>
+  mutate(percentage = n / sum(n) * 100)
+  
+  explicit_pie_chart =
+  ggplot(explicit_song, aes(x = "", y = percentage, fill = explicit_track)) +
+  geom_col(width = 1) +
+  coord_polar(theta = "y") + 
+  geom_text(
+    aes(label = paste0(round(percentage, 1), "%")), 
+    position = position_stack(vjust = 0.5),
+    color = "white", 
+    size = 5 ) +
+  labs(
+    title = "Percentage of Explicit vs Non-Explicit Songs",
+    fill = "Song Type") +
+  theme_void() +
+  theme(
+    plot.title = element_text(hjust = 0.5, size = 16, face = "bold")) +
+  scale_fill_manual(values = c("Explicit" = "#E63946", "Non-Explicit" = "#457B9D"))
+
+
+explicit_pie_chart
+```
+
+*Top 10 Songs for Playlist Count* 
+
+```{r top 10 playlist}
+dataset_2024 =
+  dataset_2024 |>
+  mutate(
+    cumulative_playlist = rowSums(across(c(spotify_playlist_count, deezer_playlist_count, apple_music_playlist_count, amazon_playlist_count)), na.rm = TRUE)
+  )
+
+top10playlist_songs=
+  dataset_2024 |>
+  arrange(desc(cumulative_playlist)) |>
+  slice_head(n = 10)
+
+table_top10playlist_songs =
+  top10playlist_songs |>
+  select(track, artist, cumulative_playlist) |>
+         gt() |>
+         tab_header(
+           title = "Top 10 Streamed Songs in 2024",
+           subtitle = "Aggregated across Spotify, Deezer, Apple Music, and Amazon Music"
+         ) |>
+         fmt_number(
+           columns = cumulative_playlist,
+           decimals = 0
+         ) |>
+         cols_label(
+           track = "Song Title",
+           artist = "Artist",
+           cumulative_playlist = "Cumulative Playlist Count"
+         )
+
+
+table_top10playlist_songs
+```
+
+*Top 10 Artists by Number of Most Streamed Songs*
+
+```{r top artists}
+data_set_artist =
+ dataset_2024 |>
+    drop_na(artist)|>
+  group_by(artist) |>
+  summarise(
+    song_count = n(),  
+    .groups = "drop")
+
+top10artist_songs=
+  data_set_artist |>
+  arrange(desc(song_count)) |>
+  slice_head(n = 10)
+
+table_top10artist_songs =
+  top10artist_songs |>
+  select(artist, song_count) |>
+         gt() |>
+         tab_header(
+           title = "Top 10 Artists in 2024") |>
+         fmt_number(
+           columns = song_count,
+           decimals = 0
+         ) |>
+         cols_label(
+           artist = "Artist",
+           song_count = "Song Count"
+         )
+
+table_top10artist_songs
+```
+
+
+
+
