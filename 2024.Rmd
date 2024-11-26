@@ -34,36 +34,103 @@ Some issues that came up was with values having unsupported characters (e.g., in
 
 The dataset includes the following variables:
 
-- **track_name**: Name of the song.
-- **album_name**: Name of the album the song belongs to.
-- **artist**: Name of the artist(s) of the song.
-- **release_date**: Date when the song was released.
-- **isrc**: International Standard Recording Code for the song.
-- **all_time_rank**: Ranking of the song based on its all-time popularity.
-- **track_score**: Score assigned to the track based on various factors.
-- **spotify_streams**: Total number of streams on Spotify.
-- **spotify_playlist_count**: Number of Spotify playlists the song is included in.
-- **spotify_playlist_reach**: Reach of the song across Spotify playlists.
-- **spotify_popularity**: Popularity score of the song on Spotify.
-- **you_tube_views**: Total views of the song's official video on YouTube.
-- **you_tube_likes**: Total likes on the song's official video on YouTube.
-- **tik_tok_posts**: Number of TikTok posts featuring the song.
-- **tik_tok_likes**: Total likes on TikTok posts featuring the song.
-- **tik_tok_views**: Total views on TikTok posts featuring the song.
-- **you_tube_playlist_reach**: Reach of the song across YouTube playlists.
-- **apple_music_playlist_count**: Number of Apple Music playlists the song is included in.
-- **airplay_spins**: Number of times the song has been played on radio stations.
-- **siriusxm_spins**: Number of times the song has been played on SiriusXM.
-- **deezer_playlist_count**: Number of Deezer playlists the song is included in.
-- **deezer_playlist_reach**: Reach of the song across Deezer playlists.
-- **amazon_playlist_count**: Number of Amazon Music playlists the song is included in.
-- **pandora_streams**: Total number of streams on Pandora.
-- **pandora_track_stations**: Number of Pandora stations featuring the song.
-- **soundcloud_streams**: Total number of streams on Soundcloud.
-- **shazam_counts**: Total number of times the song has been Shazamed.
-- **explicit_track**: Indicates whether the song contains explicit content.
+- `track_name`: Name of the song.
+- `album_name`: Name of the album the song belongs to.
+- `artist`: Name of the artist(s) of the song.
+- `release_date`: Date when the song was released.
+- `isrc`: International Standard Recording Code for the song.
+- `all_time_rank`: Ranking of the song based on its all-time popularity.
+- `track_score`: Score assigned to the track based on various factors.
+- `spotify_streams`: Total number of streams on Spotify.
+- `spotify_playlist_count`: Number of Spotify playlists the song is included in.
+- `spotify_playlist_reach`: Reach of the song across Spotify playlists.
+- `spotify_popularity`: Popularity score of the song on Spotify.
+- `you_tube_views`: Total views of the song's official video on YouTube.
+- `you_tube_likes`: Total likes on the song's official video on YouTube.
+- `tik_tok_posts`: Number of TikTok posts featuring the song.
+- `tik_tok_likes`: Total likes on TikTok posts featuring the song.
+- `tik_tok_views`: Total views on TikTok posts featuring the song.
+- `you_tube_playlist_reach`: Reach of the song across YouTube playlists.
+- `apple_music_playlist_count`: Number of Apple Music playlists the song is included in.
+- `airplay_spins`: Number of times the song has been played on radio stations.
+- `siriusxm_spins`: Number of times the song has been played on SiriusXM.
+- `deezer_playlist_count`: Number of Deezer playlists the song is included in.
+- `deezer_playlist_reach`: Reach of the song across Deezer playlists.
+- `amazon_playlist_count`: Number of Amazon Music playlists the song is included in.
+- `pandora_streams`: Total number of streams on Pandora.
+- `pandora_track_stations`: Number of Pandora stations featuring the song.
+- `soundcloud_streams`: Total number of streams on Soundcloud.
+- `shazam_counts`: Total number of times the song has been Shazamed.
+- `explicit_track`: Indicates whether the song contains explicit content.
 
-### Summary Data 
+### Summary Data
+
+*Summary Statistics*
+```{r}
+summary_table=
+dataset_2024 |> 
+  summarize(
+    spotify_streams_mean = mean(spotify_streams, na.rm = TRUE),
+    spotify_streams_median = median(spotify_streams, na.rm = TRUE),
+    spotify_streams_iqr = IQR(spotify_streams, na.rm = TRUE),
+    
+    youtube_views_mean = mean(you_tube_views, na.rm = TRUE),
+    youtube_views_median = median(you_tube_views, na.rm = TRUE),
+    youtube_views_iqr = IQR(you_tube_views, na.rm = TRUE),
+    
+    soundcloud_streams_mean = mean(soundcloud_streams, na.rm = TRUE),
+    soundcloud_streams_median = median(soundcloud_streams, na.rm = TRUE),
+    soundcloud_streams_iqr = IQR(soundcloud_streams, na.rm = TRUE),
+    
+    tiktok_views_mean = mean(tik_tok_views, na.rm = TRUE),
+    tiktok_views_median = median(tik_tok_views, na.rm = TRUE),
+    tiktok_views_iqr = IQR(tik_tok_views, na.rm = TRUE)
+  ) |> 
+  pivot_longer(
+    cols = everything(),
+    names_to = c("Platform", "Statistic"),  
+    names_pattern = "(.*)_(.*)"             
+  ) |> 
+  mutate(
+    Platform = case_when(
+      Platform == "spotify_streams" ~ "Spotify Streams",
+      Platform == "youtube_views" ~ "YouTube Views",
+      Platform == "soundcloud_streams" ~ "SoundCloud Streams",
+      Platform == "tiktok_views" ~ "TikTok Views",
+      TRUE ~ Platform  
+    )
+  ) |> 
+  pivot_wider(
+    names_from = Statistic,               
+    values_from = value
+  )
+
+summary_table |> 
+  gt() |> 
+  tab_header(
+    title = "Summary Statistics Across Platforms",
+    subtitle = "Mean, Median, and Interquartile Range"
+  ) |> 
+  cols_label(
+    Platform = "Platform",
+    mean = "Mean",
+    median = "Median",
+    iqr = "Interquartile Range"
+  ) |> 
+  fmt_number(
+    columns = c(mean, median, iqr),
+    decimals = 0
+  ) |> 
+  tab_style(
+    style = list(
+      cell_text(weight = "bold")
+    ),
+    locations = cells_column_labels()
+  )
+
+```
+*Interpretation*
+The mean versus median streams or views across all the platforms are very different from each other, indicating that the distribution of data is skewed for each platform. It is also interesting to note TikTok's popularity, where the platform has both the most mean and median views compared to the other platforms. Spotify has the second greatest amount of mean and median streams for 2024.
 
 *Top 10 Songs All-Time Rank*
 ```{r all time rank}
@@ -184,103 +251,6 @@ table_top10yt =
 table_top10yt
 ```
 
-*Percentage of Explicit Tracks*
-
-```{r percent explicit}
-explicit_song =
-  dataset_2024 |>
-  mutate(explicit_track = ifelse(explicit_track == 1, "Explicit", "Non-Explicit"))|>
-  count(explicit_track) |>
-  mutate(percentage = n / sum(n) * 100)
-  
-  explicit_pie_chart =
-  ggplot(explicit_song, aes(x = "", y = percentage, fill = explicit_track)) +
-  geom_col(width = 1) +
-  coord_polar(theta = "y") + 
-  geom_text(
-    aes(label = paste0(round(percentage, 1), "%")), 
-    position = position_stack(vjust = 0.5),
-    color = "white", 
-    size = 5 ) +
-  labs(
-    title = "Percentage of Explicit vs Non-Explicit Songs",
-    fill = "Song Type") +
-  theme_void() +
-  theme(
-    plot.title = element_text(hjust = 0.5, size = 16, face = "bold")) +
-  scale_fill_manual(values = c("Explicit" = "#E63946", "Non-Explicit" = "#457B9D"))
-  
-  explicit_pie_chart
-```
-
-*Explicit Tracks and Popularity*
-```{r explicit tracks by popularity}
-explicit_song2 =
-  dataset_2024 |>
-  mutate(explicit_track = ifelse(explicit_track == 1, "Explicit", "Non-Explicit"))
- 
-ggplot(explicit_song2, aes(x = explicit_track, y = spotify_popularity, fill = explicit_track)) +
-  geom_boxplot() +
-  labs(
-    title = "Distribution of Popularity for Explicit and Non-Explicit Songs",
-    x = "Track Type",
-    y = "Popularity"
-  ) +
-  scale_fill_manual(values = c("Explicit" = "coral", "Non-Explicit" = "skyblue")) +
-  theme_minimal()
-
-```
-
-*Explicit/Nonexplicit Distribution of Streams*
-
-```{r explicit tracks by stream count}
-explicit_song2 =
-  dataset_2024 |>
-  mutate(explicit_track = ifelse(explicit_track == 1, "Explicit", "Non-Explicit"))|>
-  mutate(
-    cumulative_streams = rowSums(across(c(pandora_streams, spotify_streams, soundcloud_streams, you_tube_views, tik_tok_views)), na.rm = TRUE)
-  )
-  
- 
-ggplot(explicit_song2, aes(x = explicit_track, y = cumulative_streams, fill = explicit_track)) +
-  geom_boxplot() +
-  scale_y_log10() +
-  labs(
-    title = "Distribution of Streams for Explicit and Non-Explicit Songs",
-    x = "Track Type",
-    y = "Number Streams"
-  ) +
-  scale_fill_manual(values = c("Explicit" = "coral", "Non-Explicit" = "skyblue")) +
-  theme_minimal()
-
-```
-
-*Explicit/Nonexplicit Distribution of Likes*
-
-```{r explicit tracks by like count}
-explicit_song2 =
-  dataset_2024 |>
-  mutate(explicit_track = ifelse(explicit_track == 1, "Explicit", "Non-Explicit"))|>
-  mutate(
-    cumulative_likes = rowSums(across(c(you_tube_likes, tik_tok_likes)), na.rm = TRUE)
-  )
- 
-ggplot(explicit_song2, aes(x = explicit_track, y = cumulative_likes, fill = explicit_track)) +
-  geom_boxplot() +
-  scale_y_log10() +
-  labs(
-    title = "Distribution of Likes for Explicit and Non-Explicit Songs",
-    x = "Track Type",
-    y = "Number Likes"
-  ) +
-  scale_fill_manual(values = c("Explicit" = "coral", "Non-Explicit" = "skyblue")) +
-  theme_minimal()
-
-```
-
-
-
-
 
 *Top 10 Songs for Playlist Count* 
 
@@ -386,30 +356,105 @@ top_soundcloud
 top_youtube
 top_tiktok
 ```
+*Interpretation*
+Based on this 2024 dataset, there is almost no overlap among the most popular five songs streamed for Spotify, Soundcloud, YouTube, and TikTok. The only track in common is "Shape of You" by Ed Sheeran, where this is on the Top 5 Songs for YouTube and Spotify. These tables also allow us to compare popularity of streaming platforms, where Tik Tok's most viewed song (Mokeys Spinning Monkeys by Kevin MacLeod) has 233,232,311,463 views, and Soundcloud's most streamed song has 319,835,943 streams. This factor of a hundred difference demonstrates TikTok's popularity compared to other streaming platforms such as SoundCloud. It is also interesting that SoundCloud's Top 5 streamed songs are all in the rap genre, where Spotify's Top 5 streamed songs generally fall into today's hits/pop. 
 
 ### Visualizations
 
-*Comparing All Time Rank and Spotify Streams * THIS LOOKS BAD
-```{r}
-log_2024=
-  dataset_2024 |> 
-  mutate(
-    log_streams= log10(spotify_streams)
-  ) 
+*Percentage of Explicit Tracks*
 
-log_2024 |>   
-  arrange(all_time_rank) |> 
-  ggplot(aes(x = log_streams, y = all_time_rank)) +
-  geom_point() +
+```{r percent explicit}
+explicit_song =
+  dataset_2024 |>
+  mutate(explicit_track = ifelse(explicit_track == 1, "Explicit", "Non-Explicit"))|>
+  count(explicit_track) |>
+  mutate(percentage = n / sum(n) * 100)
+  
+  explicit_pie_chart =
+  ggplot(explicit_song, aes(x = "", y = percentage, fill = explicit_track)) +
+  geom_col(width = 1) +
+  coord_polar(theta = "y") + 
+  geom_text(
+    aes(label = paste0(round(percentage, 1), "%")), 
+    position = position_stack(vjust = 0.5),
+    color = "white", 
+    size = 5 ) +
   labs(
-    title = "All-Time Rank vs. Log Base 10 Spotify Streams",
-    x = "Log Base 10(Spotify_Streams)",
-    y = "All Time Rank"
+    title = "Percentage of Explicit vs Non-Explicit Songs",
+    fill = "Song Type") +
+  theme_void() +
+  theme(
+    plot.title = element_text(hjust = 0.5, size = 16, face = "bold")) +
+  scale_fill_manual(values = c("Explicit" = "#E63946", "Non-Explicit" = "#457B9D"))
+  
+  explicit_pie_chart
+```
+
+*Explicit Tracks and Popularity*
+```{r explicit tracks by popularity}
+explicit_song2 =
+  dataset_2024 |>
+  mutate(explicit_track = ifelse(explicit_track == 1, "Explicit", "Non-Explicit"))
+ 
+ggplot(explicit_song2, aes(x = explicit_track, y = spotify_popularity, fill = explicit_track)) +
+  geom_boxplot() +
+  labs(
+    title = "Distribution of Popularity for Explicit and Non-Explicit Songs",
+    x = "Track Type",
+    y = "Popularity"
   ) +
+  scale_fill_manual(values = c("Explicit" = "coral", "Non-Explicit" = "skyblue")) +
   theme_minimal()
 
+```
+
+*Explicit/Nonexplicit Distribution of Streams*
+
+```{r explicit tracks by stream count}
+explicit_song2 =
+  dataset_2024 |>
+  mutate(explicit_track = ifelse(explicit_track == 1, "Explicit", "Non-Explicit"))|>
+  mutate(
+    cumulative_streams = rowSums(across(c(pandora_streams, spotify_streams, soundcloud_streams, you_tube_views, tik_tok_views)), na.rm = TRUE)
+  )
+  
+ 
+ggplot(explicit_song2, aes(x = explicit_track, y = cumulative_streams, fill = explicit_track)) +
+  geom_boxplot() +
+  scale_y_log10() +
+  labs(
+    title = "Distribution of Streams for Explicit and Non-Explicit Songs",
+    x = "Track Type",
+    y = "Number Streams"
+  ) +
+  scale_fill_manual(values = c("Explicit" = "coral", "Non-Explicit" = "skyblue")) +
+  theme_minimal()
 
 ```
+
+*Explicit/Nonexplicit Distribution of Likes*
+
+```{r explicit tracks by like count}
+explicit_song2 =
+  dataset_2024 |>
+  mutate(explicit_track = ifelse(explicit_track == 1, "Explicit", "Non-Explicit"))|>
+  mutate(
+    cumulative_likes = rowSums(across(c(you_tube_likes, tik_tok_likes)), na.rm = TRUE)
+  )
+ 
+ggplot(explicit_song2, aes(x = explicit_track, y = cumulative_likes, fill = explicit_track)) +
+  geom_boxplot() +
+  scale_y_log10() +
+  labs(
+    title = "Distribution of Likes for Explicit and Non-Explicit Songs",
+    x = "Track Type",
+    y = "Number Likes"
+  ) +
+  scale_fill_manual(values = c("Explicit" = "coral", "Non-Explicit" = "skyblue")) +
+  theme_minimal()
+
+```
+
 
 *Comparing Tik Tok Likes to Streams Across Spotify, Soundcloud, and Youtube*
 ```{r}
@@ -504,6 +549,11 @@ mutate(
   scale_y_log10() +
   theme_minimal()
 ```
+*Interpretation*
+When looking at the graphs that compare Spotify streams,  YouTube views, Soundcloud streams, and Shazam counts, one can see that increased Tik Tok likes (going from the Low to High category) is associated with increased track streams or views. This makes sense that the more popular songs on streaming platforms or songs that people want to know the name of (through using Shazam) would also be popular on TikTok. 
+
+Note: Due to the very large range of TikTok likes, a log base 10 was taken when creating a categorical variable (`tiktok_category`) for TikTok likes. Log base 10 was also taken of YouTube Views, Soundcloud streams, and Shazam counts to make data easier to digest and interpret when comparing to TikTok Likes categories.
+
 
 *Artists with the Top 10 Spotify Streams*
 ```{r}
@@ -578,7 +628,8 @@ mutate(
   theme_minimal()
 ```
 
-
+*Interpretation*
+The top 10 artists with the most streams or views across Spotify, Soundcloud, YouTube, and TikTok vary widely. Streaming platforms like Spotify and TikTok (which have the highest number of user streams) have top artists that more fall under the pop genre, while Soundcloud has almost exclusively rap artists (with the exception of Major Lazer). 
 
 
 
