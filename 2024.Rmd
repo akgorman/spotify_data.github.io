@@ -213,6 +213,74 @@ explicit_song =
   explicit_pie_chart
 ```
 
+*Explicit Tracks and Popularity*
+```{r explicit tracks by popularity}
+explicit_song2 =
+  dataset_2024 |>
+  mutate(explicit_track = ifelse(explicit_track == 1, "Explicit", "Non-Explicit"))
+ 
+ggplot(explicit_song2, aes(x = explicit_track, y = spotify_popularity, fill = explicit_track)) +
+  geom_boxplot() +
+  labs(
+    title = "Distribution of Popularity for Explicit and Non-Explicit Songs",
+    x = "Track Type",
+    y = "Popularity"
+  ) +
+  scale_fill_manual(values = c("Explicit" = "coral", "Non-Explicit" = "skyblue")) +
+  theme_minimal()
+
+```
+
+*Explicit/Nonexplicit Distribution of Streams*
+
+```{r explicit tracks by stream count}
+explicit_song2 =
+  dataset_2024 |>
+  mutate(explicit_track = ifelse(explicit_track == 1, "Explicit", "Non-Explicit"))|>
+  mutate(
+    cumulative_streams = rowSums(across(c(pandora_streams, spotify_streams, soundcloud_streams, you_tube_views, tik_tok_views)), na.rm = TRUE)
+  )
+  
+ 
+ggplot(explicit_song2, aes(x = explicit_track, y = cumulative_streams, fill = explicit_track)) +
+  geom_boxplot() +
+  scale_y_log10() +
+  labs(
+    title = "Distribution of Streams for Explicit and Non-Explicit Songs",
+    x = "Track Type",
+    y = "Number Streams"
+  ) +
+  scale_fill_manual(values = c("Explicit" = "coral", "Non-Explicit" = "skyblue")) +
+  theme_minimal()
+
+```
+
+*Explicit/Nonexplicit Distribution of Likes*
+
+```{r explicit tracks by like count}
+explicit_song2 =
+  dataset_2024 |>
+  mutate(explicit_track = ifelse(explicit_track == 1, "Explicit", "Non-Explicit"))|>
+  mutate(
+    cumulative_likes = rowSums(across(c(you_tube_likes, tik_tok_likes)), na.rm = TRUE)
+  )
+ 
+ggplot(explicit_song2, aes(x = explicit_track, y = cumulative_likes, fill = explicit_track)) +
+  geom_boxplot() +
+  scale_y_log10() +
+  labs(
+    title = "Distribution of Likes for Explicit and Non-Explicit Songs",
+    x = "Track Type",
+    y = "Number Likes"
+  ) +
+  scale_fill_manual(values = c("Explicit" = "coral", "Non-Explicit" = "skyblue")) +
+  theme_minimal()
+
+```
+
+
+
+
 
 *Top 10 Songs for Playlist Count* 
 
@@ -509,6 +577,8 @@ mutate(
   ) +
   theme_minimal()
 ```
+
+
 
 
 
