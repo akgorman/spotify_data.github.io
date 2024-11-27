@@ -7,3 +7,100 @@ output:
 ---
 
 This will be the rmd for 2023 analysis...
+
+```{r}
+library(tidyverse)
+library(plotly)
+library(ggplot2)
+```
+
+```{r}
+spotify2023_df = 
+  read_csv("spotify-2023.csv") |> 
+  janitor::clean_names() |> 
+  rename_with(~ gsub("_percent", "", .), contains("_percent")) |> 
+  rename(artist = artist_s_name)
+view(spotify2023_df)
+```
+
+Danceability vs. Enegry 
+```{r}
+spotify2023_df$artist <- iconv(spotify2023_df$artist, to = "ASCII", sub = "")
+spotify2023_df$track_name <- iconv(spotify2023_df$track_name, to = "ASCII", sub = "")
+```
+
+```{r}
+# Create the ggplot object with track_name included in the hover text
+p <- ggplot(spotify2023_df, aes(x = danceability, y = energy, color = danceability,
+                      text = paste("Track: ", track_name, 
+                                   "<br>Artist: ", artist, 
+                                   "<br>Danceability: ", round(danceability, 2),
+                                   "<br>Energy: ", round(energy, 2)))) +
+  geom_point(alpha = 0.7) +
+  scale_color_gradient(low = "blue", high = "red") +
+  labs(title = "Danceability vs Energy",
+       x = "Danceability",
+       y = "Energy") +
+  theme_minimal()
+
+# Convert ggplot to plotly and specify that the hover text should show
+interactive_plot <- ggplotly(p, tooltip = "text")
+
+# Show the interactive plot
+interactive_plot
+
+
+```
+
+
+
+Counts of songs by musical key
+
+```{r}
+# Convert 'key' variable to a factor
+spotify2023_df$key <- factor(spotify2023_df$key, levels = c("A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#"))
+
+# Check the levels of the 'key' variable
+levels(spotify2023_df$key)
+
+table(spotify2023_df$key)
+```
+
+```{r}
+# Create the ggplot bar plot with custom hover text showing 'track_name'
+p <- ggplot(spotify2023_df, aes(x = key, fill = key, 
+                                text = paste("Track: ", track_name, 
+                                             "<br>Key: ", key))) +
+  geom_bar(stat = "count") +  # You can use geom_bar for counts
+  labs(title = "Count of Songs by Musical Key",
+       x = "Musical Key",
+       y = "Count of Songs") +
+  theme_minimal() +
+  scale_fill_brewer(palette = "Set3")  # Using a nice color palette for keys
+
+# Convert the ggplot to an interactive plotly plot with 'text' for hover
+interactive_plot <- ggplotly(p, tooltip = "text")
+
+# Display the interactive plot
+interactive_plot
+```
+
+
+BPM vs Danceability 2024 
+```{r}
+# Density plot for BPM and Danceability
+p <- ggplot(spotify2023_df, aes(x = bpm, fill = "bpm")) +
+  geom_density(alpha = 0.5) +
+  geom_density(aes(x = danceability, fill = "danceability"), alpha = 0.5) +
+  scale_fill_manual(values = c("bpm" = "blue", "danceability" = "red")) +
+  labs(title = "Density Plot: BPM vs Danceability",
+       x = "Value",
+       y = "Density") +
+  theme_minimal()
+
+# Display the plot
+print(p)
+
+```
+
+
