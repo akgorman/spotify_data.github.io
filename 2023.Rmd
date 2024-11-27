@@ -5,3 +5,46 @@ output:
     toc: true
     toc_float: true
 ---
+
+```{r}
+library(tidyverse)
+library(plotly)
+```
+
+```{r}
+spotify2023_df = 
+  read_csv("data/spotify-2023.csv") |> 
+  janitor::clean_names() |> 
+  rename_with(~ gsub("_percent", "", .), contains("_percent")) |> 
+  rename(artist = artist_s_name)
+
+view(spotify2023_df)
+```
+
+```{r}
+plot1_df <- spotify2023_df |> 
+  count(bpm) |> 
+  arrange(bpm) |> 
+  ggplot(aes(x = bpm, y = n, fill = bpm)) +
+  geom_col(color = "black", size = 0.3) + 
+  scale_fill_viridis_c(option = "magma") +
+  labs(
+    title = "Distribution of Songs by BPM",
+    x = "BPM (Beats Per Minute)",
+    y = "Number of Songs",
+    fill = "BPM"
+  ) +
+  theme_minimal()
+
+plot1 <- ggplotly(plot1_df)
+
+plot1
+```
+
+
+
+
+
+
+
+
