@@ -1,0 +1,6 @@
+---
+title: "Our Team"
+output: html_document
+---
+
+Fill in here names, photos, and maybe contact info for each team member.

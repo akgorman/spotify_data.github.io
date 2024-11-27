@@ -1,9 +1,27 @@
 ---
-title: "Report"
+title: "Project Report"
 output: 
   html_document:
     toc: true
     toc_float: true
 ---
 
-Our report will be placed here....
+## Motivation
+We would like to explore top songs and artists on Spotify in 2023 based on several predictors including danceability, energy, liveness, etc. as well as year released and listener trends. This will offer insight into the factors that contribute to songs’ and artists’ popularity. We are also interested in exploring the 2024 Spotify data that includes similar information to 2023 Spotify dataset (playlist counts, streams across Spotify and Deezer, track name, album name, artist, release date, etc.) but also includes information on the songs’ YouTube views/likes, TikTok posts/likes/views, all time rank, explicit track, etc. It would also be interesting to compare songs that are included in both 2023 and 2024 (e.g., could compare danceability with number of Tik Tok likes).
+
+## Related Work
+
+
+## Initial Questions
+
+
+## Data
+
+
+## Exploratory Analysis
+
+
+## Additional Analysis
+
+
+## Discussion
