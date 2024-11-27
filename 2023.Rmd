@@ -4,8 +4,11 @@ output:
   html_document:
     toc: true
     toc_float: true
+editor_options: 
+  chunk_output_type: inline
 ---
 
+<<<<<<< HEAD
 
 This will be the rmd for 2023 analysis...
 ```{r}
@@ -102,3 +105,207 @@ p <- ggplot(spotify2023_df, aes(x = bpm, fill = "bpm")) +
 print(p)
 
 ```
+=======
+```{r include = FALSE}
+library(tidyverse)
+library(plotly)
+```
+
+# Exploratory Data Analysis
+### Discussion of Raw Data
+
+The spotify-2023.csv dataset contains information about the most streamed songs on Spotify in 2023. Each observation includes basic information such as the track name, artist name, release date, and number of streams, as well as additional characteristics like bpm, key, mode, and other audio features. Popularity is measured by presence in Spotify playlists and charts, and across playlists and charts of other streaming platforms including Apple, Deezer, and Shazam.
+
+```{r echo = TRUE, results = 'hide'}
+spotify2023_df = 
+  read_csv("data/spotify-2023.csv") |> 
+  janitor::clean_names() |> 
+  rename_with(~ gsub("_percent", "", .), contains("_percent")) |> 
+  rename(artist = artist_s_name) |> 
+  mutate(streams = ifelse(track_name == "Love Grows (Where My Rosemary Goes)", NA, streams),
+         streams = as.numeric(streams))
+
+view(spotify2023_df)
+```
+
+(Include issues that come up with data here).
+
+"Love Grows" by Edison Lighthouse - stream value 
+
+The dataset includes the following variables:
+- `track_name`: Name of the song.
+- `artist`: Name of the artist(s).
+- `artist_count`: Number of artists contributing to the song.
+- `released_year`: Year the song was released.
+- `released_month`: Month the song was released.
+- `released_day`: Day of the month the song was released.
+- `in_spotify_playlists`: Number of Spotify playlists the song is included in.
+- `in_spotify_charts`: Presence and rank of the song on Spotify charts.
+- `streams`: Total number of streams on Spotify.
+- `in_apple_playlists`: Number of Apple playlists the song is included in.
+- `in_apple_charts`: Presence and rank of the song on Apple charts.
+- `in_deezer_playlists`: Number of Deezer playlists the song is included in.
+- `in_deezer_charts`: Presence and rank of the song on Deezer charts.
+- `in_shazam_charts`: Presence and rank of the song on Shazam charts.
+- `bpm`: Beats per minute, a measure of song tempo.
+- `key`: Key of the song.
+- `mode`: Mode of the song (major or minor).
+- `danceability`: Percentage indicating how suitable the song is for dancing.
+- `valence`: Positivity of the song's musical content.
+- `energy`: Perceived energy level of the song.
+- `acousticness`: Amount of acoustic sound in the song.
+- `instrumentalness`: Amount of instrumental content in the song.
+- `liveness`: Presence of live performance elements.
+- `speechiness`: Amount of spoken words in the song.
+
+### Summary Data
+
+*Summary Statistics*
+
+```{r}
+summary_table = spotify2023_df |> 
+  summarize(
+    spotify_streams_mean = mean(streams, na.rm = TRUE),
+    spotify_streams_median = median(streams, na.rm = TRUE),
+    spotify_streams_iqr = IQR(streams, na.rm = TRUE),
+    
+    spotify_playlists_mean = mean(in_spotify_playlists, na.rm = TRUE),
+    spotify_playlists_median = median(in_spotify_playlists, na.rm = TRUE),
+    spotify_playlists_iqr = IQR(in_spotify_playlists, na.rm = TRUE),
+    
+    apple_playlists_mean = mean(in_apple_playlists, na.rm = TRUE),
+    apple_playlists_median = median(in_apple_playlists, na.rm = TRUE),
+    apple_playlists_iqr = IQR(in_apple_playlists, na.rm = TRUE),
+    
+    deezer_playlists_mean = mean(in_deezer_playlists, na.rm = TRUE),
+    deezer_playlists_median = median(in_deezer_playlists, na.rm = TRUE),
+    deezer_playlists_iqr = IQR(in_deezer_playlists, na.rm = TRUE)
+  ) |> 
+  pivot_longer(
+    cols = everything(),
+    names_to = c("Platform", "Statistic"),  
+    names_pattern = "(.*)_(.*)"
+  ) |> 
+  mutate(
+    Platform = case_when(
+      Platform == "spotify_streams" ~ "Spotify Streams",
+      Platform == "spotify_playlists" ~ "# of Spotify Playlists",
+      Platform == "apple_playlists" ~ "# of Apple Playlists",
+      Platform == "deezer_playlists" ~ "# of Deezer Playlists",
+      TRUE ~ Platform)
+  ) |> 
+  pivot_wider(
+    names_from = Statistic,               
+    values_from = value
+  )
+
+summary_table |> 
+  gt() |> 
+  tab_header(
+    title = "Summary Statistics Across Platforms",
+    subtitle = "Mean, Median, and Interquartile Range"
+  ) |> 
+  cols_label(
+    Platform = "Platform",
+    mean = "Mean",
+    median = "Median",
+    iqr = "Interquartile Range"
+  ) |> 
+  fmt_number(
+    columns = c(mean, median, iqr),
+    decimals = 0
+  ) |> 
+  tab_style(
+    style = list(
+      cell_text(weight = "bold")
+    ),
+    locations = cells_column_labels()
+  )
+
+```
+*Interpretation*
+Total number of streams was only available for Spotify and displays a much greater mean than median, indicating a right-skewed distribution. The mean, median, and IQR for number of playlists each song was on are significantly larger for Spotify than Apple and Deezer. This suggests that the total number of playlists on Spotify is much larger than the total number of playlists on Apple or Deezer. The distributions of number of playlists for Spotify, Apple, and Deezer are also right-skewed.
+
+*Top 10 Streamed Songs*
+```{r top 10 streams}
+top10streamed = spotify2023_df |>
+  arrange(desc(streams)) |> 
+  slice_head(n = 10)
+
+table_top10streamed = top10streamed |>
+  select(track_name, artist, streams) |>
+         gt() |>
+         tab_header(
+           title = "Top 10 Streamed Songs on Spotify in 2024") |>
+         fmt_number(
+           columns = streams,
+           decimals = 0
+         ) |>
+         cols_label(
+           track_name = "Song Title",
+           artist = "Artist",
+           streams = "Streams"
+         )
+
+table_top10streamed
+```
+
+*Top 10 Songs by Playlist Count*
+```{r}
+top10playlist <- spotify2023_df |>
+  mutate(
+    cumulative_playlist = rowSums(across(c(in_spotify_playlists, in_apple_playlists, in_deezer_playlists), ~ replace_na(.x, 0)))
+  ) |> 
+  arrange(desc(cumulative_playlist)) |>
+  slice_head(n = 10)
+
+table_top10playlist <- top10playlist |>
+  select(track_name, artist, cumulative_playlist) |>
+  gt() |>
+  tab_header(
+    title = "Top 10 Songs By Presence on Playlists",
+    subtitle = "Aggregated across Spotify, Apple Music, and Deezer"
+  ) |>
+  fmt_number(
+    columns = cumulative_playlist,
+    decimals = 0
+  ) |>
+  cols_label(
+    track_name = "Song Title",
+    artist = "Artist",
+    cumulative_playlist = "Cumulative Playlist Count"
+  )
+
+table_top10playlist
+```
+
+*Top 10 Artists by Total Number of Spotify Streams*
+```{r}
+top10artists <- spotify2023_df |>
+  group_by(artist) |>
+  summarise(total_streams = sum(streams, na.rm = TRUE)) |>
+  arrange(desc(total_streams)) |>
+  slice_head(n = 10)
+
+table_top10artists <- top10artists |>
+  gt() |>
+  tab_header(
+    title = "Top 10 Artists By Total Spotify Streams",
+    subtitle = "Based on aggregated stream counts"
+  ) |>
+  fmt_number(
+    columns = total_streams,
+    decimals = 0
+  ) |>
+  cols_label(
+    artist = "Artist",
+    total_streams = "Total Streams"
+  )
+
+table_top10artists
+```
+
+=======
+This will be the rmd for 2023 analysis...
+>>>>>>> a7a6440417c688ea335b86a025c3ebb9866b8ef9
+>>>>>>> 6073c2d6c98c0b4391fbec86ffc61b5bc33535b3
