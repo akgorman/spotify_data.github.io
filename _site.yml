@@ -10,7 +10,7 @@ navbar:
       - text: "The Data"
         href: about.html
       - text: "Our Team"
-        href: 
+        href: our_team.html
     - text: "Exploratory Analysis"
       menu:
       - text: "2023 Analysis"
