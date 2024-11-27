@@ -1,5 +1,5 @@
 ---
-title: "About"
+title: "Data"
 ---
 
 ## About our Data 
