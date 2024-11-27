@@ -4,6 +4,7 @@ output:
   html_document:
     toc: true
     toc_float: true
+    code_folding: hide 
 editor_options: 
   chunk_output_type: inline
 ---
@@ -19,7 +20,7 @@ library(tidyr)
 ### Discussion of Raw Data
 The 2024_data.csv dataset contains information about the most streamed songs on Spotify in 2024. Each track includes general basic information like the track name, artist name, and album name as well as extensive information on its reach across several streaming platforms (including Spotify, SoundCloud, Youtube, TikTok, Apple Music, etc. ). Popularity is measured across these different platforms through variables such as all time rank, number of streams, playlist reach, and playlist count.
 
-```{r echo=TRUE, results='hide'}
+```{r echo=TRUE, include=FALSE}
 dataset_2024 <- read_csv("./2024_data.csv") |>
                 clean_names() |>
                 select(-tidal_popularity)|>
@@ -363,7 +364,7 @@ Based on this 2024 dataset, there is almost no overlap among the most popular fi
 
 *Percentage of Explicit Tracks*
 
-```{r percent explicit}
+```{r percent explicit, warning=FALSE}
 explicit_song =
   dataset_2024 |>
   mutate(explicit_track = ifelse(explicit_track == 1, "Explicit", "Non-Explicit"))|>
@@ -410,7 +411,7 @@ ggplot(explicit_song2, aes(x = explicit_track, y = spotify_popularity, fill = ex
 
 *Explicit/Nonexplicit Distribution of Streams*
 
-```{r explicit tracks by stream count}
+```{r explicit tracks by stream count, warning=FALSE}
 explicit_song2 =
   dataset_2024 |>
   mutate(explicit_track = ifelse(explicit_track == 1, "Explicit", "Non-Explicit"))|>
@@ -434,7 +435,7 @@ ggplot(explicit_song2, aes(x = explicit_track, y = cumulative_streams, fill = ex
 
 *Explicit/Nonexplicit Distribution of Likes*
 
-```{r explicit tracks by like count}
+```{r explicit tracks by like count, warning=FALSE}
 explicit_song2 =
   dataset_2024 |>
   mutate(explicit_track = ifelse(explicit_track == 1, "Explicit", "Non-Explicit"))|>
@@ -457,7 +458,7 @@ ggplot(explicit_song2, aes(x = explicit_track, y = cumulative_likes, fill = expl
 
 
 *Comparing Tik Tok Likes to Streams Across Spotify, Soundcloud, and Youtube*
-```{r}
+```{r, warning=FALSE}
 dataset_2024 |> 
   drop_na(tik_tok_likes) |> 
   mutate(tik_tok_likes_log=log10(tik_tok_likes)) |> 
