@@ -1,0 +1,16 @@
+name: "Spotify Analysis"
+output_dir: "."
+navbar:
+  title: "Home"
+  right:
+    - text: "About"
+      href: about.html
+    - text: "2023 Analysis"
+      href: 2023.html
+    - text: "2024 Analysis"
+      href: 2024.html
+    - text: "Report"
+      href: 2024.html      
+output:
+  html_document:
+    theme: darkly

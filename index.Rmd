@@ -1,0 +1,11 @@
+---
+title: "Spotify Analysis"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+---
+
+### Home Page
+
+we'll put all in the general info about our project here

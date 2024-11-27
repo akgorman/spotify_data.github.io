@@ -1,0 +1,6470 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>2024</title>
+
+<script src="site_libs/header-attrs-2.28/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/darkly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Home</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="2023.html">2023 Analysis</a>
+</li>
+<li>
+  <a href="2024.html">2024 Analysis</a>
+</li>
+<li>
+  <a href="2024.html">Report</a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">2024</h1>
+
+</div>
+
+
+<div id="exploratory-data-analysis" class="section level1">
+<h1>Exploratory Data Analysis</h1>
+<div id="discussion-of-raw-data" class="section level3">
+<h3>Discussion of Raw Data</h3>
+<p>The 2024_data.csv dataset contains information about the most
+streamed songs on Spotify in 2024. Each track includes general basic
+information like the track name, artist name, and album name as well as
+extensive information on its reach across several streaming platforms
+(including Spotify, SoundCloud, Youtube, TikTok, Apple Music, etc. ).
+Popularity is measured across these different platforms through
+variables such as all time rank, number of streams, playlist reach, and
+playlist count.</p>
+<pre class="r"><code>dataset_2024 &lt;- read_csv(&quot;./2024_data.csv&quot;) |&gt;
+                clean_names() |&gt;
+                select(-tidal_popularity)|&gt;
+  mutate(
+    track = iconv(track, from = &quot;UTF-8&quot;, to = &quot;ASCII//TRANSLIT&quot;),
+    artist = iconv(artist, from = &quot;UTF-8&quot;, to = &quot;ASCII//TRANSLIT&quot;)
+  ) |&gt; 
+  filter(artist!= &quot;xSyborg&quot;)</code></pre>
+<pre><code>## Rows: 4600 Columns: 29
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr  (5): Track, Album Name, Artist, Release Date, ISRC
+## dbl  (6): Track Score, Spotify Popularity, Apple Music Playlist Count, Deeze...
+## num (17): All Time Rank, Spotify Streams, Spotify Playlist Count, Spotify Pl...
+## lgl  (1): TIDAL Popularity
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<p>Some issues that came up was with values having unsupported
+characters (e.g., in the album_name column) and that did not allow for
+analysis for the all time rank analysis. Another issue that we filtered
+out was that two tracks had a duplicate observation, but the duplicate
+observations did not have any streaming information and both had
+“xSyborg” listed as the artist name.</p>
+<p>The dataset includes the following variables:</p>
+<ul>
+<li><code>track_name</code>: Name of the song.</li>
+<li><code>album_name</code>: Name of the album the song belongs to.</li>
+<li><code>artist</code>: Name of the artist(s) of the song.</li>
+<li><code>release_date</code>: Date when the song was released.</li>
+<li><code>isrc</code>: International Standard Recording Code for the
+song.</li>
+<li><code>all_time_rank</code>: Ranking of the song based on its
+all-time popularity.</li>
+<li><code>track_score</code>: Score assigned to the track based on
+various factors.</li>
+<li><code>spotify_streams</code>: Total number of streams on
+Spotify.</li>
+<li><code>spotify_playlist_count</code>: Number of Spotify playlists the
+song is included in.</li>
+<li><code>spotify_playlist_reach</code>: Reach of the song across
+Spotify playlists.</li>
+<li><code>spotify_popularity</code>: Popularity score of the song on
+Spotify.</li>
+<li><code>you_tube_views</code>: Total views of the song’s official
+video on YouTube.</li>
+<li><code>you_tube_likes</code>: Total likes on the song’s official
+video on YouTube.</li>
+<li><code>tik_tok_posts</code>: Number of TikTok posts featuring the
+song.</li>
+<li><code>tik_tok_likes</code>: Total likes on TikTok posts featuring
+the song.</li>
+<li><code>tik_tok_views</code>: Total views on TikTok posts featuring
+the song.</li>
+<li><code>you_tube_playlist_reach</code>: Reach of the song across
+YouTube playlists.</li>
+<li><code>apple_music_playlist_count</code>: Number of Apple Music
+playlists the song is included in.</li>
+<li><code>airplay_spins</code>: Number of times the song has been played
+on radio stations.</li>
+<li><code>siriusxm_spins</code>: Number of times the song has been
+played on SiriusXM.</li>
+<li><code>deezer_playlist_count</code>: Number of Deezer playlists the
+song is included in.</li>
+<li><code>deezer_playlist_reach</code>: Reach of the song across Deezer
+playlists.</li>
+<li><code>amazon_playlist_count</code>: Number of Amazon Music playlists
+the song is included in.</li>
+<li><code>pandora_streams</code>: Total number of streams on
+Pandora.</li>
+<li><code>pandora_track_stations</code>: Number of Pandora stations
+featuring the song.</li>
+<li><code>soundcloud_streams</code>: Total number of streams on
+Soundcloud.</li>
+<li><code>shazam_counts</code>: Total number of times the song has been
+Shazamed.</li>
+<li><code>explicit_track</code>: Indicates whether the song contains
+explicit content.</li>
+</ul>
+</div>
+<div id="summary-data" class="section level3">
+<h3>Summary Data</h3>
+<p><em>Summary Statistics</em></p>
+<pre class="r"><code>summary_table=
+dataset_2024 |&gt; 
+  summarize(
+    spotify_streams_mean = mean(spotify_streams, na.rm = TRUE),
+    spotify_streams_median = median(spotify_streams, na.rm = TRUE),
+    spotify_streams_iqr = IQR(spotify_streams, na.rm = TRUE),
+    
+    youtube_views_mean = mean(you_tube_views, na.rm = TRUE),
+    youtube_views_median = median(you_tube_views, na.rm = TRUE),
+    youtube_views_iqr = IQR(you_tube_views, na.rm = TRUE),
+    
+    soundcloud_streams_mean = mean(soundcloud_streams, na.rm = TRUE),
+    soundcloud_streams_median = median(soundcloud_streams, na.rm = TRUE),
+    soundcloud_streams_iqr = IQR(soundcloud_streams, na.rm = TRUE),
+    
+    tiktok_views_mean = mean(tik_tok_views, na.rm = TRUE),
+    tiktok_views_median = median(tik_tok_views, na.rm = TRUE),
+    tiktok_views_iqr = IQR(tik_tok_views, na.rm = TRUE)
+  ) |&gt; 
+  pivot_longer(
+    cols = everything(),
+    names_to = c(&quot;Platform&quot;, &quot;Statistic&quot;),  
+    names_pattern = &quot;(.*)_(.*)&quot;             
+  ) |&gt; 
+  mutate(
+    Platform = case_when(
+      Platform == &quot;spotify_streams&quot; ~ &quot;Spotify Streams&quot;,
+      Platform == &quot;youtube_views&quot; ~ &quot;YouTube Views&quot;,
+      Platform == &quot;soundcloud_streams&quot; ~ &quot;SoundCloud Streams&quot;,
+      Platform == &quot;tiktok_views&quot; ~ &quot;TikTok Views&quot;,
+      TRUE ~ Platform  
+    )
+  ) |&gt; 
+  pivot_wider(
+    names_from = Statistic,               
+    values_from = value
+  )
+
+summary_table |&gt; 
+  gt() |&gt; 
+  tab_header(
+    title = &quot;Summary Statistics Across Platforms&quot;,
+    subtitle = &quot;Mean, Median, and Interquartile Range&quot;
+  ) |&gt; 
+  cols_label(
+    Platform = &quot;Platform&quot;,
+    mean = &quot;Mean&quot;,
+    median = &quot;Median&quot;,
+    iqr = &quot;Interquartile Range&quot;
+  ) |&gt; 
+  fmt_number(
+    columns = c(mean, median, iqr),
+    decimals = 0
+  ) |&gt; 
+  tab_style(
+    style = list(
+      cell_text(weight = &quot;bold&quot;)
+    ),
+    locations = cells_column_labels()
+  )</code></pre>
+<div id="guwmaspuao" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#guwmaspuao table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#guwmaspuao thead, #guwmaspuao tbody, #guwmaspuao tfoot, #guwmaspuao tr, #guwmaspuao td, #guwmaspuao th {
+  border-style: none;
+}
+
+#guwmaspuao p {
+  margin: 0;
+  padding: 0;
+}
+
+#guwmaspuao .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#guwmaspuao .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#guwmaspuao .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#guwmaspuao .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#guwmaspuao .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#guwmaspuao .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#guwmaspuao .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#guwmaspuao .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#guwmaspuao .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#guwmaspuao .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#guwmaspuao .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#guwmaspuao .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#guwmaspuao .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#guwmaspuao .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#guwmaspuao .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#guwmaspuao .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#guwmaspuao .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#guwmaspuao .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#guwmaspuao .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#guwmaspuao .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#guwmaspuao .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#guwmaspuao .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#guwmaspuao .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#guwmaspuao .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#guwmaspuao .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#guwmaspuao .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#guwmaspuao .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#guwmaspuao .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#guwmaspuao .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#guwmaspuao .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#guwmaspuao .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#guwmaspuao .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#guwmaspuao .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#guwmaspuao .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#guwmaspuao .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#guwmaspuao .gt_left {
+  text-align: left;
+}
+
+#guwmaspuao .gt_center {
+  text-align: center;
+}
+
+#guwmaspuao .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#guwmaspuao .gt_font_normal {
+  font-weight: normal;
+}
+
+#guwmaspuao .gt_font_bold {
+  font-weight: bold;
+}
+
+#guwmaspuao .gt_font_italic {
+  font-style: italic;
+}
+
+#guwmaspuao .gt_super {
+  font-size: 65%;
+}
+
+#guwmaspuao .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#guwmaspuao .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#guwmaspuao .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#guwmaspuao .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#guwmaspuao .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#guwmaspuao .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#guwmaspuao .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#guwmaspuao .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#guwmaspuao div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_heading">
+      <td colspan="4" class="gt_heading gt_title gt_font_normal" style>Summary Statistics Across Platforms</td>
+    </tr>
+    <tr class="gt_heading">
+      <td colspan="4" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style>Mean, Median, and Interquartile Range</td>
+    </tr>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="font-weight: bold;" scope="col" id="Platform">Platform</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="font-weight: bold;" scope="col" id="mean">Mean</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="font-weight: bold;" scope="col" id="median">Median</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="font-weight: bold;" scope="col" id="iqr">Interquartile Range</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="Platform" class="gt_row gt_left">Spotify Streams</td>
+<td headers="mean" class="gt_row gt_right">452,866,259</td>
+<td headers="median" class="gt_row gt_right">243,931,915</td>
+<td headers="iqr" class="gt_row gt_right">564,475,793</td></tr>
+    <tr><td headers="Platform" class="gt_row gt_left">YouTube Views</td>
+<td headers="mean" class="gt_row gt_right">405,901,100</td>
+<td headers="median" class="gt_row gt_right">148,896,320</td>
+<td headers="iqr" class="gt_row gt_right">432,475,424</td></tr>
+    <tr><td headers="Platform" class="gt_row gt_left">SoundCloud Streams</td>
+<td headers="mean" class="gt_row gt_right">15,121,191</td>
+<td headers="median" class="gt_row gt_right">3,373,779</td>
+<td headers="iqr" class="gt_row gt_right">13,084,146</td></tr>
+    <tr><td headers="Platform" class="gt_row gt_left">TikTok Views</td>
+<td headers="mean" class="gt_row gt_right">1,149,031,801</td>
+<td headers="median" class="gt_row gt_right">266,934,347</td>
+<td headers="iqr" class="gt_row gt_right">846,777,161</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+<p><em>Interpretation</em> The mean versus median streams or views
+across all the platforms are very different from each other, indicating
+that the distribution of data is skewed for each platform. It is also
+interesting to note TikTok’s popularity, where the platform has both the
+most mean and median views compared to the other platforms. Spotify has
+the second greatest amount of mean and median streams for 2024.</p>
+<p><em>Top 10 Songs All-Time Rank</em></p>
+<pre class="r"><code>top10rank_songs=
+  dataset_2024 |&gt;
+  slice_head(n = 10)
+
+table_top10rank =
+  top10rank_songs |&gt;
+  select(track, artist, all_time_rank) |&gt;
+         gt() |&gt;
+         tab_header(
+           title = &quot;Top 10 All Time Rank in 2024&quot;) |&gt;
+         fmt_number(
+           columns = all_time_rank,
+           decimals = 0
+         ) |&gt;
+         cols_label(
+           track = &quot;Song Title&quot;,
+           artist = &quot;Artist&quot;,
+           all_time_rank = &quot;All Time Rank&quot;
+         )
+
+table_top10rank</code></pre>
+<div id="dntnecbjel" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#dntnecbjel table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#dntnecbjel thead, #dntnecbjel tbody, #dntnecbjel tfoot, #dntnecbjel tr, #dntnecbjel td, #dntnecbjel th {
+  border-style: none;
+}
+
+#dntnecbjel p {
+  margin: 0;
+  padding: 0;
+}
+
+#dntnecbjel .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#dntnecbjel .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#dntnecbjel .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#dntnecbjel .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#dntnecbjel .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#dntnecbjel .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#dntnecbjel .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#dntnecbjel .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#dntnecbjel .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#dntnecbjel .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#dntnecbjel .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#dntnecbjel .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#dntnecbjel .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#dntnecbjel .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#dntnecbjel .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#dntnecbjel .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#dntnecbjel .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#dntnecbjel .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#dntnecbjel .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#dntnecbjel .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#dntnecbjel .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#dntnecbjel .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#dntnecbjel .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#dntnecbjel .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#dntnecbjel .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#dntnecbjel .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#dntnecbjel .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#dntnecbjel .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#dntnecbjel .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#dntnecbjel .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#dntnecbjel .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#dntnecbjel .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#dntnecbjel .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#dntnecbjel .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#dntnecbjel .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#dntnecbjel .gt_left {
+  text-align: left;
+}
+
+#dntnecbjel .gt_center {
+  text-align: center;
+}
+
+#dntnecbjel .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#dntnecbjel .gt_font_normal {
+  font-weight: normal;
+}
+
+#dntnecbjel .gt_font_bold {
+  font-weight: bold;
+}
+
+#dntnecbjel .gt_font_italic {
+  font-style: italic;
+}
+
+#dntnecbjel .gt_super {
+  font-size: 65%;
+}
+
+#dntnecbjel .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#dntnecbjel .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#dntnecbjel .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#dntnecbjel .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#dntnecbjel .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#dntnecbjel .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#dntnecbjel .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#dntnecbjel .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#dntnecbjel div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_heading">
+      <td colspan="3" class="gt_heading gt_title gt_font_normal gt_bottom_border" style>Top 10 All Time Rank in 2024</td>
+    </tr>
+    
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="track">Song Title</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="artist">Artist</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="all_time_rank">All Time Rank</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="track" class="gt_row gt_left">MILLION DOLLAR BABY</td>
+<td headers="artist" class="gt_row gt_left">Tommy Richman</td>
+<td headers="all_time_rank" class="gt_row gt_right">1</td></tr>
+    <tr><td headers="track" class="gt_row gt_left">Not Like Us</td>
+<td headers="artist" class="gt_row gt_left">Kendrick Lamar</td>
+<td headers="all_time_rank" class="gt_row gt_right">2</td></tr>
+    <tr><td headers="track" class="gt_row gt_left">i like the way you kiss me</td>
+<td headers="artist" class="gt_row gt_left">Artemas</td>
+<td headers="all_time_rank" class="gt_row gt_right">3</td></tr>
+    <tr><td headers="track" class="gt_row gt_left">Flowers</td>
+<td headers="artist" class="gt_row gt_left">Miley Cyrus</td>
+<td headers="all_time_rank" class="gt_row gt_right">4</td></tr>
+    <tr><td headers="track" class="gt_row gt_left">Houdini</td>
+<td headers="artist" class="gt_row gt_left">Eminem</td>
+<td headers="all_time_rank" class="gt_row gt_right">5</td></tr>
+    <tr><td headers="track" class="gt_row gt_left">Lovin On Me</td>
+<td headers="artist" class="gt_row gt_left">Jack Harlow</td>
+<td headers="all_time_rank" class="gt_row gt_right">6</td></tr>
+    <tr><td headers="track" class="gt_row gt_left">Beautiful Things</td>
+<td headers="artist" class="gt_row gt_left">Benson Boone</td>
+<td headers="all_time_rank" class="gt_row gt_right">7</td></tr>
+    <tr><td headers="track" class="gt_row gt_left">Gata Only</td>
+<td headers="artist" class="gt_row gt_left">FloyyMenor</td>
+<td headers="all_time_rank" class="gt_row gt_right">8</td></tr>
+    <tr><td headers="track" class="gt_row gt_left">Danza Kuduro - Cover</td>
+<td headers="artist" class="gt_row gt_left">MUSIC LAB JPN</td>
+<td headers="all_time_rank" class="gt_row gt_right">9</td></tr>
+    <tr><td headers="track" class="gt_row gt_left">BAND4BAND (feat. Lil Baby)</td>
+<td headers="artist" class="gt_row gt_left">Central Cee</td>
+<td headers="all_time_rank" class="gt_row gt_right">10</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+<p><em>Top 10 Streamed Songs</em></p>
+<pre class="r"><code>dataset_2024 =
+  dataset_2024 |&gt;
+  mutate(
+    cumulative_streams = rowSums(across(c(pandora_streams, spotify_streams, soundcloud_streams, you_tube_views, tik_tok_views)), na.rm = TRUE)
+  )
+
+top10stream_songs=
+  dataset_2024 |&gt;
+  arrange(desc(cumulative_streams)) |&gt;
+  slice_head(n = 10)
+
+table_top10streams =
+  top10stream_songs |&gt;
+  select(track, artist, cumulative_streams) |&gt;
+         gt() |&gt;
+         tab_header(
+           title = &quot;Top 10 Streamed Songs in 2024&quot;,
+           subtitle = &quot;Aggregated across Spotify, Pandora, YouTube, TikTok, and Soundcloud&quot;
+         ) |&gt;
+         fmt_number(
+           columns = cumulative_streams,
+           decimals = 0
+         ) |&gt;
+         cols_label(
+           track = &quot;Song Title&quot;,
+           artist = &quot;Artist&quot;,
+           cumulative_streams = &quot;Cumulative Streams&quot;
+         )
+
+table_top10streams</code></pre>
+<div id="frottuzqhr" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#frottuzqhr table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#frottuzqhr thead, #frottuzqhr tbody, #frottuzqhr tfoot, #frottuzqhr tr, #frottuzqhr td, #frottuzqhr th {
+  border-style: none;
+}
+
+#frottuzqhr p {
+  margin: 0;
+  padding: 0;
+}
+
+#frottuzqhr .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#frottuzqhr .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#frottuzqhr .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#frottuzqhr .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#frottuzqhr .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#frottuzqhr .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#frottuzqhr .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#frottuzqhr .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#frottuzqhr .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#frottuzqhr .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#frottuzqhr .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#frottuzqhr .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#frottuzqhr .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#frottuzqhr .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#frottuzqhr .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#frottuzqhr .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#frottuzqhr .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#frottuzqhr .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#frottuzqhr .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#frottuzqhr .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#frottuzqhr .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#frottuzqhr .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#frottuzqhr .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#frottuzqhr .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#frottuzqhr .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#frottuzqhr .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#frottuzqhr .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#frottuzqhr .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#frottuzqhr .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#frottuzqhr .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#frottuzqhr .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#frottuzqhr .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#frottuzqhr .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#frottuzqhr .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#frottuzqhr .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#frottuzqhr .gt_left {
+  text-align: left;
+}
+
+#frottuzqhr .gt_center {
+  text-align: center;
+}
+
+#frottuzqhr .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#frottuzqhr .gt_font_normal {
+  font-weight: normal;
+}
+
+#frottuzqhr .gt_font_bold {
+  font-weight: bold;
+}
+
+#frottuzqhr .gt_font_italic {
+  font-style: italic;
+}
+
+#frottuzqhr .gt_super {
+  font-size: 65%;
+}
+
+#frottuzqhr .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#frottuzqhr .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#frottuzqhr .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#frottuzqhr .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#frottuzqhr .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#frottuzqhr .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#frottuzqhr .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#frottuzqhr .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#frottuzqhr div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_heading">
+      <td colspan="3" class="gt_heading gt_title gt_font_normal" style>Top 10 Streamed Songs in 2024</td>
+    </tr>
+    <tr class="gt_heading">
+      <td colspan="3" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style>Aggregated across Spotify, Pandora, YouTube, TikTok, and Soundcloud</td>
+    </tr>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="track">Song Title</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="artist">Artist</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="cumulative_streams">Cumulative Streams</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="track" class="gt_row gt_left">Monkeys Spinning Monkeys</td>
+<td headers="artist" class="gt_row gt_left">Kevin MacLeod</td>
+<td headers="cumulative_streams" class="gt_row gt_right">233,255,246,106</td></tr>
+    <tr><td headers="track" class="gt_row gt_left">Love You So</td>
+<td headers="artist" class="gt_row gt_left">The King Khan &amp; BBQ Show</td>
+<td headers="cumulative_streams" class="gt_row gt_right">214,867,993,985</td></tr>
+    <tr><td headers="track" class="gt_row gt_left">Oh No</td>
+<td headers="artist" class="gt_row gt_left">Kreepa</td>
+<td headers="cumulative_streams" class="gt_row gt_right">61,147,210,258</td></tr>
+    <tr><td headers="track" class="gt_row gt_left">Funny Song</td>
+<td headers="artist" class="gt_row gt_left">Cavendish Music</td>
+<td headers="cumulative_streams" class="gt_row gt_right">38,391,328,377</td></tr>
+    <tr><td headers="track" class="gt_row gt_left">Aesthetic</td>
+<td headers="artist" class="gt_row gt_left">Tollan Kim</td>
+<td headers="cumulative_streams" class="gt_row gt_right">33,879,646,076</td></tr>
+    <tr><td headers="track" class="gt_row gt_left">Spongebob</td>
+<td headers="artist" class="gt_row gt_left">Dante9k</td>
+<td headers="cumulative_streams" class="gt_row gt_right">33,360,315,090</td></tr>
+    <tr><td headers="track" class="gt_row gt_left">She Share Story</td>
+<td headers="artist" class="gt_row gt_left">Shayne Orok</td>
+<td headers="cumulative_streams" class="gt_row gt_right">33,202,155,498</td></tr>
+    <tr><td headers="track" class="gt_row gt_left">STAY (with Justin Bieber)</td>
+<td headers="artist" class="gt_row gt_left">The Kid LAROI</td>
+<td headers="cumulative_streams" class="gt_row gt_right">28,309,576,032</td></tr>
+    <tr><td headers="track" class="gt_row gt_left">Pieces</td>
+<td headers="artist" class="gt_row gt_left">Danilo Stankovic</td>
+<td headers="cumulative_streams" class="gt_row gt_right">28,038,445,729</td></tr>
+    <tr><td headers="track" class="gt_row gt_left">love nwantiti (ah ah ah)</td>
+<td headers="artist" class="gt_row gt_left">CKay</td>
+<td headers="cumulative_streams" class="gt_row gt_right">25,950,286,081</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+<p>This table aggregates the views and streams from Spotify, Pandora,
+YouTube, TikTok and SoundCloud to show which song had the most streams.
+Streaming is defined loosely to include views as streams, both of which
+are arguably passive consumption compared to a like.</p>
+<p><em>Top 10 Liked Songs (Based on TikTok Likes)</em></p>
+<pre class="r"><code>top10tiktok_songs=
+  dataset_2024 |&gt;
+  arrange(desc(tik_tok_likes)) |&gt;
+  slice_head(n = 10)
+
+table_top10tiktok =
+  top10tiktok_songs |&gt;
+  select(track, artist, tik_tok_likes) |&gt;
+         gt() |&gt;
+         tab_header(
+           title = &quot;Top 10 Songs by TikTok Likes&quot;
+         ) |&gt;
+         fmt_number(
+           columns = tik_tok_likes,
+           decimals = 0
+         ) |&gt;
+         cols_label(
+           track = &quot;Song Title&quot;,
+           artist = &quot;Artist&quot;,
+           tik_tok_likes = &quot;TikTok Likes&quot;
+         )
+
+table_top10tiktok</code></pre>
+<div id="ckjtfuffrw" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ckjtfuffrw table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#ckjtfuffrw thead, #ckjtfuffrw tbody, #ckjtfuffrw tfoot, #ckjtfuffrw tr, #ckjtfuffrw td, #ckjtfuffrw th {
+  border-style: none;
+}
+
+#ckjtfuffrw p {
+  margin: 0;
+  padding: 0;
+}
+
+#ckjtfuffrw .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#ckjtfuffrw .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#ckjtfuffrw .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#ckjtfuffrw .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#ckjtfuffrw .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ckjtfuffrw .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ckjtfuffrw .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ckjtfuffrw .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#ckjtfuffrw .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#ckjtfuffrw .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#ckjtfuffrw .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#ckjtfuffrw .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#ckjtfuffrw .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#ckjtfuffrw .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#ckjtfuffrw .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#ckjtfuffrw .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#ckjtfuffrw .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#ckjtfuffrw .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#ckjtfuffrw .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ckjtfuffrw .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#ckjtfuffrw .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#ckjtfuffrw .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#ckjtfuffrw .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ckjtfuffrw .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#ckjtfuffrw .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#ckjtfuffrw .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ckjtfuffrw .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ckjtfuffrw .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#ckjtfuffrw .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ckjtfuffrw .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#ckjtfuffrw .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ckjtfuffrw .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ckjtfuffrw .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ckjtfuffrw .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ckjtfuffrw .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ckjtfuffrw .gt_left {
+  text-align: left;
+}
+
+#ckjtfuffrw .gt_center {
+  text-align: center;
+}
+
+#ckjtfuffrw .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#ckjtfuffrw .gt_font_normal {
+  font-weight: normal;
+}
+
+#ckjtfuffrw .gt_font_bold {
+  font-weight: bold;
+}
+
+#ckjtfuffrw .gt_font_italic {
+  font-style: italic;
+}
+
+#ckjtfuffrw .gt_super {
+  font-size: 65%;
+}
+
+#ckjtfuffrw .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#ckjtfuffrw .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#ckjtfuffrw .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#ckjtfuffrw .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#ckjtfuffrw .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#ckjtfuffrw .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#ckjtfuffrw .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#ckjtfuffrw .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#ckjtfuffrw div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_heading">
+      <td colspan="3" class="gt_heading gt_title gt_font_normal gt_bottom_border" style>Top 10 Songs by TikTok Likes</td>
+    </tr>
+    
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="track">Song Title</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="artist">Artist</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="tik_tok_likes">TikTok Likes</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="track" class="gt_row gt_left">Monkeys Spinning Monkeys</td>
+<td headers="artist" class="gt_row gt_left">Kevin MacLeod</td>
+<td headers="tik_tok_likes" class="gt_row gt_right">23,474,223,833</td></tr>
+    <tr><td headers="track" class="gt_row gt_left">Love You So</td>
+<td headers="artist" class="gt_row gt_left">The King Khan &amp; BBQ Show</td>
+<td headers="tik_tok_likes" class="gt_row gt_right">18,422,696,340</td></tr>
+    <tr><td headers="track" class="gt_row gt_left">Oh No</td>
+<td headers="artist" class="gt_row gt_left">Kreepa</td>
+<td headers="tik_tok_likes" class="gt_row gt_right">4,959,548,763</td></tr>
+    <tr><td headers="track" class="gt_row gt_left">Spongebob</td>
+<td headers="artist" class="gt_row gt_left">Dante9k</td>
+<td headers="tik_tok_likes" class="gt_row gt_right">3,607,884,570</td></tr>
+    <tr><td headers="track" class="gt_row gt_left">Funny Song</td>
+<td headers="artist" class="gt_row gt_left">Cavendish Music</td>
+<td headers="tik_tok_likes" class="gt_row gt_right">3,448,214,061</td></tr>
+    <tr><td headers="track" class="gt_row gt_left">She Share Story</td>
+<td headers="artist" class="gt_row gt_left">Shayne Orok</td>
+<td headers="tik_tok_likes" class="gt_row gt_right">2,844,924,215</td></tr>
+    <tr><td headers="track" class="gt_row gt_left">Steven Universe</td>
+<td headers="artist" class="gt_row gt_left">L.Dre</td>
+<td headers="tik_tok_likes" class="gt_row gt_right">2,714,697,966</td></tr>
+    <tr><td headers="track" class="gt_row gt_left">Pieces</td>
+<td headers="artist" class="gt_row gt_left">Danilo Stankovic</td>
+<td headers="tik_tok_likes" class="gt_row gt_right">2,672,313,847</td></tr>
+    <tr><td headers="track" class="gt_row gt_left">Aesthetic</td>
+<td headers="artist" class="gt_row gt_left">Tollan Kim</td>
+<td headers="tik_tok_likes" class="gt_row gt_right">2,452,502,310</td></tr>
+    <tr><td headers="track" class="gt_row gt_left">STAY (with Justin Bieber)</td>
+<td headers="artist" class="gt_row gt_left">The Kid LAROI</td>
+<td headers="tik_tok_likes" class="gt_row gt_right">2,246,991,336</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+<p><em>Top 10 Songs Liked on YouTube</em></p>
+<pre class="r"><code>top10yt_songs=
+  dataset_2024 |&gt;
+  arrange(desc(you_tube_likes)) |&gt;
+  slice_head(n = 10)
+
+table_top10yt =
+  top10yt_songs |&gt;
+  select(track, artist, you_tube_likes) |&gt;
+         gt() |&gt;
+         tab_header(
+           title = &quot;Top 10 Songs by YouTube Likes&quot;
+         ) |&gt;
+         fmt_number(
+           columns = you_tube_likes,
+           decimals = 0
+         ) |&gt;
+         cols_label(
+           track = &quot;Song Title&quot;,
+           artist = &quot;Artist&quot;,
+           you_tube_likes = &quot;YouTube Likes&quot;
+         )
+
+table_top10yt</code></pre>
+<div id="iurgakgwxo" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#iurgakgwxo table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#iurgakgwxo thead, #iurgakgwxo tbody, #iurgakgwxo tfoot, #iurgakgwxo tr, #iurgakgwxo td, #iurgakgwxo th {
+  border-style: none;
+}
+
+#iurgakgwxo p {
+  margin: 0;
+  padding: 0;
+}
+
+#iurgakgwxo .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#iurgakgwxo .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#iurgakgwxo .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#iurgakgwxo .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#iurgakgwxo .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#iurgakgwxo .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#iurgakgwxo .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#iurgakgwxo .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#iurgakgwxo .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#iurgakgwxo .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#iurgakgwxo .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#iurgakgwxo .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#iurgakgwxo .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#iurgakgwxo .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#iurgakgwxo .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#iurgakgwxo .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#iurgakgwxo .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#iurgakgwxo .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#iurgakgwxo .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#iurgakgwxo .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#iurgakgwxo .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#iurgakgwxo .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#iurgakgwxo .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#iurgakgwxo .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#iurgakgwxo .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#iurgakgwxo .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#iurgakgwxo .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#iurgakgwxo .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#iurgakgwxo .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#iurgakgwxo .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#iurgakgwxo .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#iurgakgwxo .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#iurgakgwxo .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#iurgakgwxo .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#iurgakgwxo .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#iurgakgwxo .gt_left {
+  text-align: left;
+}
+
+#iurgakgwxo .gt_center {
+  text-align: center;
+}
+
+#iurgakgwxo .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#iurgakgwxo .gt_font_normal {
+  font-weight: normal;
+}
+
+#iurgakgwxo .gt_font_bold {
+  font-weight: bold;
+}
+
+#iurgakgwxo .gt_font_italic {
+  font-style: italic;
+}
+
+#iurgakgwxo .gt_super {
+  font-size: 65%;
+}
+
+#iurgakgwxo .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#iurgakgwxo .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#iurgakgwxo .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#iurgakgwxo .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#iurgakgwxo .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#iurgakgwxo .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#iurgakgwxo .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#iurgakgwxo .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#iurgakgwxo div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_heading">
+      <td colspan="3" class="gt_heading gt_title gt_font_normal gt_bottom_border" style>Top 10 Songs by YouTube Likes</td>
+    </tr>
+    
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="track">Song Title</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="artist">Artist</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="you_tube_likes">YouTube Likes</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="track" class="gt_row gt_left">Dynamite</td>
+<td headers="artist" class="gt_row gt_left">BTS</td>
+<td headers="you_tube_likes" class="gt_row gt_right">62,311,179</td></tr>
+    <tr><td headers="track" class="gt_row gt_left">Despacito</td>
+<td headers="artist" class="gt_row gt_left">Luis Fonsi</td>
+<td headers="you_tube_likes" class="gt_row gt_right">61,799,279</td></tr>
+    <tr><td headers="track" class="gt_row gt_left">Baby Shark</td>
+<td headers="artist" class="gt_row gt_left">Pinkfong</td>
+<td headers="you_tube_likes" class="gt_row gt_right">48,757,673</td></tr>
+    <tr><td headers="track" class="gt_row gt_left">Shape of You</td>
+<td headers="artist" class="gt_row gt_left">Ed Sheeran</td>
+<td headers="you_tube_likes" class="gt_row gt_right">45,770,887</td></tr>
+    <tr><td headers="track" class="gt_row gt_left">See You Again (feat. Charlie Puth)</td>
+<td headers="artist" class="gt_row gt_left">Wiz Khalifa</td>
+<td headers="you_tube_likes" class="gt_row gt_right">43,663,933</td></tr>
+    <tr><td headers="track" class="gt_row gt_left">Believer</td>
+<td headers="artist" class="gt_row gt_left">Imagine Dragons</td>
+<td headers="you_tube_likes" class="gt_row gt_right">42,240,881</td></tr>
+    <tr><td headers="track" class="gt_row gt_left">DDU-DU DDU-DU</td>
+<td headers="artist" class="gt_row gt_left">BLACKPINK</td>
+<td headers="you_tube_likes" class="gt_row gt_right">41,630,558</td></tr>
+    <tr><td headers="track" class="gt_row gt_left">Old Town Road</td>
+<td headers="artist" class="gt_row gt_left">Lil Nas X</td>
+<td headers="you_tube_likes" class="gt_row gt_right">41,487,213</td></tr>
+    <tr><td headers="track" class="gt_row gt_left">Kill This Love</td>
+<td headers="artist" class="gt_row gt_left">BLACKPINK</td>
+<td headers="you_tube_likes" class="gt_row gt_right">40,314,889</td></tr>
+    <tr><td headers="track" class="gt_row gt_left">Perfect</td>
+<td headers="artist" class="gt_row gt_left">Ed Sheeran</td>
+<td headers="you_tube_likes" class="gt_row gt_right">39,632,673</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+<p><em>Top 10 Songs for Playlist Count</em></p>
+<pre class="r"><code>dataset_2024 =
+  dataset_2024 |&gt;
+  mutate(
+    cumulative_playlist = rowSums(across(c(spotify_playlist_count, deezer_playlist_count, apple_music_playlist_count, amazon_playlist_count)), na.rm = TRUE)
+  )
+
+top10playlist_songs=
+  dataset_2024 |&gt;
+  arrange(desc(cumulative_playlist)) |&gt;
+  slice_head(n = 10)
+
+table_top10playlist_songs =
+  top10playlist_songs |&gt;
+  select(track, artist, cumulative_playlist) |&gt;
+         gt() |&gt;
+         tab_header(
+           title = &quot;Top 10 Streamed Songs in 2024&quot;,
+           subtitle = &quot;Aggregated across Spotify, Deezer, Apple Music, and Amazon Music&quot;
+         ) |&gt;
+         fmt_number(
+           columns = cumulative_playlist,
+           decimals = 0
+         ) |&gt;
+         cols_label(
+           track = &quot;Song Title&quot;,
+           artist = &quot;Artist&quot;,
+           cumulative_playlist = &quot;Cumulative Playlist Count&quot;
+         )
+
+
+table_top10playlist_songs</code></pre>
+<div id="oljlqfiyko" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#oljlqfiyko table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#oljlqfiyko thead, #oljlqfiyko tbody, #oljlqfiyko tfoot, #oljlqfiyko tr, #oljlqfiyko td, #oljlqfiyko th {
+  border-style: none;
+}
+
+#oljlqfiyko p {
+  margin: 0;
+  padding: 0;
+}
+
+#oljlqfiyko .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#oljlqfiyko .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#oljlqfiyko .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#oljlqfiyko .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#oljlqfiyko .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#oljlqfiyko .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#oljlqfiyko .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#oljlqfiyko .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#oljlqfiyko .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#oljlqfiyko .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#oljlqfiyko .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#oljlqfiyko .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#oljlqfiyko .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#oljlqfiyko .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#oljlqfiyko .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#oljlqfiyko .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#oljlqfiyko .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#oljlqfiyko .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#oljlqfiyko .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#oljlqfiyko .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#oljlqfiyko .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#oljlqfiyko .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#oljlqfiyko .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#oljlqfiyko .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#oljlqfiyko .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#oljlqfiyko .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#oljlqfiyko .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#oljlqfiyko .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#oljlqfiyko .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#oljlqfiyko .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#oljlqfiyko .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#oljlqfiyko .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#oljlqfiyko .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#oljlqfiyko .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#oljlqfiyko .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#oljlqfiyko .gt_left {
+  text-align: left;
+}
+
+#oljlqfiyko .gt_center {
+  text-align: center;
+}
+
+#oljlqfiyko .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#oljlqfiyko .gt_font_normal {
+  font-weight: normal;
+}
+
+#oljlqfiyko .gt_font_bold {
+  font-weight: bold;
+}
+
+#oljlqfiyko .gt_font_italic {
+  font-style: italic;
+}
+
+#oljlqfiyko .gt_super {
+  font-size: 65%;
+}
+
+#oljlqfiyko .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#oljlqfiyko .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#oljlqfiyko .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#oljlqfiyko .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#oljlqfiyko .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#oljlqfiyko .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#oljlqfiyko .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#oljlqfiyko .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#oljlqfiyko div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_heading">
+      <td colspan="3" class="gt_heading gt_title gt_font_normal" style>Top 10 Streamed Songs in 2024</td>
+    </tr>
+    <tr class="gt_heading">
+      <td colspan="3" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style>Aggregated across Spotify, Deezer, Apple Music, and Amazon Music</td>
+    </tr>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="track">Song Title</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="artist">Artist</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="cumulative_playlist">Cumulative Playlist Count</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="track" class="gt_row gt_left">Blinding Lights</td>
+<td headers="artist" class="gt_row gt_left">The Weeknd</td>
+<td headers="cumulative_playlist" class="gt_row gt_right">591,999</td></tr>
+    <tr><td headers="track" class="gt_row gt_left">Heat Waves</td>
+<td headers="artist" class="gt_row gt_left">Glass Animals</td>
+<td headers="cumulative_playlist" class="gt_row gt_right">487,002</td></tr>
+    <tr><td headers="track" class="gt_row gt_left">STAY (with Justin Bieber)</td>
+<td headers="artist" class="gt_row gt_left">The Kid LAROI</td>
+<td headers="cumulative_playlist" class="gt_row gt_right">452,539</td></tr>
+    <tr><td headers="track" class="gt_row gt_left">Sweater Weather</td>
+<td headers="artist" class="gt_row gt_left">The Neighbourhood</td>
+<td headers="cumulative_playlist" class="gt_row gt_right">415,962</td></tr>
+    <tr><td headers="track" class="gt_row gt_left">Smells Like Teen Spirit</td>
+<td headers="artist" class="gt_row gt_left">Nirvana</td>
+<td headers="cumulative_playlist" class="gt_row gt_right">410,694</td></tr>
+    <tr><td headers="track" class="gt_row gt_left">As It Was</td>
+<td headers="artist" class="gt_row gt_left">Harry Styles</td>
+<td headers="cumulative_playlist" class="gt_row gt_right">408,093</td></tr>
+    <tr><td headers="track" class="gt_row gt_left">No Role Modelz</td>
+<td headers="artist" class="gt_row gt_left">J. Cole</td>
+<td headers="cumulative_playlist" class="gt_row gt_right">403,532</td></tr>
+    <tr><td headers="track" class="gt_row gt_left">Without Me</td>
+<td headers="artist" class="gt_row gt_left">Eminem</td>
+<td headers="cumulative_playlist" class="gt_row gt_right">397,467</td></tr>
+    <tr><td headers="track" class="gt_row gt_left">Sunflower - Spider-Man: Into the Spider-Verse</td>
+<td headers="artist" class="gt_row gt_left">Post Malone</td>
+<td headers="cumulative_playlist" class="gt_row gt_right">392,618</td></tr>
+    <tr><td headers="track" class="gt_row gt_left">goosebumps</td>
+<td headers="artist" class="gt_row gt_left">Travis Scott</td>
+<td headers="cumulative_playlist" class="gt_row gt_right">382,078</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+<p><em>Top 10 Artists by Number of Most Streamed Songs</em></p>
+<pre class="r"><code>data_set_artist =
+ dataset_2024 |&gt;
+    drop_na(artist)|&gt;
+  group_by(artist) |&gt;
+  summarise(
+    song_count = n(),  
+    .groups = &quot;drop&quot;)
+
+top10artist_songs=
+  data_set_artist |&gt;
+  arrange(desc(song_count)) |&gt;
+  slice_head(n = 10)
+
+table_top10artist_songs =
+  top10artist_songs |&gt;
+  select(artist, song_count) |&gt;
+         gt() |&gt;
+         tab_header(
+           title = &quot;Top 10 Artists in 2024&quot;) |&gt;
+         fmt_number(
+           columns = song_count,
+           decimals = 0
+         ) |&gt;
+         cols_label(
+           artist = &quot;Artist&quot;,
+           song_count = &quot;Song Count&quot;
+         )
+
+table_top10artist_songs</code></pre>
+<div id="ohlxsbtzvg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ohlxsbtzvg table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#ohlxsbtzvg thead, #ohlxsbtzvg tbody, #ohlxsbtzvg tfoot, #ohlxsbtzvg tr, #ohlxsbtzvg td, #ohlxsbtzvg th {
+  border-style: none;
+}
+
+#ohlxsbtzvg p {
+  margin: 0;
+  padding: 0;
+}
+
+#ohlxsbtzvg .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#ohlxsbtzvg .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#ohlxsbtzvg .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#ohlxsbtzvg .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#ohlxsbtzvg .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ohlxsbtzvg .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ohlxsbtzvg .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ohlxsbtzvg .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#ohlxsbtzvg .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#ohlxsbtzvg .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#ohlxsbtzvg .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#ohlxsbtzvg .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#ohlxsbtzvg .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#ohlxsbtzvg .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#ohlxsbtzvg .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#ohlxsbtzvg .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#ohlxsbtzvg .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#ohlxsbtzvg .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#ohlxsbtzvg .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ohlxsbtzvg .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#ohlxsbtzvg .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#ohlxsbtzvg .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#ohlxsbtzvg .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ohlxsbtzvg .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#ohlxsbtzvg .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#ohlxsbtzvg .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ohlxsbtzvg .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ohlxsbtzvg .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#ohlxsbtzvg .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ohlxsbtzvg .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#ohlxsbtzvg .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ohlxsbtzvg .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ohlxsbtzvg .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ohlxsbtzvg .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ohlxsbtzvg .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ohlxsbtzvg .gt_left {
+  text-align: left;
+}
+
+#ohlxsbtzvg .gt_center {
+  text-align: center;
+}
+
+#ohlxsbtzvg .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#ohlxsbtzvg .gt_font_normal {
+  font-weight: normal;
+}
+
+#ohlxsbtzvg .gt_font_bold {
+  font-weight: bold;
+}
+
+#ohlxsbtzvg .gt_font_italic {
+  font-style: italic;
+}
+
+#ohlxsbtzvg .gt_super {
+  font-size: 65%;
+}
+
+#ohlxsbtzvg .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#ohlxsbtzvg .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#ohlxsbtzvg .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#ohlxsbtzvg .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#ohlxsbtzvg .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#ohlxsbtzvg .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#ohlxsbtzvg .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#ohlxsbtzvg .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#ohlxsbtzvg div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_heading">
+      <td colspan="2" class="gt_heading gt_title gt_font_normal gt_bottom_border" style>Top 10 Artists in 2024</td>
+    </tr>
+    
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="artist">Artist</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="song_count">Song Count</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="artist" class="gt_row gt_left">Drake</td>
+<td headers="song_count" class="gt_row gt_right">63</td></tr>
+    <tr><td headers="artist" class="gt_row gt_left">Taylor Swift</td>
+<td headers="song_count" class="gt_row gt_right">63</td></tr>
+    <tr><td headers="artist" class="gt_row gt_left">Bad Bunny</td>
+<td headers="song_count" class="gt_row gt_right">60</td></tr>
+    <tr><td headers="artist" class="gt_row gt_left">KAROL G</td>
+<td headers="song_count" class="gt_row gt_right">32</td></tr>
+    <tr><td headers="artist" class="gt_row gt_left">The Weeknd</td>
+<td headers="song_count" class="gt_row gt_right">31</td></tr>
+    <tr><td headers="artist" class="gt_row gt_left">Travis Scott</td>
+<td headers="song_count" class="gt_row gt_right">30</td></tr>
+    <tr><td headers="artist" class="gt_row gt_left">Billie Eilish</td>
+<td headers="song_count" class="gt_row gt_right">27</td></tr>
+    <tr><td headers="artist" class="gt_row gt_left">Ariana Grande</td>
+<td headers="song_count" class="gt_row gt_right">26</td></tr>
+    <tr><td headers="artist" class="gt_row gt_left">Future</td>
+<td headers="song_count" class="gt_row gt_right">23</td></tr>
+    <tr><td headers="artist" class="gt_row gt_left">Peso Pluma</td>
+<td headers="song_count" class="gt_row gt_right">22</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+<p><em>Streaming Platform Data</em></p>
+<pre class="r"><code>get_top_songs &lt;- function(data, metric, top_n = 5) {
+  data |&gt; 
+    select(track, artist, !!sym(metric)) |&gt; 
+    drop_na(track) |&gt; 
+    arrange(desc(!!sym(metric))) |&gt; 
+    head(top_n) |&gt; 
+    gt() |&gt; 
+    tab_header(
+      title = paste(&quot;Top Songs by&quot;, gsub(&quot;_&quot;, &quot; &quot;, metric)),
+      subtitle = paste(&quot;Based on&quot;, metric, &quot;metrics&quot;)
+    ) |&gt; 
+    fmt_number(
+      columns = !!sym(metric),
+      decimals = 0
+    ) |&gt; 
+    cols_label(
+      track = &quot;Track Name&quot;,
+      artist = &quot;Artist&quot;,
+      !!sym(metric) := gsub(&quot;_&quot;, &quot; &quot;, metric)
+    )
+}
+top_spotify &lt;- get_top_songs(dataset_2024, &quot;spotify_streams&quot;)
+top_soundcloud &lt;- get_top_songs(dataset_2024, &quot;soundcloud_streams&quot;)
+top_youtube &lt;- get_top_songs(dataset_2024, &quot;you_tube_views&quot;)
+top_tiktok &lt;- get_top_songs(dataset_2024, &quot;tik_tok_views&quot;)
+
+top_spotify</code></pre>
+<div id="apajhzbtfh" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#apajhzbtfh table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#apajhzbtfh thead, #apajhzbtfh tbody, #apajhzbtfh tfoot, #apajhzbtfh tr, #apajhzbtfh td, #apajhzbtfh th {
+  border-style: none;
+}
+
+#apajhzbtfh p {
+  margin: 0;
+  padding: 0;
+}
+
+#apajhzbtfh .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#apajhzbtfh .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#apajhzbtfh .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#apajhzbtfh .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#apajhzbtfh .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#apajhzbtfh .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#apajhzbtfh .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#apajhzbtfh .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#apajhzbtfh .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#apajhzbtfh .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#apajhzbtfh .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#apajhzbtfh .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#apajhzbtfh .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#apajhzbtfh .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#apajhzbtfh .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#apajhzbtfh .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#apajhzbtfh .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#apajhzbtfh .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#apajhzbtfh .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#apajhzbtfh .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#apajhzbtfh .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#apajhzbtfh .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#apajhzbtfh .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#apajhzbtfh .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#apajhzbtfh .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#apajhzbtfh .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#apajhzbtfh .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#apajhzbtfh .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#apajhzbtfh .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#apajhzbtfh .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#apajhzbtfh .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#apajhzbtfh .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#apajhzbtfh .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#apajhzbtfh .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#apajhzbtfh .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#apajhzbtfh .gt_left {
+  text-align: left;
+}
+
+#apajhzbtfh .gt_center {
+  text-align: center;
+}
+
+#apajhzbtfh .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#apajhzbtfh .gt_font_normal {
+  font-weight: normal;
+}
+
+#apajhzbtfh .gt_font_bold {
+  font-weight: bold;
+}
+
+#apajhzbtfh .gt_font_italic {
+  font-style: italic;
+}
+
+#apajhzbtfh .gt_super {
+  font-size: 65%;
+}
+
+#apajhzbtfh .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#apajhzbtfh .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#apajhzbtfh .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#apajhzbtfh .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#apajhzbtfh .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#apajhzbtfh .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#apajhzbtfh .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#apajhzbtfh .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#apajhzbtfh div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_heading">
+      <td colspan="3" class="gt_heading gt_title gt_font_normal" style>Top Songs by spotify streams</td>
+    </tr>
+    <tr class="gt_heading">
+      <td colspan="3" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style>Based on spotify_streams metrics</td>
+    </tr>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="track">Track Name</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="artist">Artist</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="spotify_streams">spotify streams</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="track" class="gt_row gt_left">Blinding Lights</td>
+<td headers="artist" class="gt_row gt_left">The Weeknd</td>
+<td headers="spotify_streams" class="gt_row gt_right">4,281,468,720</td></tr>
+    <tr><td headers="track" class="gt_row gt_left">Shape of You</td>
+<td headers="artist" class="gt_row gt_left">Ed Sheeran</td>
+<td headers="spotify_streams" class="gt_row gt_right">3,909,458,734</td></tr>
+    <tr><td headers="track" class="gt_row gt_left">Someone You Loved</td>
+<td headers="artist" class="gt_row gt_left">Lewis Capaldi</td>
+<td headers="spotify_streams" class="gt_row gt_right">3,427,498,835</td></tr>
+    <tr><td headers="track" class="gt_row gt_left">Sunflower - Spider-Man: Into the Spider-Verse</td>
+<td headers="artist" class="gt_row gt_left">Post Malone</td>
+<td headers="spotify_streams" class="gt_row gt_right">3,358,704,125</td></tr>
+    <tr><td headers="track" class="gt_row gt_left">As It Was</td>
+<td headers="artist" class="gt_row gt_left">Harry Styles</td>
+<td headers="spotify_streams" class="gt_row gt_right">3,301,814,535</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+<pre class="r"><code>top_soundcloud</code></pre>
+<div id="frllrplens" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#frllrplens table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#frllrplens thead, #frllrplens tbody, #frllrplens tfoot, #frllrplens tr, #frllrplens td, #frllrplens th {
+  border-style: none;
+}
+
+#frllrplens p {
+  margin: 0;
+  padding: 0;
+}
+
+#frllrplens .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#frllrplens .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#frllrplens .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#frllrplens .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#frllrplens .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#frllrplens .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#frllrplens .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#frllrplens .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#frllrplens .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#frllrplens .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#frllrplens .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#frllrplens .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#frllrplens .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#frllrplens .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#frllrplens .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#frllrplens .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#frllrplens .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#frllrplens .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#frllrplens .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#frllrplens .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#frllrplens .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#frllrplens .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#frllrplens .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#frllrplens .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#frllrplens .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#frllrplens .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#frllrplens .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#frllrplens .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#frllrplens .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#frllrplens .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#frllrplens .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#frllrplens .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#frllrplens .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#frllrplens .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#frllrplens .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#frllrplens .gt_left {
+  text-align: left;
+}
+
+#frllrplens .gt_center {
+  text-align: center;
+}
+
+#frllrplens .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#frllrplens .gt_font_normal {
+  font-weight: normal;
+}
+
+#frllrplens .gt_font_bold {
+  font-weight: bold;
+}
+
+#frllrplens .gt_font_italic {
+  font-style: italic;
+}
+
+#frllrplens .gt_super {
+  font-size: 65%;
+}
+
+#frllrplens .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#frllrplens .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#frllrplens .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#frllrplens .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#frllrplens .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#frllrplens .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#frllrplens .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#frllrplens .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#frllrplens div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_heading">
+      <td colspan="3" class="gt_heading gt_title gt_font_normal" style>Top Songs by soundcloud streams</td>
+    </tr>
+    <tr class="gt_heading">
+      <td colspan="3" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style>Based on soundcloud_streams metrics</td>
+    </tr>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="track">Track Name</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="artist">Artist</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="soundcloud_streams">soundcloud streams</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="track" class="gt_row gt_left">Fuck Love (feat. Trippie Redd)</td>
+<td headers="artist" class="gt_row gt_left">XXXTENTACION</td>
+<td headers="soundcloud_streams" class="gt_row gt_right">319,835,943</td></tr>
+    <tr><td headers="track" class="gt_row gt_left">XO Tour Llif3</td>
+<td headers="artist" class="gt_row gt_left">Lil Uzi Vert</td>
+<td headers="soundcloud_streams" class="gt_row gt_right">264,706,631</td></tr>
+    <tr><td headers="track" class="gt_row gt_left">Lucid Dreams</td>
+<td headers="artist" class="gt_row gt_left">Juice WRLD</td>
+<td headers="soundcloud_streams" class="gt_row gt_right">257,459,352</td></tr>
+    <tr><td headers="track" class="gt_row gt_left">All Girls Are The Same</td>
+<td headers="artist" class="gt_row gt_left">Juice WRLD</td>
+<td headers="soundcloud_streams" class="gt_row gt_right">229,990,892</td></tr>
+    <tr><td headers="track" class="gt_row gt_left">From The D To The A (feat. Lil Yachty)</td>
+<td headers="artist" class="gt_row gt_left">Tee Grizzley</td>
+<td headers="soundcloud_streams" class="gt_row gt_right">222,229,993</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+<pre class="r"><code>top_youtube</code></pre>
+<div id="yjevlbbxwc" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#yjevlbbxwc table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#yjevlbbxwc thead, #yjevlbbxwc tbody, #yjevlbbxwc tfoot, #yjevlbbxwc tr, #yjevlbbxwc td, #yjevlbbxwc th {
+  border-style: none;
+}
+
+#yjevlbbxwc p {
+  margin: 0;
+  padding: 0;
+}
+
+#yjevlbbxwc .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#yjevlbbxwc .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#yjevlbbxwc .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#yjevlbbxwc .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#yjevlbbxwc .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#yjevlbbxwc .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#yjevlbbxwc .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#yjevlbbxwc .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#yjevlbbxwc .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#yjevlbbxwc .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#yjevlbbxwc .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#yjevlbbxwc .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#yjevlbbxwc .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#yjevlbbxwc .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#yjevlbbxwc .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#yjevlbbxwc .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#yjevlbbxwc .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#yjevlbbxwc .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#yjevlbbxwc .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#yjevlbbxwc .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#yjevlbbxwc .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#yjevlbbxwc .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#yjevlbbxwc .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#yjevlbbxwc .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#yjevlbbxwc .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#yjevlbbxwc .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#yjevlbbxwc .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#yjevlbbxwc .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#yjevlbbxwc .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#yjevlbbxwc .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#yjevlbbxwc .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#yjevlbbxwc .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#yjevlbbxwc .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#yjevlbbxwc .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#yjevlbbxwc .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#yjevlbbxwc .gt_left {
+  text-align: left;
+}
+
+#yjevlbbxwc .gt_center {
+  text-align: center;
+}
+
+#yjevlbbxwc .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#yjevlbbxwc .gt_font_normal {
+  font-weight: normal;
+}
+
+#yjevlbbxwc .gt_font_bold {
+  font-weight: bold;
+}
+
+#yjevlbbxwc .gt_font_italic {
+  font-style: italic;
+}
+
+#yjevlbbxwc .gt_super {
+  font-size: 65%;
+}
+
+#yjevlbbxwc .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#yjevlbbxwc .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#yjevlbbxwc .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#yjevlbbxwc .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#yjevlbbxwc .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#yjevlbbxwc .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#yjevlbbxwc .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#yjevlbbxwc .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#yjevlbbxwc div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_heading">
+      <td colspan="3" class="gt_heading gt_title gt_font_normal" style>Top Songs by you tube views</td>
+    </tr>
+    <tr class="gt_heading">
+      <td colspan="3" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style>Based on you_tube_views metrics</td>
+    </tr>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="track">Track Name</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="artist">Artist</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="you_tube_views">you tube views</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="track" class="gt_row gt_left">Baby Shark</td>
+<td headers="artist" class="gt_row gt_left">Pinkfong</td>
+<td headers="you_tube_views" class="gt_row gt_right">16,322,756,555</td></tr>
+    <tr><td headers="track" class="gt_row gt_left">Despacito</td>
+<td headers="artist" class="gt_row gt_left">Luis Fonsi</td>
+<td headers="you_tube_views" class="gt_row gt_right">9,537,135,721</td></tr>
+    <tr><td headers="track" class="gt_row gt_left">Shape of You</td>
+<td headers="artist" class="gt_row gt_left">Ed Sheeran</td>
+<td headers="you_tube_views" class="gt_row gt_right">8,013,997,219</td></tr>
+    <tr><td headers="track" class="gt_row gt_left">bathroom floor</td>
+<td headers="artist" class="gt_row gt_left">Kids With Buns</td>
+<td headers="you_tube_views" class="gt_row gt_right">6,736,502,312</td></tr>
+    <tr><td headers="track" class="gt_row gt_left">Perfect</td>
+<td headers="artist" class="gt_row gt_left">Ed Sheeran</td>
+<td headers="you_tube_views" class="gt_row gt_right">6,473,698,897</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+<pre class="r"><code>top_tiktok</code></pre>
+<div id="gyredxjeei" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#gyredxjeei table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#gyredxjeei thead, #gyredxjeei tbody, #gyredxjeei tfoot, #gyredxjeei tr, #gyredxjeei td, #gyredxjeei th {
+  border-style: none;
+}
+
+#gyredxjeei p {
+  margin: 0;
+  padding: 0;
+}
+
+#gyredxjeei .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#gyredxjeei .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#gyredxjeei .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#gyredxjeei .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#gyredxjeei .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#gyredxjeei .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#gyredxjeei .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#gyredxjeei .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#gyredxjeei .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#gyredxjeei .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#gyredxjeei .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#gyredxjeei .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#gyredxjeei .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#gyredxjeei .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#gyredxjeei .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#gyredxjeei .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#gyredxjeei .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#gyredxjeei .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#gyredxjeei .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#gyredxjeei .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#gyredxjeei .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#gyredxjeei .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#gyredxjeei .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#gyredxjeei .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#gyredxjeei .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#gyredxjeei .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#gyredxjeei .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#gyredxjeei .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#gyredxjeei .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#gyredxjeei .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#gyredxjeei .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#gyredxjeei .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#gyredxjeei .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#gyredxjeei .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#gyredxjeei .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#gyredxjeei .gt_left {
+  text-align: left;
+}
+
+#gyredxjeei .gt_center {
+  text-align: center;
+}
+
+#gyredxjeei .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#gyredxjeei .gt_font_normal {
+  font-weight: normal;
+}
+
+#gyredxjeei .gt_font_bold {
+  font-weight: bold;
+}
+
+#gyredxjeei .gt_font_italic {
+  font-style: italic;
+}
+
+#gyredxjeei .gt_super {
+  font-size: 65%;
+}
+
+#gyredxjeei .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#gyredxjeei .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#gyredxjeei .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#gyredxjeei .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#gyredxjeei .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#gyredxjeei .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#gyredxjeei .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#gyredxjeei .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#gyredxjeei div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_heading">
+      <td colspan="3" class="gt_heading gt_title gt_font_normal" style>Top Songs by tik tok views</td>
+    </tr>
+    <tr class="gt_heading">
+      <td colspan="3" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style>Based on tik_tok_views metrics</td>
+    </tr>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="track">Track Name</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="artist">Artist</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="tik_tok_views">tik tok views</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="track" class="gt_row gt_left">Monkeys Spinning Monkeys</td>
+<td headers="artist" class="gt_row gt_left">Kevin MacLeod</td>
+<td headers="tik_tok_views" class="gt_row gt_right">233,232,311,463</td></tr>
+    <tr><td headers="track" class="gt_row gt_left">Love You So</td>
+<td headers="artist" class="gt_row gt_left">The King Khan &amp; BBQ Show</td>
+<td headers="tik_tok_views" class="gt_row gt_right">214,843,956,590</td></tr>
+    <tr><td headers="track" class="gt_row gt_left">Oh No</td>
+<td headers="artist" class="gt_row gt_left">Kreepa</td>
+<td headers="tik_tok_views" class="gt_row gt_right">61,088,562,861</td></tr>
+    <tr><td headers="track" class="gt_row gt_left">Funny Song</td>
+<td headers="artist" class="gt_row gt_left">Cavendish Music</td>
+<td headers="tik_tok_views" class="gt_row gt_right">38,373,644,011</td></tr>
+    <tr><td headers="track" class="gt_row gt_left">Aesthetic</td>
+<td headers="artist" class="gt_row gt_left">Tollan Kim</td>
+<td headers="tik_tok_views" class="gt_row gt_right">33,870,791,454</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+<p><em>Interpretation</em> Based on this 2024 dataset, there is almost
+no overlap among the most popular five songs streamed for Spotify,
+Soundcloud, YouTube, and TikTok. The only track in common is “Shape of
+You” by Ed Sheeran, where this is on the Top 5 Songs for YouTube and
+Spotify. These tables also allow us to compare popularity of streaming
+platforms, where Tik Tok’s most viewed song (Mokeys Spinning Monkeys by
+Kevin MacLeod) has 233,232,311,463 views, and Soundcloud’s most streamed
+song has 319,835,943 streams. This factor of a hundred difference
+demonstrates TikTok’s popularity compared to other streaming platforms
+such as SoundCloud. It is also interesting that SoundCloud’s Top 5
+streamed songs are all in the rap genre, where Spotify’s Top 5 streamed
+songs generally fall into today’s hits/pop.</p>
+</div>
+<div id="visualizations" class="section level3">
+<h3>Visualizations</h3>
+<p><em>Percentage of Explicit Tracks</em></p>
+<pre class="r"><code>explicit_song =
+  dataset_2024 |&gt;
+  mutate(explicit_track = ifelse(explicit_track == 1, &quot;Explicit&quot;, &quot;Non-Explicit&quot;))|&gt;
+  count(explicit_track) |&gt;
+  mutate(percentage = n / sum(n) * 100)
+  
+  explicit_pie_chart =
+  ggplot(explicit_song, aes(x = &quot;&quot;, y = percentage, fill = explicit_track)) +
+  geom_col(width = 1) +
+  coord_polar(theta = &quot;y&quot;) + 
+  geom_text(
+    aes(label = paste0(round(percentage, 1), &quot;%&quot;)), 
+    position = position_stack(vjust = 0.5),
+    color = &quot;white&quot;, 
+    size = 5 ) +
+  labs(
+    title = &quot;Percentage of Explicit vs Non-Explicit Songs&quot;,
+    fill = &quot;Song Type&quot;) +
+  theme_void() +
+  theme(
+    plot.title = element_text(hjust = 0.5, size = 16, face = &quot;bold&quot;)) +
+  scale_fill_manual(values = c(&quot;Explicit&quot; = &quot;#E63946&quot;, &quot;Non-Explicit&quot; = &quot;#457B9D&quot;))
+  
+  explicit_pie_chart</code></pre>
+<p><img src="2024_files/figure-html/percent%20explicit-1.png" width="672" /></p>
+<p><em>Explicit Tracks and Popularity</em></p>
+<pre class="r"><code>explicit_song2 =
+  dataset_2024 |&gt;
+  mutate(explicit_track = ifelse(explicit_track == 1, &quot;Explicit&quot;, &quot;Non-Explicit&quot;))
+ 
+ggplot(explicit_song2, aes(x = explicit_track, y = spotify_popularity, fill = explicit_track)) +
+  geom_boxplot() +
+  labs(
+    title = &quot;Distribution of Popularity for Explicit and Non-Explicit Songs&quot;,
+    x = &quot;Track Type&quot;,
+    y = &quot;Popularity&quot;
+  ) +
+  scale_fill_manual(values = c(&quot;Explicit&quot; = &quot;coral&quot;, &quot;Non-Explicit&quot; = &quot;skyblue&quot;)) +
+  theme_minimal()</code></pre>
+<pre><code>## Warning: Removed 763 rows containing non-finite outside the scale range
+## (`stat_boxplot()`).</code></pre>
+<p><img src="2024_files/figure-html/explicit%20tracks%20by%20popularity-1.png" width="672" /></p>
+<p><em>Explicit/Nonexplicit Distribution of Streams</em></p>
+<pre class="r"><code>explicit_song2 =
+  dataset_2024 |&gt;
+  mutate(explicit_track = ifelse(explicit_track == 1, &quot;Explicit&quot;, &quot;Non-Explicit&quot;))|&gt;
+  mutate(
+    cumulative_streams = rowSums(across(c(pandora_streams, spotify_streams, soundcloud_streams, you_tube_views, tik_tok_views)), na.rm = TRUE)
+  )
+  
+ 
+ggplot(explicit_song2, aes(x = explicit_track, y = cumulative_streams, fill = explicit_track)) +
+  geom_boxplot() +
+  scale_y_log10() +
+  labs(
+    title = &quot;Distribution of Streams for Explicit and Non-Explicit Songs&quot;,
+    x = &quot;Track Type&quot;,
+    y = &quot;Number Streams&quot;
+  ) +
+  scale_fill_manual(values = c(&quot;Explicit&quot; = &quot;coral&quot;, &quot;Non-Explicit&quot; = &quot;skyblue&quot;)) +
+  theme_minimal()</code></pre>
+<pre><code>## Warning in scale_y_log10(): log-10 transformation introduced infinite values.</code></pre>
+<pre><code>## Warning: Removed 17 rows containing non-finite outside the scale range
+## (`stat_boxplot()`).</code></pre>
+<p><img src="2024_files/figure-html/explicit%20tracks%20by%20stream%20count-1.png" width="672" /></p>
+<p><em>Explicit/Nonexplicit Distribution of Likes</em></p>
+<pre class="r"><code>explicit_song2 =
+  dataset_2024 |&gt;
+  mutate(explicit_track = ifelse(explicit_track == 1, &quot;Explicit&quot;, &quot;Non-Explicit&quot;))|&gt;
+  mutate(
+    cumulative_likes = rowSums(across(c(you_tube_likes, tik_tok_likes)), na.rm = TRUE)
+  )
+ 
+ggplot(explicit_song2, aes(x = explicit_track, y = cumulative_likes, fill = explicit_track)) +
+  geom_boxplot() +
+  scale_y_log10() +
+  labs(
+    title = &quot;Distribution of Likes for Explicit and Non-Explicit Songs&quot;,
+    x = &quot;Track Type&quot;,
+    y = &quot;Number Likes&quot;
+  ) +
+  scale_fill_manual(values = c(&quot;Explicit&quot; = &quot;coral&quot;, &quot;Non-Explicit&quot; = &quot;skyblue&quot;)) +
+  theme_minimal()</code></pre>
+<pre><code>## Warning in scale_y_log10(): log-10 transformation introduced infinite values.</code></pre>
+<pre><code>## Warning: Removed 210 rows containing non-finite outside the scale range
+## (`stat_boxplot()`).</code></pre>
+<p><img src="2024_files/figure-html/explicit%20tracks%20by%20like%20count-1.png" width="672" /></p>
+<p><em>Comparing Tik Tok Likes to Streams Across Spotify, Soundcloud,
+and Youtube</em></p>
+<pre class="r"><code>dataset_2024 |&gt; 
+  drop_na(tik_tok_likes) |&gt; 
+  mutate(tik_tok_likes_log=log10(tik_tok_likes)) |&gt; 
+mutate(
+    tiktok_category = case_when(
+      tik_tok_likes_log &lt;= log10(1e6) ~ &quot;Low&quot;,       
+      tik_tok_likes_log &lt;= log10(1e8) ~ &quot;Medium&quot;,    
+      tik_tok_likes_log &gt; log10(1e8) ~ &quot;High&quot;        
+    ),
+    tiktok_category = factor(tiktok_category, levels = c(&quot;Low&quot;, &quot;Medium&quot;, &quot;High&quot;)) 
+  ) |&gt; 
+  ggplot(aes(x = tiktok_category, y = spotify_streams, fill = tiktok_category)) +
+  geom_boxplot() +
+  labs(
+    title = &quot;Comparing Spotify Streams to Amount of TikTok Likes&quot;,
+    x = &quot;TikTok Likes&quot;,
+    y = &quot;Spotify Streams&quot;,
+   fill = &quot;TikTok Likes Category&quot;
+  ) +
+  theme_minimal()</code></pre>
+<pre><code>## Warning: Removed 22 rows containing non-finite outside the scale range
+## (`stat_boxplot()`).</code></pre>
+<p><img src="2024_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<pre class="r"><code>dataset_2024 |&gt; 
+  drop_na(tik_tok_likes) |&gt; 
+  mutate(tik_tok_likes_log=log10(tik_tok_likes)) |&gt; 
+mutate(
+    tiktok_category = case_when(
+      tik_tok_likes_log &lt;= log10(1e6) ~ &quot;Low&quot;,       
+      tik_tok_likes_log &lt;= log10(1e8) ~ &quot;Medium&quot;,    
+      tik_tok_likes_log &gt; log10(1e8) ~ &quot;High&quot;        
+    ),
+    tiktok_category = factor(tiktok_category, levels = c(&quot;Low&quot;, &quot;Medium&quot;, &quot;High&quot;)) 
+  ) |&gt; 
+  ggplot(aes(x = tiktok_category, y = you_tube_views, fill = tiktok_category)) +
+  geom_boxplot() +
+  labs(
+    title = &quot;Comparing YouTube Views to Amount of TikTok Likes&quot;,
+    x = &quot;TikTok Likes&quot;,
+    y = &quot;Log Base 10 of YouTube Views&quot;,
+   fill = &quot;TikTok Likes Category&quot;
+  ) +
+  scale_y_log10() +
+  theme_minimal()</code></pre>
+<pre><code>## Warning: Removed 84 rows containing non-finite outside the scale range
+## (`stat_boxplot()`).</code></pre>
+<p><img src="2024_files/figure-html/unnamed-chunk-5-2.png" width="672" /></p>
+<pre class="r"><code>dataset_2024 |&gt; 
+  drop_na(tik_tok_likes) |&gt; 
+  mutate(tik_tok_likes_log=log10(tik_tok_likes)) |&gt; 
+mutate(
+    tiktok_category = case_when(
+      tik_tok_likes_log &lt;= log10(1e6) ~ &quot;Low&quot;,       
+      tik_tok_likes_log &lt;= log10(1e8) ~ &quot;Medium&quot;,    
+      tik_tok_likes_log &gt; log10(1e8) ~ &quot;High&quot;        
+    ),
+    tiktok_category = factor(tiktok_category, levels = c(&quot;Low&quot;, &quot;Medium&quot;, &quot;High&quot;)) 
+  ) |&gt; 
+  ggplot(aes(x = tiktok_category, y = soundcloud_streams, fill = tiktok_category)) +
+  geom_boxplot() +
+  labs(
+    title = &quot;Comparing Soundcloud Streams to Amount of TikTok Likes&quot;,
+    x = &quot;TikTok Likes&quot;,
+    y = &quot;Log Base 10 of Soundcloud Streams&quot;,
+   fill = &quot;TikTok Likes Category&quot;
+  ) +
+  scale_y_log10() +
+  theme_minimal()</code></pre>
+<pre><code>## Warning: Removed 2447 rows containing non-finite outside the scale range
+## (`stat_boxplot()`).</code></pre>
+<p><img src="2024_files/figure-html/unnamed-chunk-5-3.png" width="672" /></p>
+<p><em>Comparing Tik Tok Likes to Shazam Counts</em></p>
+<pre class="r"><code>dataset_2024 |&gt; 
+  drop_na(tik_tok_likes) |&gt; 
+  mutate(tik_tok_likes_log=log10(tik_tok_likes)) |&gt; 
+mutate(
+    tiktok_category = case_when(
+      tik_tok_likes_log &lt;= log10(1e6) ~ &quot;Low&quot;,       
+      tik_tok_likes_log &lt;= log10(1e8) ~ &quot;Medium&quot;,    
+      tik_tok_likes_log &gt; log10(1e8) ~ &quot;High&quot;        
+    ),
+    tiktok_category = factor(tiktok_category, levels = c(&quot;Low&quot;, &quot;Medium&quot;, &quot;High&quot;)) 
+  ) |&gt; 
+  ggplot(aes(x = tiktok_category, y = shazam_counts, fill = tiktok_category)) +
+  geom_boxplot() +
+  labs(
+    title = &quot;Comparing Shazam Counts to Amount of TikTok Likes&quot;,
+    x = &quot;TikTok Likes&quot;,
+    y = &quot;Log Base 10 of Shazam Counts&quot;,
+   fill = &quot;TikTok Likes Category&quot;
+  ) +
+  scale_y_log10() +
+  theme_minimal()</code></pre>
+<pre><code>## Warning: Removed 257 rows containing non-finite outside the scale range
+## (`stat_boxplot()`).</code></pre>
+<p><img src="2024_files/figure-html/unnamed-chunk-6-1.png" width="672" />
+<em>Interpretation</em> When looking at the graphs that compare Spotify
+streams, YouTube views, Soundcloud streams, and Shazam counts, one can
+see that increased Tik Tok likes (going from the Low to High category)
+is associated with increased track streams or views. This makes sense
+that the more popular songs on streaming platforms or songs that people
+want to know the name of (through using Shazam) would also be popular on
+TikTok.</p>
+<p>Note: Due to the very large range of TikTok likes, a log base 10 was
+taken when creating a categorical variable
+(<code>tiktok_category</code>) for TikTok likes. Log base 10 was also
+taken of YouTube Views, Soundcloud streams, and Shazam counts to make
+data easier to digest and interpret when comparing to TikTok Likes
+categories.</p>
+<p><em>Artists with the Top 10 Spotify Streams</em></p>
+<pre class="r"><code> dataset_2024 |&gt;
+    drop_na(artist)|&gt;
+  group_by(artist) |&gt;
+  summarize(total_spotify_streams = sum(spotify_streams, na.rm = TRUE)) |&gt; 
+  arrange(desc(total_spotify_streams)) |&gt; 
+  top_n(10, total_spotify_streams) |&gt; 
+  ggplot(aes(x=total_spotify_streams, y=reorder(artist, total_spotify_streams))) +
+  geom_bar(stat = &quot;identity&quot;, fill = &quot;skyblue&quot;) + 
+  labs(
+    title = &quot;Top 10 Artists Spotify Streams&quot;,
+    x = &quot;Total Spotify Streams&quot;,
+    y = &quot;Artist&quot;
+  ) +
+  theme_minimal()</code></pre>
+<p><img src="2024_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p><em>Artists with the Top 10 Soundcloud Streams</em></p>
+<pre class="r"><code> dataset_2024 |&gt;
+    drop_na(artist)|&gt;
+  group_by(artist) |&gt;
+  summarize(total_sc_streams = sum(soundcloud_streams, na.rm = TRUE)) |&gt; 
+  arrange(desc(total_sc_streams)) |&gt; 
+  top_n(10, total_sc_streams) |&gt; 
+  ggplot(aes(x=total_sc_streams, y=reorder(artist, total_sc_streams))) +
+  geom_bar(stat = &quot;identity&quot;, fill = &quot;skyblue&quot;) + 
+  labs(
+    title = &quot;Top 10 Artists Soundcloud Streams&quot;,
+    x = &quot;Total Soundcloud Streams&quot;,
+    y = &quot;Artist&quot;
+  ) +
+  theme_minimal()</code></pre>
+<p><img src="2024_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p><em>Artists with the Top 10 YouTube Views</em></p>
+<pre class="r"><code> dataset_2024 |&gt;
+    drop_na(artist)|&gt;
+  group_by(artist) |&gt;
+  summarize(total_yt = sum(you_tube_views, na.rm = TRUE)) |&gt; 
+  arrange(desc(total_yt)) |&gt; 
+  top_n(10, total_yt) |&gt; 
+  ggplot(aes(x=total_yt, y=reorder(artist, total_yt))) +
+  geom_bar(stat = &quot;identity&quot;, fill = &quot;skyblue&quot;) + 
+  labs(
+    title = &quot;Top 10 Artists YouTube Views&quot;,
+    x = &quot;Total YouTube Views&quot;,
+    y = &quot;Artist&quot;
+  ) +
+  theme_minimal()</code></pre>
+<p><img src="2024_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p><em>Artists with the Top 10 TikTok Views</em></p>
+<pre class="r"><code> dataset_2024 |&gt;
+    drop_na(artist)|&gt;
+  group_by(artist) |&gt;
+  summarize(total_tt = sum(tik_tok_views, na.rm = TRUE)) |&gt; 
+  arrange(desc(total_tt)) |&gt; 
+  top_n(10, total_tt) |&gt; 
+  ggplot(aes(x=total_tt, y=reorder(artist, total_tt))) +
+  geom_bar(stat = &quot;identity&quot;, fill = &quot;skyblue&quot;) + 
+  labs(
+    title = &quot;Top 10 Artists TikTok Views&quot;,
+    x = &quot;Total TikTok Views&quot;,
+    y = &quot;Artist&quot;
+  ) +
+  theme_minimal()</code></pre>
+<p><img src="2024_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p><em>Interpretation</em> The top 10 artists with the most streams or
+views across Spotify, Soundcloud, YouTube, and TikTok vary widely.
+Streaming platforms like Spotify and TikTok (which have the highest
+number of user streams) have top artists that more fall under the pop
+genre, while Soundcloud has almost exclusively rap artists (with the
+exception of Major Lazer).</p>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

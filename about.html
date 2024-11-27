@@ -11,7 +11,7 @@
 
 
 
-<title>2023</title>
+<title>About</title>
 
 <script src="site_libs/header-attrs-2.28/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -29,9 +29,6 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
-<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
-<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -222,69 +219,6 @@ $(document).ready(function () {
 
 
 
-<style type="text/css">
-
-#TOC {
-  margin: 25px 0px 20px 0px;
-}
-@media (max-width: 768px) {
-#TOC {
-  position: relative;
-  width: 100%;
-}
-}
-
-@media print {
-.toc-content {
-  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
-  float: right;
-}
-}
-
-.toc-content {
-  padding-left: 30px;
-  padding-right: 40px;
-}
-
-div.main-container {
-  max-width: 1200px;
-}
-
-div.tocify {
-  width: 20%;
-  max-width: 260px;
-  max-height: 85%;
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-  div.tocify {
-    width: 25%;
-  }
-}
-
-@media (max-width: 767px) {
-  div.tocify {
-    width: 100%;
-    max-width: none;
-  }
-}
-
-.tocify ul, .tocify li {
-  line-height: 20px;
-}
-
-.tocify-subheader .tocify-item {
-  font-size: 0.90em;
-}
-
-.tocify .list-group-item {
-  border-radius: 0px;
-}
-
-
-</style>
-
-
 
 </head>
 
@@ -292,16 +226,6 @@ div.tocify {
 
 
 <div class="container-fluid main-container">
-
-
-<!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row">
-<div class="col-xs-12 col-sm-4 col-md-3">
-<div id="TOC" class="tocify">
-</div>
-</div>
-
-<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -342,17 +266,63 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">2023</h1>
+<h1 class="title toc-ignore">About</h1>
 
 </div>
 
 
-<p>This will be the rmd for 2023 analysis…</p>
-
-
-
+<div id="about-our-data" class="section level2">
+<h2>About our Data</h2>
+<p>The data from this project were obtained from <a
+href="https://www.kaggle.com/">Kaggle</a>, an AI/ML community with
+several datasets available for public access. The aim of our project is
+to quantify and understand several predictor variables of Spotify’s most
+streamed songs across 2023 and 2024. We R very excited to crack the code
+for what makes a big hit on Spotify!</p>
 </div>
+<div id="variables-and-codebook" class="section level2">
+<h2>Variables and Codebook</h2>
+<p>We used two raw datasets, one from <a
+href="https://www.kaggle.com/datasets/nelgiriyewithana/top-spotify-songs-2023">2023</a>,
+and one from <a
+href="https://www.kaggle.com/datasets/nelgiriyewithana/most-streamed-spotify-songs-2024">2024</a>.
+The cleaned datasets, available on our <a
+href="https://github.com/akgorman/spotify_data.github.io.git">GitHub
+project</a> have ____ observations. We ran several analyses on the
+following variables, defined below.</p>
+<p>The following variables were present in the 2023 dataset:</p>
+<ul>
+<li><code>track_name</code>: name of the song</li>
+<li><code>artist(s)_name</code>: name artist(s) of the song</li>
+<li><code>artist_count</code>: number of artists contributing to the
+song</li>
+<li><code>released_year</code>: year song was released</li>
+<li><code>released_month</code>: month song was released</li>
+<li><code>released_day</code>: day song was released</li>
+<li><code>in_spotify_playlists</code>: number of Spotify playlists song
+is included in</li>
+<li><code>in_spotify_charts</code>: presence and rank of song on Spotify
+charts</li>
+<li><code>streams</code>: total number of streams on Spotify</li>
+<li><code>bpm</code>: beats per minute, measure of tempo</li>
+<li><code>key</code>: key of the song</li>
+<li><code>mode</code>: mode of the song (major or minor)</li>
+<li><code>danceability_%</code>: percentage indicating how suitable song
+is for dancing</li>
+<li><code>valence</code>: positivity of song’s musical content</li>
+<li><code>energy_%</code>: perceived energy level of the song</li>
+<li><code>acousticness_%</code>: amount of acoustic sound in the
+song</li>
+<li><code>instrumentalness_%</code>: amount of instrumental content in
+the song</li>
+<li><code>liveness_%</code>: presence of live performance elements in
+song</li>
+<li><code>speechiness_%</code>: amount of spoken words in the song</li>
+</ul>
 </div>
+
+
+
 
 </div>
 
@@ -385,35 +355,6 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
-<script>
-$(document).ready(function ()  {
-
-    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
-    $('.unlisted.unnumbered').addClass('toc-ignore')
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2,h3",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = true;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

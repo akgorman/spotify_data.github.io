@@ -1,0 +1,33 @@
+---
+title: "About"
+---
+
+## About our Data 
+
+The data from this project were obtained from [Kaggle](https://www.kaggle.com/), an AI/ML community with several datasets available for public access. The aim of our project is to quantify and understand several predictor variables of Spotify's most streamed songs across 2023 and 2024. We R very excited to crack the code for what makes a big hit on Spotify!
+
+## Variables and Codebook 
+
+We used two raw datasets, one from [2023](https://www.kaggle.com/datasets/nelgiriyewithana/top-spotify-songs-2023), and one from [2024](https://www.kaggle.com/datasets/nelgiriyewithana/most-streamed-spotify-songs-2024). The cleaned datasets, available on our [GitHub project](https://github.com/akgorman/spotify_data.github.io.git) have ____ observations. We ran several analyses on the following variables, defined below. 
+
+The following variables were present in the 2023 dataset:
+
+* `track_name`: name of the song
+* `artist(s)_name`: name artist(s) of the song
+* `artist_count`: number of artists contributing to the song
+* `released_year`: year song was released
+* `released_month`: month song was released
+* `released_day`: day song was released
+* `in_spotify_playlists`: number of Spotify playlists song is included in
+* `in_spotify_charts`: presence and rank of song on Spotify charts 
+* `streams`: total number of streams on Spotify
+* `bpm`: beats per minute, measure of tempo
+* `key`: key of the song
+* `mode`: mode of the song (major or minor)
+* `danceability_%`: percentage indicating how suitable song is for dancing
+* `valence`: positivity of song's musical content
+* `energy_%`: perceived energy level of the song
+* `acousticness_%`: amount of acoustic sound in the song
+* `instrumentalness_%`: amount of instrumental content in the song
+* `liveness_%`: presence of live performance elements in song
+* `speechiness_%`: amount of spoken words in the song
