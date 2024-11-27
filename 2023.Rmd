@@ -49,9 +49,9 @@ spotify2023_df =
 view(spotify2023_df)
 ```
 
-(Include issues that come up with data here).
+### Include issues that come up with data here.
 
-"Love Grows" by Edison Lighthouse - stream value 
+The track "Love Grows" by Edison Lighthouse contained a "streams" observation that was not a numerical value but rather a very long character value and was preventing the aggregation of streaming data. To address this, the value was set as "NA".
 
 The dataset includes the following variables:
 - `track_name`: Name of the song.
@@ -82,7 +82,6 @@ The dataset includes the following variables:
 ### Summary Data
 
 *Summary Statistics*
-
 ```{r}
 summary_table = spotify2023_df |> 
   summarize(
@@ -142,7 +141,6 @@ summary_table |>
     ),
     locations = cells_column_labels()
   )
-
 ```
 
 *Interpretation*
@@ -173,7 +171,7 @@ table_top10streamed
 ```
 
 *Top 10 Songs by Playlist Count*
-```{r}
+```{r top 10 playlist}
 top10playlist <- spotify2023_df |>
   mutate(
     cumulative_playlist = rowSums(across(c(in_spotify_playlists, in_apple_playlists, in_deezer_playlists), ~ replace_na(.x, 0)))
@@ -201,8 +199,37 @@ table_top10playlist <- top10playlist |>
 table_top10playlist
 ```
 
+*Top 10 Songs by Rank Across Platforms*
+```{r top 10 rank}
+top10charts <- spotify2023_df |>
+  mutate(
+    chart_presence_score = rowSums(across(c(in_spotify_charts, in_apple_charts, in_deezer_charts, in_shazam_charts), ~ replace_na(.x, 0)))
+  ) |>
+  arrange(desc(chart_presence_score)) |>
+  slice_head(n = 10)
+
+table_top10charts <- top10charts |>
+  select(track_name, artist, chart_presence_score) |>
+  gt() |>
+  tab_header(
+    title = "Top 10 Songs By Chart Presence",
+    subtitle = "Aggregated across Spotify, Apple Music, Deezer, and Shazam"
+  ) |>
+  fmt_number(
+    columns = chart_presence_score,
+    decimals = 0
+  ) |>
+  cols_label(
+    track_name = "Song Title",
+    artist = "Artist",
+    chart_presence_score = "Cumulative Chart Presence"
+  )
+
+table_top10charts
+```
+
 *Top 10 Artists by Total Number of Spotify Streams*
-```{r}
+```{r top 10 artist}
 top10artists <- spotify2023_df |>
   group_by(artist) |>
   summarise(total_streams = sum(streams, na.rm = TRUE)) |>
@@ -227,20 +254,149 @@ table_top10artists <- top10artists |>
 table_top10artists
 ```
 
+*Top 3 Songs by Playlist Count Between Platforms*
 ```{r}
-library(tidyverse)
-library(plotly)
-library(ggplot2)
+top3_combined <- bind_rows(
+  spotify2023_df |>
+    arrange(desc(in_spotify_playlists)) |>
+    slice_head(n = 3) |>
+    mutate(platform = "Spotify", playlist_count = in_spotify_playlists),
+  
+  spotify2023_df |>
+    arrange(desc(in_apple_playlists)) |>
+    slice_head(n = 3) |>
+    mutate(platform = "Apple Music", playlist_count = in_apple_playlists),
+  
+  spotify2023_df |>
+    arrange(desc(in_deezer_playlists)) |>
+    slice_head(n = 3) |>
+    mutate(platform = "Deezer", playlist_count = in_deezer_playlists)
+)
+
+table_top3_combined <- top3_combined |>
+  select(platform, track_name, artist, playlist_count) |>
+  gt() |>
+  tab_header(
+    title = "Top 3 Songs by Playlist Count Across Platforms",
+    subtitle = "Spotify, Apple Music, and Deezer"
+  ) |>
+  fmt_number(
+    columns = playlist_count,
+    decimals = 0
+  ) |>
+  cols_label(
+    platform = "Platform",
+    track_name = "Song Title",
+    artist = "Artist",
+    playlist_count = "Playlist Count"
+  ) |>
+  tab_spanner(
+    label = "Playlist Data",
+    columns = c(track_name, artist, playlist_count)
+  ) |>
+  opt_row_striping()
+
+table_top3_combined
+```
+Assessing popularity through number of playlists a song is included on showed minimal overlap between Spotify, Apple Music, and Deezer. Only top 3 were included for the sake of simplicity in the table. "Get Lucky - Radio Edit" by Pharrell Williams, Nile Rodgers, and Daft Punk is among the top 3 songs by playlist count on both Spotify and Deezer.
+
+### Visualizations
+
+*Spotify Streams by BPM*
+```{r}
+bpm_streams_df <- spotify2023_df |> 
+  filter(streams > 10000000)
+
+bpm_streams_plot <- ggplot(bpm_streams_df, aes(x = bpm, y = streams)) +
+  geom_point(aes(color = bpm), size = 3, alpha = 0.7) + 
+  scale_y_log10(labels = scales::comma) +           
+  scale_color_viridis_c(option = "plasma", end = 0.9) +
+  labs(
+    title = "BPM vs Spotify Streams",
+    subtitle = "Analyzing the relationship between song tempo and popularity",
+    x = "Beats Per Minute (BPM)",
+    y = "Spotify Streams (log scale)",
+    color = "BPM"
+  ) +
+  theme_minimal(base_size = 15) +       
+  theme(
+    plot.title = element_text(face = "bold", size = 18, hjust = 0.5),
+    plot.subtitle = element_text(size = 14, hjust = 0.5),
+    axis.text = element_text(size = 12),
+    axis.title = element_text(size = 14),
+    legend.position = "right"
+  )
+
+interactive_bpm_streams_plot <- ggplotly(bpm_streams_plot, tooltip = c("x", "y", "color"))
+
+interactive_bpm_streams_plot
 ```
 
-Danceability vs. Enegry 
+*Spotify Streams by Key*
+```{r}
+streams_by_key <- spotify2023_df |>
+  filter(!is.na(key)) |>
+  group_by(key) |>
+  summarise(total_streams = sum(streams, na.rm = TRUE)) |>
+  arrange(desc(total_streams))
+
+streams_by_key_plot <- ggplot(streams_by_key, aes(x = reorder(key, total_streams), y = total_streams, fill = key)) +
+  geom_bar(stat = "identity", color = "black", alpha = 0.7) +   
+  scale_y_continuous(labels = scales::comma) +                  
+  scale_fill_viridis_d(option = "magma", end = 0.9) +           
+  labs(
+    title = "Total Streams by Musical Key",
+    x = "Musical Key",
+    y = "Total Streams",
+  ) +
+  theme_minimal(base_size = 15) +
+  theme(
+    plot.title = element_text(face = "bold", size = 18, hjust = 0.5),
+    plot.subtitle = element_text(size = 14, hjust = 0.5),
+    axis.text = element_text(size = 12),
+    axis.title = element_text(size = 14),
+    legend.position = "none"
+  )
+
+streams_by_key_plot
+```
+
+*Spotify Streams by Mode*
+```{r}
+streams_by_mode <- spotify2023_df |>
+  filter(!is.na(mode)) |>
+  group_by(mode) |>
+  summarise(total_streams = sum(streams, na.rm = TRUE)) |>
+  arrange(desc(total_streams))
+
+streams_by_mode_plot <- ggplot(streams_by_mode, aes(x = reorder(mode, total_streams), y = total_streams, fill = mode)) +
+  geom_bar(stat = "identity", color = "black", alpha = 0.7) + 
+  scale_y_continuous(labels = scales::comma) +               
+  scale_fill_viridis_d(option = "magma", end = 0.9) +    
+  labs(
+    title = "Total Streams by Musical Mode",
+    x = "Musical Mode",
+    y = "Total Streams"
+  ) +
+  theme_minimal(base_size = 15) +
+  theme(
+    plot.title = element_text(face = "bold", size = 18, hjust = 0.5),
+    plot.subtitle = element_text(size = 14, hjust = 0.5),
+    axis.text = element_text(size = 12),
+    axis.title = element_text(size = 14),
+    legend.position = "none"
+  )
+
+streams_by_mode_plot
+```
+
+*Danceability vs. Energy*
 ```{r}
 spotify2023_df$artist <- iconv(spotify2023_df$artist, to = "ASCII", sub = "")
 spotify2023_df$track_name <- iconv(spotify2023_df$track_name, to = "ASCII", sub = "")
 ```
 
 ```{r}
-# Create the ggplot object with track_name included in the hover text
 p <- ggplot(spotify2023_df, aes(x = danceability, y = energy, color = danceability,
                       text = paste("Track: ", track_name, 
                                    "<br>Artist: ", artist, 
@@ -253,52 +409,40 @@ p <- ggplot(spotify2023_df, aes(x = danceability, y = energy, color = danceabili
        y = "Energy") +
   theme_minimal()
 
-# Convert ggplot to plotly and specify that the hover text should show
 interactive_plot <- ggplotly(p, tooltip = "text")
 
-# Show the interactive plot
 interactive_plot
 
 
 ```
 
-
-
-Counts of songs by musical key
-
+*Counts of songs by musical key*
 ```{r}
-# Convert 'key' variable to a factor
 spotify2023_df$key <- factor(spotify2023_df$key, levels = c("A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#"))
 
-# Check the levels of the 'key' variable
 levels(spotify2023_df$key)
 
 table(spotify2023_df$key)
 ```
 
 ```{r}
-# Create the ggplot bar plot with custom hover text showing 'track_name'
 p <- ggplot(spotify2023_df, aes(x = key, fill = key, 
                                 text = paste("Track: ", track_name, 
                                              "<br>Key: ", key))) +
-  geom_bar(stat = "count") +  # You can use geom_bar for counts
+  geom_bar(stat = "count") +
   labs(title = "Count of Songs by Musical Key",
        x = "Musical Key",
        y = "Count of Songs") +
   theme_minimal() +
-  scale_fill_brewer(palette = "Set3")  # Using a nice color palette for keys
+  scale_fill_brewer(palette = "Set3") 
 
-# Convert the ggplot to an interactive plotly plot with 'text' for hover
 interactive_plot <- ggplotly(p, tooltip = "text")
 
-# Display the interactive plot
 interactive_plot
 ```
 
-
-BPM vs Danceability 2024 
+*BPM vs Danceability*
 ```{r}
-# Density plot for BPM and Danceability
 p <- ggplot(spotify2023_df, aes(x = bpm, fill = "bpm")) +
   geom_density(alpha = 0.5) +
   geom_density(aes(x = danceability, fill = "danceability"), alpha = 0.5) +
@@ -308,20 +452,17 @@ p <- ggplot(spotify2023_df, aes(x = bpm, fill = "bpm")) +
        y = "Density") +
   theme_minimal()
 
-# Display the plot
 print(p)
 
 ```
 
-
-Danceability vs. Enegry 
+*Danceability vs. Energy*
 ```{r}
 spotify2023_df$artist <- iconv(spotify2023_df$artist, to = "ASCII", sub = "")
 spotify2023_df$track_name <- iconv(spotify2023_df$track_name, to = "ASCII", sub = "")
 ```
 
 ```{r}
-# Create the ggplot object with track_name included in the hover text
 p <- ggplot(spotify2023_df, aes(x = danceability, y = energy, color = danceability,
                       text = paste("Track: ", track_name, 
                                    "<br>Artist: ", artist, 
@@ -334,52 +475,39 @@ p <- ggplot(spotify2023_df, aes(x = danceability, y = energy, color = danceabili
        y = "Energy") +
   theme_minimal()
 
-# Convert ggplot to plotly and specify that the hover text should show
 interactive_plot <- ggplotly(p, tooltip = "text")
 
-# Show the interactive plot
 interactive_plot
-
-
 ```
 
-
-
-Counts of songs by musical key
+*Counts of songs by musical key*
 
 ```{r}
-# Convert 'key' variable to a factor
 spotify2023_df$key <- factor(spotify2023_df$key, levels = c("A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#"))
 
-# Check the levels of the 'key' variable
 levels(spotify2023_df$key)
 
 table(spotify2023_df$key)
 ```
 
 ```{r}
-# Create the ggplot bar plot with custom hover text showing 'track_name'
 p <- ggplot(spotify2023_df, aes(x = key, fill = key, 
                                 text = paste("Track: ", track_name, 
                                              "<br>Key: ", key))) +
-  geom_bar(stat = "count") +  # You can use geom_bar for counts
+  geom_bar(stat = "count") +
   labs(title = "Count of Songs by Musical Key",
        x = "Musical Key",
        y = "Count of Songs") +
   theme_minimal() +
-  scale_fill_brewer(palette = "Set3")  # Using a nice color palette for keys
+  scale_fill_brewer(palette = "Set3") 
 
-# Convert the ggplot to an interactive plotly plot with 'text' for hover
 interactive_plot <- ggplotly(p, tooltip = "text")
 
-# Display the interactive plot
 interactive_plot
 ```
 
-
-BPM vs Danceability 2024 
+*BPM vs Danceability*
 ```{r}
-# Density plot for BPM and Danceability
 p <- ggplot(spotify2023_df, aes(x = bpm, fill = "bpm")) +
   geom_density(alpha = 0.5) +
   geom_density(aes(x = danceability, fill = "danceability"), alpha = 0.5) +
@@ -389,11 +517,9 @@ p <- ggplot(spotify2023_df, aes(x = bpm, fill = "bpm")) +
        y = "Density") +
   theme_minimal()
 
-# Display the plot
 print(p)
 
 ```
-
 
 =======
 This will be the rmd for 2023 analysis...
