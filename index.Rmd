@@ -1,11 +1,15 @@
 ---
-title: "Spotify Analysis"
-output: 
-  html_document:
-    toc: true
-    toc_float: true
+title:
 ---
 
-### Home Page
+![](images/spotify_header.png)
 
-we'll put all in the general info about our project here
+** Will change this image, just a placeholder for now.
+
+## Project Information
+
+* Motivation: 
+* Data Sources: 
+* Features: 
+
+
