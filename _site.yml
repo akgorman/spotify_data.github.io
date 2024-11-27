@@ -4,13 +4,21 @@ navbar:
   title: "Home"
   right:
     - text: "About"
-      href: about.html
-    - text: "2023 Analysis"
-      href: 2023.html
-    - text: "2024 Analysis"
-      href: 2024.html
-    - text: "Report"
-      href: 2024.html      
+      menu:
+      - text: "The Project"
+        href: 
+      - text: "The Data"
+        href: about.html
+    - text: "Exploratory Analysis"
+      menu:
+      - text: "2023 Analysis"
+        href: 2023.html
+      - text: "2024 Analysis"
+        href: 2024.html
+    - text: "Project Report"
+      href: Report.html
+    - icon: fa-github fa-lg
+      href: https://github.com/akgorman/spotify_data.github.io
 output:
   html_document:
     theme: darkly
