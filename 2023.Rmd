@@ -8,7 +8,6 @@ output:
 
 
 This will be the rmd for 2023 analysis...
-
 ```{r}
 library(tidyverse)
 library(plotly)
@@ -103,5 +102,3 @@ p <- ggplot(spotify2023_df, aes(x = bpm, fill = "bpm")) +
 print(p)
 
 ```
-
-
