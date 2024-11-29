@@ -70,7 +70,7 @@ spotify_df=
 ```
 
 ```{r echo=TRUE, include=FALSE}
-## Info about duplicate tracks in merged file
+# Info about duplicate tracks in merged file
 spotify_df |> 
   group_by(track) |> 
 filter(n() > 1) |> 
