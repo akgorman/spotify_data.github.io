@@ -16,8 +16,7 @@ library(gt)
 ```
 # Exploratory Data Analysis
 ### Discussion of Raw Data
-
-INSERT INFO ABOUT 2023 and 2024 data
+This page will focus on data that has merged both the 2023 and 2024 Spotify datasets. While the 2023 dataset has more descriptive data about the tracks themselves (e.g., bpm, key, danceability, valence, etc.), the 2024 dataset has a lot more information about the popularity of the tracks across several platforms (e.g. TikTok, etc.). We are specifically interested in tracks that are included in both of these datasets. The 2023 dataset has 953 tracks included, while the 2024 dataset has 4425 tracks. For more information about the individual datasets, visit [2023](2023.html) and [2024](2024.html).
 
 ```{r echo=TRUE, include=FALSE}
 spotify2024_df= read_csv("data/2024_data.csv") |>
@@ -27,7 +26,24 @@ spotify2024_df= read_csv("data/2024_data.csv") |>
     track = iconv(track, from = "UTF-8", to = "ASCII//TRANSLIT"),
     artist = iconv(artist, from = "UTF-8", to = "ASCII//TRANSLIT")
   ) |> 
-  filter(artist!= "xSyborg")
+  separate(
+    col = release_date,
+    into = c("released_month", "released_day", "released_year"),
+    sep = "/",
+    convert = TRUE  
+  ) |> 
+    rename(
+    `2024_spotify_streams` = spotify_streams,
+    `2024_spotify_playlist_count` = spotify_playlist_count,
+    `2024_apple_music_playlist_count` = apple_music_playlist_count,
+    `2024_deezer_playlist_count` = deezer_playlist_count,
+    `2024_tik_tok_posts`= tik_tok_posts,
+     `2024_tik_tok_likes`= tik_tok_likes,
+     `2024_tik_tok_views`= tik_tok_views,
+  )|> 
+  filter(artist!= "xSyborg") |> 
+  select(track, released_month, released_day, released_year, `2024_spotify_streams`, `2024_spotify_playlist_count`, `2024_apple_music_playlist_count`,
+    `2024_deezer_playlist_count`, `2024_tik_tok_posts`, `2024_tik_tok_likes`, `2024_tik_tok_views`)
 
 spotify2023_df = 
   read_csv("data/spotify-2023.csv") |> 
@@ -36,43 +52,107 @@ spotify2023_df =
   rename(artist = artist_s_name) |> 
   mutate(streams = ifelse(track_name == "Love Grows (Where My Rosemary Goes)", NA, streams),
          streams = as.numeric(streams)) |> 
-  rename(track=track_name)
-
-
+  rename(
+    track=track_name,
+    '2023_spotify_streams' = streams,
+    '2023_spotify_playlist_count' = in_spotify_playlists,
+    '2023_apple_music_playlist_count' = in_apple_playlists,
+    '2023_deezer_playlist_count' = in_deezer_playlists
+    ) |> 
+  select(track, artist, released_month, released_day, released_year, '2023_spotify_streams', '2023_spotify_playlist_count', '2023_apple_music_playlist_count', '2023_deezer_playlist_count', bpm, key, mode, danceability, valence, energy, acousticness, liveness, speechiness )
 ```
 
-TALK ABOUT CHANGES MADE TO DATASETS PRIOR TO MERGING
 
-The merged 2023/2024 dataset includes the following variables (CHANGE LIST):
+```{r}
+# Merging datasets
+spotify_df=
+  inner_join(spotify2023_df, spotify2024_df, by= c("track", "released_month", "released_day", "released_year"), relationship="many-to-many")
+```
 
-- `track_name`: Name of the song.
-- `album_name`: Name of the album the song belongs to.
+```{r echo=TRUE, include=FALSE}
+spotify_df |> 
+  group_by(track) |> 
+filter(n() > 1) |> 
+  arrange(track)
+```
+
+```{r}
+# Can also use the dataset in a longer format.
+spotify_long_df=
+  spotify_df |>
+  select(
+     `2023_spotify_streams`,  `2023_spotify_playlist_count`, `2023_apple_music_playlist_count`, `2023_deezer_playlist_count`, `2024_spotify_streams`, `2024_spotify_playlist_count`,    
+`2024_apple_music_playlist_count`, `2024_deezer_playlist_count`, everything()     
+  ) |> 
+    pivot_longer(
+    cols = c(`2023_spotify_streams`,  `2023_spotify_playlist_count`, `2023_apple_music_playlist_count`, `2023_deezer_playlist_count`, `2024_spotify_streams`, `2024_spotify_playlist_count`,    
+`2024_apple_music_playlist_count`, `2024_deezer_playlist_count`, `2024_tik_tok_posts`,             `2024_tik_tok_likes`, `2024_tik_tok_views`),
+    names_to = c("year", "metric"),                 
+    names_pattern = "(\\d{4})_(.*)",    
+   values_to = "value"  
+  )
+```
+
+### Data Cleaning and Merging
+Prior to merging the datasets, in the 2023 dataset, we renamed  `track_name` to `track`, `streams` to `2023_spotify_streams`, `in_spotify_playlists` to `2023_spotify_playlist_count`, `in_apple_playlists` to `2023_apple_music_playlist_count`, and`in_deezer_playlists` to `2023_deezer_playlist_count`. In the 2024 dataset, we separated `release_date` into `released_year`, `released_month`, `released_day`, changed `spotify_streams` to `2024_spotify_streams`, `spotify_playlist_count`  to `2024_spotify_playlist_count`, `apple_music_playlist_count` to `2024_apple_music_playlist_count`, and `deezer_playlist_count` to `2024_deezer_playlist_count`. Variables that were removed from the 2023 dataset prior to merging include the following: `artist_count`, `in_spotify_charts`, `in_apple_charts`, `in_deezer_charts`, `in_shazam_charts`, and `instrumentalness`. Variables that were removed from the 2024 dataset prior to merging include the following: `album_name`, `isrc`, `all_time_rank`, `track_score`, `spotify_playlist_reach`, `spotify_popularity`, `you_tube_views`, `you_tube_likes`, `air_play_spins`, `sirius_xm_spins`, `deezer_playlist_reach`, `amazon_playlist_count`, `pandora_streams`, and `pandora_track_stations`. 
+
+Datasets were merged based on `track`, `released_year`, `released_month`, and `released_day`. The `artist` variable for the 2023 was kept because the 2023 dataset includes the artists that are featured on the track as well. 
+
+When merging the datasets (through inner_join), we found that there were 17 duplicate songs where the duplicates all contain information for both 2023 and 2024 Spotify streams, Spotify playlist count, and Apple Music playlist count. Some duplicates, however, have varying missing information about 2024 Deezer playlist count and/or TikTok data. Some other notable discrepancies we found among the 17 tracks where the following:
+- “Daylight” and “Numb” are duplicate track names but are from different artists 
+- “My Universe” has limited information in both duplicates
+- “SNAP” has two duplicates (4 total) 
+- “SPIT IN MY FACE” is a duplicate but they are in different keys/have different song details (e.g., danceability, valence, etc.)
+
+
+The merged 2023/2024 dataset (spotify_df) includes the following 25 variables:
+
+  - `track`: Name of the song.
+  - `artist`: Name of the artist(s) of the song.
+  - `released_year`: Year the song was released.
+  - `released_month`: Month the song was released.
+  - `released_day`: Day of the month the song was released.
+  - `2024_spotify_streams`: Total number of streams on Spotify in 2024.
+  - `2024_spotify_playlist_count`: Number of Spotify playlists the song is included in in 2024.
+  - `2024_apple_music_playlist_count`: Number of Apple Music playlists the song is included in in 2024.
+  - `2024_deezer_playlist_count`: Number of Deezer playlists the song is included in in 2024.
+  - `2023_spotify_streams`: Total number of streams on Spotify in 2023.
+  - `2023_spotify_playlist_count`: Number of Spotify playlists the song is included in in 2023.
+  - `2023_apple_music_playlist_count`: Number of Apple Music playlists the song is included in in 2023.
+  - `2023_deezer_playlist_count`: Number of Deezer playlists the song is included in in 2023.
+  - `2024_tik_tok_posts`: Number of TikTok posts featuring the song in 2024.
+  - `2024_tik_tok_likes`: Total likes on TikTok posts featuring the song in 2024.
+  - `2024_tik_tok_views`: Total views on TikTok posts featuring the song in 2024.
+  - `bpm`: Beats per minute, a measure of song tempo.
+  - `key`: Key of the song.
+  - `mode`: Mode of the song (major or minor).
+  - `danceability`: Percentage indicating how suitable the song is for dancing.
+  - `valence`: Positivity of the song's musical content.
+  - `energy`: Perceived energy level of the song.
+  - `acousticness`: Amount of acoustic sound in the song.
+  - `liveness`: Presence of live performance elements.
+  - `speechiness`: Amount of spoken words in the song.
+
+
+The merged 2023/2024 longer dataset (spotify_longer_df) includes the following variables:
+
+- `track`: Name of the song.
 - `artist`: Name of the artist(s) of the song.
-- `release_date`: Date when the song was released.
-- `isrc`: International Standard Recording Code for the song.
-- `all_time_rank`: Ranking of the song based on its all-time popularity.
-- `track_score`: Score assigned to the track based on various factors.
-- `spotify_streams`: Total number of streams on Spotify.
-- `spotify_playlist_count`: Number of Spotify playlists the song is included in.
-- `spotify_playlist_reach`: Reach of the song across Spotify playlists.
-- `spotify_popularity`: Popularity score of the song on Spotify.
-- `you_tube_views`: Total views of the song's official video on YouTube.
-- `you_tube_likes`: Total likes on the song's official video on YouTube.
-- `tik_tok_posts`: Number of TikTok posts featuring the song.
-- `tik_tok_likes`: Total likes on TikTok posts featuring the song.
-- `tik_tok_views`: Total views on TikTok posts featuring the song.
-- `you_tube_playlist_reach`: Reach of the song across YouTube playlists.
-- `apple_music_playlist_count`: Number of Apple Music playlists the song is included in.
-- `airplay_spins`: Number of times the song has been played on radio stations.
-- `siriusxm_spins`: Number of times the song has been played on SiriusXM.
-- `deezer_playlist_count`: Number of Deezer playlists the song is included in.
-- `deezer_playlist_reach`: Reach of the song across Deezer playlists.
-- `amazon_playlist_count`: Number of Amazon Music playlists the song is included in.
-- `pandora_streams`: Total number of streams on Pandora.
-- `pandora_track_stations`: Number of Pandora stations featuring the song.
-- `soundcloud_streams`: Total number of streams on Soundcloud.
-- `shazam_counts`: Total number of times the song has been Shazamed.
-- `explicit_track`: Indicates whether the song contains explicit content.
+- `released_year`: Year the song was released.
+- `released_month`: Month the song was released.
+- `released_day`: Day of the month the song was released.
+- `year`: year (2023 or 2024) corresponding to the listed `metric` variable
+- `metric`: spotify_streams, spotify_playlist_count, apple_music_playlist_count, or deezer_playlist_count
+- `value`: numeric value of the `metric` variable listed
+- `bpm`: Beats per minute, a measure of song tempo.
+- `key`: Key of the song.
+- `mode`: Mode of the song (major or minor).
+- `danceability`: Percentage indicating how suitable the song is for dancing.
+- `valence`: Positivity of the song's musical content.
+- `energy`: Perceived energy level of the song.
+- `acousticness`: Amount of acoustic sound in the song.
+- `liveness`: Presence of live performance elements.
+- `speechiness`: Amount of spoken words in the song.
 
 ### Summary Data
 
