@@ -13,6 +13,7 @@ library(tidyverse)
 library(plotly)
 library(ggplot2)
 library(gt)
+library(scales)
 ```
 # Exploratory Data Analysis
 ### Discussion of Raw Data
@@ -157,5 +158,200 @@ The merged 2023/2024 longer dataset (spotify_longer_df) includes the following v
 
 ### Summary Data
 
+*Top 10 Songs by Spotify Streams*
+```{r}
+top10streams_df <- spotify_df |> 
+  mutate(total_streams = `2023_spotify_streams` + `2024_spotify_streams`) |> 
+  distinct(track, artist, .keep_all = TRUE) |> 
+  arrange(desc(total_streams)) |> 
+  slice_head(n = 10)
+
+table_top10streams <- top10streams_df |> 
+  select(track, artist, total_streams) |> 
+  gt() |> 
+  tab_header(
+    title = "Top 10 Streamed Songs on Spotify (2023 & 2024)"
+  ) |> 
+  fmt_number(
+    columns = total_streams,
+    decimals = 0
+  ) |> 
+  cols_label(
+    track = "Song Title",
+    artist = "Artist",
+    total_streams = "Streams"
+  )
+
+table_top10streams
+```
+It is important to note that this table shows the top 10 streamed songs on Spotify across 2023 and 2024, but only includes songs that were present in both datasets. Therefore, songs released in 2024 are not included in this summary.
+
+*Top 10 Songs by Presence on Playlists*
+```{r}
+playlists_df <- spotify_df |> 
+  mutate(total_playlists = 
+           `2023_spotify_playlist_count` + `2024_spotify_playlist_count` +
+           `2023_apple_music_playlist_count` + `2024_apple_music_playlist_count` +
+           `2023_deezer_playlist_count` + `2024_deezer_playlist_count`) |> 
+  distinct(track, artist, .keep_all = TRUE) |> 
+  arrange(desc(total_playlists)) |> 
+  slice_head(n = 10)
+
+table_top10playlist <- playlists_df |> 
+  select(track, artist, total_playlists) |> 
+  gt() |> 
+  tab_header(
+    title = "Top 10 Songs by Total Playlist Count (2023 & 2024)"
+  ) |> 
+  fmt_number(
+    columns = total_playlists,
+    decimals = 0
+  ) |> 
+  cols_label(
+    track = "Song Title",
+    artist = "Artist",
+    total_playlists = "Total Playlists"
+  )
+
+table_top10playlist
+```
+The total number of playlists that each song is present on includes counts from Spotify, Apple Music, and Deezer. The same limitations apply as discussed in the previous table.
+
+*Top 10 Songs by TikTok Engagement*
+```{r}
+top10tiktok <- spotify_df |> 
+  mutate(tiktok_engagement = 
+           `2024_tik_tok_posts` + `2024_tik_tok_likes` + `2024_tik_tok_views`) |> 
+  distinct(track, artist, .keep_all = TRUE) |> 
+  arrange(desc(tiktok_engagement)) |> 
+  slice_head(n = 10)
+
+table_top10tiktok <- top10tiktok |> 
+  select(track, artist, tiktok_engagement) |> 
+  gt() |> 
+  tab_header(
+    title = "Top 10 Songs by TikTok Engagement (2024)"
+  ) |> 
+  fmt_number(
+    columns = tiktok_engagement,
+    decimals = 0
+  ) |> 
+  cols_label(
+    track = "Song Title",
+    artist = "Artist",
+    tiktok_engagement = "TikTok Engagement"
+  )
+
+table_top10tiktok
+```
+TikTok engagement was summarized by adding total views, likes, and posts. Data was collected from 2024, but the table only shows songs released before 2024.
+
+*Number of Top Songs By Release Year*
+```{r}
+songs_by_year <- spotify_df |> 
+  count(released_year, name = "song_count") |> 
+  arrange(desc(released_year))
+
+table_songs_by_year <- songs_by_year |> 
+  gt() |> 
+  tab_header(
+    title = "Count of Songs by Release Year"
+  ) |> 
+  fmt_number(
+    columns = song_count,
+    decimals = 0
+  ) |> 
+  cols_label(
+    released_year = "Release Year",
+    song_count = "Number of Songs"
+  )
+
+table_songs_by_year
+```
+This table shows that all top songs consistent across our 2023 and 2023 datasets were released in the year 2000 or later. 2021-2023 show the highest number of top songs, the greatest being in 2022. This may indicate that most songs reach their max popularity when they have had a few years to gain attention and recurring listeners.
+
 ### Visualizations and Analysis
+
+*Distribution of BPM by Song Count*
+```{r}
+bpm_histogram <- ggplot(spotify_df, aes(x = bpm)) +
+  geom_histogram(stat = "count", binwidth = 5, aes(fill = ..count..), color = "black", alpha = 0.7) +
+  scale_fill_viridis_c(option = "plasma", end = 0.9) +
+  scale_y_continuous(labels = scales::comma) + 
+  labs(
+    title = "Histogram of BPM by Song Count",
+    subtitle = "Distribution of BPM values across songs in the dataset",
+    x = "Beats Per Minute (BPM)",
+    y = "Song Count"
+  ) +
+  theme_minimal(base_size = 15) +
+  theme(
+    plot.title = element_text(face = "bold", size = 18, hjust = 0.5),
+    plot.subtitle = element_text(size = 14, hjust = 0.5),
+    axis.text = element_text(size = 12),
+    axis.title = element_text(size = 14)
+  )
+
+interactive_bpm_histogram <- ggplotly(bpm_histogram)
+
+interactive_bpm_histogram
+```
+
+*Distribution of Key by Song Count*
+```{r}
+key_count_df <- spotify_df |> 
+  filter(!is.na(key)) |>
+  count(key)
+
+key_histogram <- ggplot(key_count_df, aes(x = reorder(key, n), y = n, fill = n)) +
+  geom_bar(stat = "identity", color = "black", alpha = 0.7) +
+  scale_fill_viridis_c(option = "plasma", end = 0.9) + 
+  labs(
+    title = "Histogram of Song Count by Key",
+    subtitle = "Distribution of songs across different musical keys",
+    x = "Key",
+    y = "Song Count"
+  ) +
+  theme_minimal(base_size = 15) +
+  theme(
+    plot.title = element_text(face = "bold", size = 18, hjust = 0.5),
+    plot.subtitle = element_text(size = 14, hjust = 0.5),
+    axis.text = element_text(size = 12),
+    axis.title = element_text(size = 14),
+    axis.text.x = element_text(angle = 45, hjust = 1))
+
+interactive_key_histogram <- ggplotly(key_histogram)
+
+interactive_key_histogram
+```
+
+*Distribution of Mode by Song Count*
+```{r}
+mode_count_df <- spotify_df |> 
+  filter(!is.na(mode)) |>
+  count(mode) |> 
+  arrange(desc(n))
+
+mode_histogram <- ggplot(mode_count_df, aes(x = reorder(mode, n), y = n, fill = n)) +
+  geom_bar(stat = "identity", color = "black", alpha = 0.7) +
+  scale_fill_viridis_c(option = "plasma", end = 0.9) +
+  labs(
+    title = "Histogram of Song Count by Mode",
+    subtitle = "Distribution of songs across different musical modes",
+    x = "Mode",
+    y = "Song Count"
+  ) +
+  theme_minimal(base_size = 15) +
+  theme(
+    plot.title = element_text(face = "bold", size = 18, hjust = 0.5),
+    plot.subtitle = element_text(size = 14, hjust = 0.5),
+    axis.text = element_text(size = 12),
+    axis.title = element_text(size = 14),
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  )
+
+interactive_mode_histogram <- ggplotly(mode_histogram)
+
+interactive_mode_histogram
+```
 
