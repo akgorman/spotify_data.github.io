@@ -491,7 +491,7 @@ This plot demonstrates the association between liveness and average TikTok engag
 
 ##Regression Model of Danceability, Energy, Liveness, Valence, and Acousticness on TikTok Engagement
 
-```{r regression on tik tok engagement and danceability}
+```{r regression on tik tok engagement and qualitative features}
 spotify_df=
   spotify_df|>
   mutate(tiktok_engagement = 
@@ -526,15 +526,4 @@ model_table
 ```
 
 Based on the linear regression assessing the relationship between TikTok engagement and qualitative features of the song such as danceability, energy, and liveness, none of the variables have a statistically significant association with  TikTok engagement. However, one interesting insight is that danceability has a positive association with TikTok engagement although it is not statistically significant. This regression was driven by the hypothesis that livelier and energetic music will have more TikTok engagement considering the popularity of TikTok dance challenges. Although the findings were not statically significant, they were interesting. 
-
-
-
-
-
-
-
-
-
-
-
 
