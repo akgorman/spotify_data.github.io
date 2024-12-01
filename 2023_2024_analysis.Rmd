@@ -6,7 +6,7 @@ output:
     toc_float: true
     code_folding: hide 
 editor_options: 
-  chunk_output_type: inline
+  chunk_output_type: console
 ---
 ```{r include=FALSE}
 library(tidyverse)
@@ -14,10 +14,13 @@ library(plotly)
 library(ggplot2)
 library(gt)
 library(scales)
+library(broom)
+library(knitr)
+library(kableExtra)
 ```
 # Exploratory Data Analysis
 ### Discussion of Raw Data
-This page will focus on data that has merged both the 2023 and 2024 Spotify datasets. While the 2023 dataset has more descriptive data about the tracks themselves (e.g., bpm, key, danceability, valence, etc.), the 2024 dataset has a lot more information about the popularity of the tracks across several platforms (e.g. TikTok, etc.). We are specifically interested in tracks that are included in both of these datasets. The 2023 dataset has 953 tracks included, while the 2024 dataset has 4425 tracks. For more information about the individual datasets, visit [2023](2023.html) and [2024](2024.html).
+This page will focus on data that has merged both the 2023 and 2024 Spotify datasets. While the 2023 dataset has more qualitative data about the tracks themselves (e.g., bpm, key, danceability, valence, etc.), the 2024 dataset has a lot more information about the popularity of the tracks across several platforms (e.g. TikTok, etc.). We are specifically interested in tracks that are included in both of these datasets. The 2023 dataset has 953 tracks included, while the 2024 dataset has 4425 tracks. For more information about the individual datasets, visit [2023](2023.html) and [2024](2024.html).
 
 ```{r echo=TRUE, include=FALSE}
 spotify2024_df= read_csv("data/2024_data.csv") |>
@@ -268,6 +271,22 @@ table_songs_by_year <- songs_by_year |>
 
 table_songs_by_year
 ```
+
+An alternative way of displaying this can be via histogram: 
+
+```{r histogram of song release by year}
+ggplot(songs_by_year, aes(x = released_year, y = song_count)) +
+  geom_bar(stat = "identity", fill = "steelblue", alpha = 0.8) +
+  labs(
+    title = "Number of Songs by Release Year",
+    x = "Release Year",
+    y = "Number of Songs"
+  ) +
+  theme_minimal() +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1)  # Rotate x-axis labels for better readability
+  )
+```
 This table shows that all top songs consistent across our 2023 and 2023 datasets were released in the year 2000 or later. 2021-2023 show the highest number of top songs, the greatest being in 2022. This may indicate that most songs reach their max popularity when they have had a few years to gain attention and recurring listeners.
 
 ### Visualizations and Analysis
@@ -354,4 +373,168 @@ interactive_mode_histogram <- ggplotly(mode_histogram)
 
 interactive_mode_histogram
 ```
+
+##Association Between Danceability and TikTok Engagement  
+```{r danceability and tiktok enagagement}
+dance_df=
+  spotify_df|>
+  filter(!is.na(danceability))|>
+  filter(released_year == "2023")|>
+  mutate(tiktok_engagement = 
+           `2024_tik_tok_posts` + `2024_tik_tok_likes` + `2024_tik_tok_views`) |> 
+  distinct(track, artist, .keep_all = TRUE) |> 
+  arrange(desc(tiktok_engagement)) |> 
+  group_by(danceability) |> 
+  summarise(song_count = n(), tiktok_engagement = mean(tiktok_engagement, na.rm = TRUE))
+
+dance_barplot =
+  ggplot(dance_df, aes(x = danceability, y = tiktok_engagement, fill = song_count)) +
+  geom_bar(stat = "identity", color = "black", alpha = 0.8) +
+  scale_fill_gradient(low = "lightblue", high = "blue") + 
+  labs(
+    title = "TikTok Engagement by Danceability",
+    subtitle = "Bars filled based on song count",
+    x = "Danceability",
+    y = "TikTok Engagement",
+    fill = "Song Count"
+  ) +
+  theme_minimal(base_size = 15) +
+  theme(
+    plot.title = element_text(face = "bold", size = 18, hjust = 0.5),
+    plot.subtitle = element_text(size = 14, hjust = 0.5),
+    axis.text = element_text(size = 12),
+    axis.title = element_text(size = 14),
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  ) 
+
+interactive_dance_barplot = ggplotly(dance_barplot)
+
+interactive_dance_barplot
+```
+
+This plot demonstrates the association between danceability and average TikTok engagement, a variable which is aggregated by posts made with the song, likes and views. The highest engagement on TikTok is among from 4 songs with a danceability score of 71 and the distribution is a weak bimodal one.
+
+##Energy and TikTok Enagagement
+```{r energy and tiktok engagement}
+energy_df = 
+  spotify_df |>
+  filter(!is.na(energy)) |>
+  filter(released_year == "2023") |>
+  mutate(tiktok_engagement = 
+           `2024_tik_tok_posts` + `2024_tik_tok_likes` + `2024_tik_tok_views`) |>
+  distinct(track, artist, .keep_all = TRUE) |>
+  arrange(desc(tiktok_engagement))
+
+energy_scatterplot =
+  ggplot(energy_df, aes(x = energy, y = tiktok_engagement)) +
+  geom_point(alpha = 0.7, color = "blue") +
+  labs(
+    title = "TikTok Engagement by Energy, 2023",
+    subtitle = "Each point represents a single song",
+    x = "Energy",
+    y = "TikTok Engagement"
+  ) +
+  theme_minimal(base_size = 15) +
+  theme(
+    plot.title = element_text(face = "bold", size = 18, hjust = 0.5),
+    plot.subtitle = element_text(size = 14, hjust = 0.5),
+    axis.text = element_text(size = 12),
+    axis.title = element_text(size = 14)
+  )
+
+interactive_energy_scatterplot = ggplotly(energy_scatterplot)
+
+interactive_energy_scatterplot
+
+```
+
+This plot demonstrates the association between energy and average TikTok engagement, a variable which is aggregated by posts made with the song, likes and views. The highest engagement on TikTok is among from 1 song with a energy score of 68.
+
+
+##Liveness and TikTok Enagagement
+```{r liveness and tiktok engagement}
+liveness_df = 
+  spotify_df |>
+  filter(!is.na(liveness)) |>
+  filter(released_year == "2023") |>
+  mutate(tiktok_engagement = 
+           `2024_tik_tok_posts` + `2024_tik_tok_likes` + `2024_tik_tok_views`) |>
+  distinct(track, artist, .keep_all = TRUE) |>
+  arrange(desc(tiktok_engagement))
+
+# Scatter plot
+liveness_scatterplot =
+  ggplot(liveness_df, aes(x = liveness, y = tiktok_engagement)) +
+  geom_point(alpha = 0.7, color = "blue") +
+  labs(
+    title = "TikTok Engagement by Liveness",
+    subtitle = "Each point represents a single song",
+    x = "Liveness",
+    y = "TikTok Engagement"
+  ) +
+  theme_minimal(base_size = 15) +
+  theme(
+    plot.title = element_text(face = "bold", size = 18, hjust = 0.5),
+    plot.subtitle = element_text(size = 14, hjust = 0.5),
+    axis.text = element_text(size = 12),
+    axis.title = element_text(size = 14)
+  )
+
+# Convert to interactive plot
+interactive_liveness_scatterplot = ggplotly(liveness_scatterplot)
+
+interactive_liveness_scatterplot
+```
+
+This plot demonstrates the association between liveness and average TikTok engagement, a variable which is aggregated by posts made with the song, likes and views. The highest engagement on TikTok is among from 1 song with a liveness score of 3.
+
+
+##Regression Model of Danceability, Energy, Liveness, Valence, and Acousticness on TikTok Engagement
+
+```{r regression on tik tok engagement and danceability}
+spotify_df=
+  spotify_df|>
+  mutate(tiktok_engagement = 
+           `2024_tik_tok_posts` + `2024_tik_tok_likes` + `2024_tik_tok_views`) 
+
+linear_model =
+  lm(tiktok_engagement ~ danceability + energy + liveness, data = spotify_df)
+
+tidy_model =
+  broom::tidy(linear_model)|> 
+  mutate(
+    estimate = round(estimate, 3), 
+    std.error = round(std.error, 3),
+    statistic = round(statistic, 2),
+    p.value = ifelse(p.value < 0.001, "<0.001", round(p.value, 3)))
+
+model_table =
+  tidy_model |> 
+  kable(
+    col.names = c("Predictor", "Estimate", "Standard Error", "t-Statistic", "P-Value"),
+    caption = "Linear Regression: Qualitative Song Features on TikTok Engagement",
+    digits = 3,
+    format = "html"
+  ) |> 
+  kable_styling(
+    full_width = FALSE,
+    position = "center",
+    font_size = 14
+  ) 
+
+model_table
+```
+
+Based on the linear regression assessing the relationship between TikTok engagement and qualitative features of the song such as danceability, energy, and liveness, none of the variables have a statistically significant association with  TikTok engagement. However, one interesting insight is that danceability has a positive association with TikTok engagement although it is not statistically significant. This regression was driven by the hypothesis that livelier and energetic music will have more TikTok engagement considering the popularity of TikTok dance challenges. Although the findings were not statically significant, they were interesting. 
+
+
+
+
+
+
+
+
+
+
+
 
