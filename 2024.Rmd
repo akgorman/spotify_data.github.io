@@ -527,7 +527,7 @@ mutate(
 ```
 
 *Comparing Tik Tok Likes to Shazam Counts*
-```{r}
+```{r, warning=FALSE}
 dataset_2024 |> 
   drop_na(tik_tok_likes) |> 
   mutate(tik_tok_likes_log=log10(tik_tok_likes)) |> 
