@@ -292,7 +292,7 @@ This table shows that all top songs consistent across our 2023 and 2023 datasets
 ### Visualizations and Analysis
 
 *Distribution of BPM by Song Count*
-```{r}
+```{r, warning=FALSE}
 bpm_histogram <- ggplot(spotify_df, aes(x = bpm)) +
   geom_histogram(stat = "count", binwidth = 5, aes(fill = ..count..), color = "black", alpha = 0.7) +
   scale_fill_viridis_c(option = "plasma", end = 0.9) +
@@ -374,7 +374,7 @@ interactive_mode_histogram <- ggplotly(mode_histogram)
 interactive_mode_histogram
 ```
 
-##Association Between Danceability and TikTok Engagement  
+*Association Between Danceability and TikTok Engagement*
 ```{r danceability and tiktok enagagement}
 dance_df=
   spotify_df|>
@@ -414,7 +414,7 @@ interactive_dance_barplot
 
 This plot demonstrates the association between danceability and average TikTok engagement, a variable which is aggregated by posts made with the song, likes and views. The highest engagement on TikTok is among from 4 songs with a danceability score of 71 and the distribution is a weak bimodal one.
 
-##Energy and TikTok Enagagement
+*Energy and TikTok Engagement*
 ```{r energy and tiktok engagement}
 energy_df = 
   spotify_df |>
@@ -451,7 +451,7 @@ interactive_energy_scatterplot
 This plot demonstrates the association between energy and average TikTok engagement, a variable which is aggregated by posts made with the song, likes and views. The highest engagement on TikTok is among from 1 song with a energy score of 68.
 
 
-##Liveness and TikTok Enagagement
+*Liveness and TikTok Engagement*
 ```{r liveness and tiktok engagement}
 liveness_df = 
   spotify_df |>
@@ -489,7 +489,7 @@ interactive_liveness_scatterplot
 This plot demonstrates the association between liveness and average TikTok engagement, a variable which is aggregated by posts made with the song, likes and views. The highest engagement on TikTok is among from 1 song with a liveness score of 3.
 
 
-##Regression Model of Danceability, Energy, Liveness, Valence, and Acousticness on TikTok Engagement
+*Regression Model of Danceability, Energy, Liveness, Valence, and Acousticness on TikTok Engagement*
 
 ```{r regression on tik tok engagement and qualitative features}
 spotify_df=
