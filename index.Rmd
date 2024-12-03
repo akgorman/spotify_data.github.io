@@ -2,14 +2,18 @@
 title:
 ---
 
-![](images/spotify_header.png)
+![](images/Heading.png)
 
-** Will change this image, just a placeholder for now.
 
+
+<div style="text-align: center;">
 ## Project Information
+</div>
 
-* Motivation: 
-* Data Sources: 
-* Features: 
+Our project aims to explore the association between popularity of songs and qualities of those songs that can be quantified. To do so, we explored two datasets from Kaggle inclusive of Spotify's most stream songs  by year for 2023 and 2024. Given the data available, we performed different analyses per year. We also created a combined dataset and performed cross-year analyses, where avaialble and appropriate. 
 
+We encourage you to explore our website, project screencast, and report. 
 
+<div style="text-align: center;">
+## Screencast
+</div>
