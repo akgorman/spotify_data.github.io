@@ -3,4 +3,37 @@ title: "Our Team"
 output: html_document
 ---
 
-Fill in here names, photos, and maybe contact info for each team member.
+```{r include=FALSE}
+library(magick)
+```
+
+<div style="text-align: center;">
+Meet our project team, and feel free to reach out to any of us to connect!
+</div>
+
+<div style="display: grid; justify-items: start;">
+<br></br>
+
+# <img src="images/placeholder_headshot.jpg" alt="Avatar" width="150" height="150" style="border:2px solid green"> Meredith Steinberg
+
+<br></br>
+
+# <img src="images/placeholder_headshot.jpg" alt="Avatar" width="150" height="150" style="border:2px solid green"> Laura Bulmer
+
+<br></br>
+
+# <img src="images/placeholder_headshot.jpg" alt="Avatar" width="150" height="150" style="border:2px solid green"> Anne Gorman
+
+<br></br>
+
+# <img src="images/placeholder_headshot.jpg" alt="Avatar" width="150" height="150" style="border:2px solid green"> Iris Hart
+
+<br></br>
+
+# <img src="images/placeholder_headshot.jpg" alt="Avatar" width="150" height="150" style="border:2px solid green"> Mia Isaacs
+
+<br></br>
+
+# <img src="images/placeholder_headshot.jpg" alt="Avatar" width="150" height="150" style="border:2px solid green"> Carolyn Martinez Jorge
+
+</div>
