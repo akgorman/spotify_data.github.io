@@ -4,6 +4,7 @@ output:
   html_document:
     toc: true
     toc_float: true
+    code_folding: hide
 editor_options: 
   chunk_output_type: inline
 ---
@@ -11,14 +12,14 @@ editor_options:
 <<<<<<< HEAD
 
 This will be the rmd for 2023 analysis...
-```{r}
+```{r include=FALSE}
 library(tidyverse)
 library(plotly)
 library(ggplot2)
 library(gt)
 ```
 
-```{r}
+```{r include=FALSE}
 spotify2023_df = 
   read_csv("spotify-2023.csv") |> 
   janitor::clean_names() |> 
@@ -37,7 +38,7 @@ library(plotly)
 
 The spotify-2023.csv dataset contains information about the most streamed songs on Spotify in 2023. Each observation includes basic information such as the track name, artist name, release date, and number of streams, as well as additional characteristics like bpm, key, mode, and other audio features. Popularity is measured by presence in Spotify playlists and charts, and across playlists and charts of other streaming platforms including Apple, Deezer, and Shazam.
 
-```{r echo = TRUE, results = 'hide'}
+```{r echo = TRUE, results = 'hide', include=FALSE}
 spotify2023_df = 
   read_csv("data/spotify-2023.csv") |> 
   janitor::clean_names() |> 
