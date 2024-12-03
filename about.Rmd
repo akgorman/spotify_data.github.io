@@ -1,5 +1,5 @@
 ---
-title: "Data"
+title: "Project Data"
 ---
 
 ## About our Data 
@@ -8,26 +8,57 @@ The data from this project were obtained from [Kaggle](https://www.kaggle.com/),
 
 ## Variables and Codebook 
 
-We used two raw datasets, one from [2023](https://www.kaggle.com/datasets/nelgiriyewithana/top-spotify-songs-2023), and one from [2024](https://www.kaggle.com/datasets/nelgiriyewithana/most-streamed-spotify-songs-2024). The cleaned datasets, available on our [GitHub project](https://github.com/akgorman/spotify_data.github.io.git) have ____ observations. We ran several analyses on the following variables, defined below. 
+We used two raw datasets, one from [2023](https://www.kaggle.com/datasets/nelgiriyewithana/top-spotify-songs-2023), and one from [2024](https://www.kaggle.com/datasets/nelgiriyewithana/most-streamed-spotify-songs-2024). The cleaned datasets, available on our [GitHub project](https://github.com/akgorman/spotify_data.github.io.git) have ____ observations. We ran several analyses on the variables, defined below. 
 
 The following variables were present in the 2023 dataset:
 
-* `track_name`: name of the song
-* `artist(s)_name`: name artist(s) of the song
-* `artist_count`: number of artists contributing to the song
-* `released_year`: year song was released
-* `released_month`: month song was released
-* `released_day`: day song was released
-* `in_spotify_playlists`: number of Spotify playlists song is included in
-* `in_spotify_charts`: presence and rank of song on Spotify charts 
-* `streams`: total number of streams on Spotify
-* `bpm`: beats per minute, measure of tempo
-* `key`: key of the song
-* `mode`: mode of the song (major or minor)
-* `danceability_%`: percentage indicating how suitable song is for dancing
-* `valence`: positivity of song's musical content
-* `energy_%`: perceived energy level of the song
-* `acousticness_%`: amount of acoustic sound in the song
-* `instrumentalness_%`: amount of instrumental content in the song
-* `liveness_%`: presence of live performance elements in song
-* `speechiness_%`: amount of spoken words in the song
+* `track_name`: Name of the song.
+* `artist(s)_name`: Name of the artist(s) of the song.
+* `artist_count`: Number of artists contributing to the song.
+* `released_year`: Year song was released.
+* `released_month`: Month song was released.
+* `released_day`: Day song was released.
+* `in_spotify_playlists`: Number of Spotify playlists song is included in.
+* `in_spotify_charts`: Presence and rank of song on Spotify charts.
+* `streams`: Total number of streams on Spotify.
+* `bpm`: Beats per minute, measure of tempo.
+* `key`: Key of the song.
+* `mode`: Mode of the song (major or minor).
+* `danceability_%`: Percentage indicating how suitable song is for dancing.
+* `valence`: Positivity of song's musical content.
+* `energy_%`: Perceived energy level of the song.
+* `acousticness_%`: Amount of acoustic sound in the song.
+* `instrumentalness_%`: Amount of instrumental content in the song.
+* `liveness_%`: Presence of live performance elements in song.
+* `speechiness_%`: Amount of spoken words in the song.
+
+The following variables were present in the 2024 dataset:
+
+- `track_name`: Name of the song.
+- `album_name`: Name of the album the song belongs to.
+- `artist`: Name of the artist(s) of the song.
+- `release_date`: Date when the song was released.
+- `isrc`: International Standard Recording Code for the song.
+- `all_time_rank`: Ranking of the song based on its all-time popularity.
+- `track_score`: Score assigned to the track based on various factors.
+- `spotify_streams`: Total number of streams on Spotify.
+- `spotify_playlist_count`: Number of Spotify playlists the song is included in.
+- `spotify_playlist_reach`: Reach of the song across Spotify playlists.
+- `spotify_popularity`: Popularity score of the song on Spotify.
+- `you_tube_views`: Total views of the song's official video on YouTube.
+- `you_tube_likes`: Total likes on the song's official video on YouTube.
+- `tik_tok_posts`: Number of TikTok posts featuring the song.
+- `tik_tok_likes`: Total likes on TikTok posts featuring the song.
+- `tik_tok_views`: Total views on TikTok posts featuring the song.
+- `you_tube_playlist_reach`: Reach of the song across YouTube playlists.
+- `apple_music_playlist_count`: Number of Apple Music playlists the song is included in.
+- `airplay_spins`: Number of times the song has been played on radio stations.
+- `siriusxm_spins`: Number of times the song has been played on SiriusXM.
+- `deezer_playlist_count`: Number of Deezer playlists the song is included in.
+- `deezer_playlist_reach`: Reach of the song across Deezer playlists.
+- `amazon_playlist_count`: Number of Amazon Music playlists the song is included in.
+- `pandora_streams`: Total number of streams on Pandora.
+- `pandora_track_stations`: Number of Pandora stations featuring the song.
+- `soundcloud_streams`: Total number of streams on Soundcloud.
+- `shazam_counts`: Total number of times the song has been Shazamed.
+- `explicit_track`: Indicates whether the song contains explicit content.
