@@ -24,7 +24,7 @@ spotify2023_df =
   rename(artist = artist_s_name)
 view(spotify2023_df)
 ```
-=======
+
 ```{r include = FALSE}
 library(tidyverse)
 library(plotly)
