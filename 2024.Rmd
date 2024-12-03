@@ -6,7 +6,7 @@ output:
     toc_float: true
     code_folding: hide 
 editor_options: 
-  chunk_output_type: inline
+  chunk_output_type: console
 ---
 ```{r include=FALSE}
 library(readr)
@@ -16,8 +16,10 @@ library(ggplot2)
 library(gt)
 library(tidyr)
 ```
-# Exploratory Data Analysis
+### Exploratory Data Analysis
+
 ### Discussion of Raw Data
+
 The 2024_data.csv dataset contains information about the most streamed songs on Spotify in 2024. Each track includes general basic information like the track name, artist name, and album name as well as extensive information on its reach across several streaming platforms (including Spotify, SoundCloud, Youtube, TikTok, Apple Music, etc. ). Popularity is measured across these different platforms through variables such as all time rank, number of streams, playlist reach, and playlist count.
 
 ```{r echo=TRUE, include=FALSE}
@@ -64,9 +66,9 @@ The dataset includes the following variables:
 - `shazam_counts`: Total number of times the song has been Shazamed.
 - `explicit_track`: Indicates whether the song contains explicit content.
 
-### Summary Data
+# 2024 Most Streamed Songs on Spotify 
 
-*Summary Statistics*
+### Summary Statistics
 ```{r}
 summary_table=
 dataset_2024 |> 
@@ -133,7 +135,8 @@ summary_table |>
 *Interpretation*
 The mean versus median streams or views across all the platforms are very different from each other, indicating that the distribution of data is skewed for each platform. It is also interesting to note TikTok's popularity, where the platform has both the most mean and median views compared to the other platforms. Spotify has the second greatest amount of mean and median streams for 2024.
 
-*Top 10 Songs All-Time Rank*
+### Top 10 Songs All-Time Rank
+
 ```{r all time rank}
 top10rank_songs=
   dataset_2024 |>
@@ -158,138 +161,42 @@ table_top10rank =
 table_top10rank
 ```
 
-*Top 10 Streamed Songs*
-```{r top 10 streams}
-dataset_2024 =
+Interpretation: This table displays the songs and artists for 2024 based on the all time rank, a variable in the data set that captures all time popularity. There are no repeated artists in this list meaning no single artist had more than one song in the top 10 all time rank.  
+
+### Percentage of Explicit Tracks
+
+```{r percent explicit, warning=FALSE}
+explicit_song =
   dataset_2024 |>
-  mutate(
-    cumulative_streams = rowSums(across(c(pandora_streams, spotify_streams, soundcloud_streams, you_tube_views, tik_tok_views)), na.rm = TRUE)
-  )
-
-top10stream_songs=
-  dataset_2024 |>
-  arrange(desc(cumulative_streams)) |>
-  slice_head(n = 10)
-
-table_top10streams =
-  top10stream_songs |>
-  select(track, artist, cumulative_streams) |>
-         gt() |>
-         tab_header(
-           title = "Top 10 Streamed Songs in 2024",
-           subtitle = "Aggregated across Spotify, Pandora, YouTube, TikTok, and Soundcloud"
-         ) |>
-         fmt_number(
-           columns = cumulative_streams,
-           decimals = 0
-         ) |>
-         cols_label(
-           track = "Song Title",
-           artist = "Artist",
-           cumulative_streams = "Cumulative Streams"
-         )
-
-table_top10streams
+  mutate(explicit_track = ifelse(explicit_track == 1, "Explicit", "Non-Explicit"))|>
+  count(explicit_track) |>
+  mutate(percentage = n / sum(n) * 100)
+  
+  explicit_pie_chart =
+  ggplot(explicit_song, aes(x = "", y = percentage, fill = explicit_track)) +
+  geom_col(width = 1) +
+  coord_polar(theta = "y") + 
+  geom_text(
+    aes(label = paste0(round(percentage, 1), "%")), 
+    position = position_stack(vjust = 0.5),
+    color = "white", 
+    size = 5 ) +
+  labs(
+    title = "Percentage of Explicit vs Non-Explicit Songs",
+    fill = "Song Type") +
+  theme_void() +
+  theme(
+    plot.title = element_text(hjust = 0.5, size = 16, face = "bold")) +
+  scale_fill_manual(values = c("Explicit" = "#E63946", "Non-Explicit" = "#457B9D"))
+  
+  explicit_pie_chart
 ```
 
-This table aggregates the views and streams from Spotify, Pandora, YouTube, TikTok and SoundCloud to show which song had the most streams. Streaming is defined loosely to include views as streams, both of which are arguably passive consumption compared to a like.  
+Interpretation: This visualization is representing the percentage tracks categorized as explicit and not explicit in the entire data set. Evidently more than half of the songs are non-ecplicit (63.7%). 
 
+## Top 10 Artists by Different Media Platforms
 
-*Top 10 Liked Songs (Based on TikTok Likes)*
-
-```{r top 10 tiktok}
-top10tiktok_songs=
-  dataset_2024 |>
-  arrange(desc(tik_tok_likes)) |>
-  slice_head(n = 10)
-
-table_top10tiktok =
-  top10tiktok_songs |>
-  select(track, artist, tik_tok_likes) |>
-         gt() |>
-         tab_header(
-           title = "Top 10 Songs by TikTok Likes"
-         ) |>
-         fmt_number(
-           columns = tik_tok_likes,
-           decimals = 0
-         ) |>
-         cols_label(
-           track = "Song Title",
-           artist = "Artist",
-           tik_tok_likes = "TikTok Likes"
-         )
-
-table_top10tiktok
-
-```
-
-*Top 10 Songs Liked on YouTube*
-
-```{r top 10 youtube}
-top10yt_songs=
-  dataset_2024 |>
-  arrange(desc(you_tube_likes)) |>
-  slice_head(n = 10)
-
-table_top10yt =
-  top10yt_songs |>
-  select(track, artist, you_tube_likes) |>
-         gt() |>
-         tab_header(
-           title = "Top 10 Songs by YouTube Likes"
-         ) |>
-         fmt_number(
-           columns = you_tube_likes,
-           decimals = 0
-         ) |>
-         cols_label(
-           track = "Song Title",
-           artist = "Artist",
-           you_tube_likes = "YouTube Likes"
-         )
-
-table_top10yt
-```
-
-
-*Top 10 Songs for Playlist Count* 
-
-```{r top 10 playlist}
-dataset_2024 =
-  dataset_2024 |>
-  mutate(
-    cumulative_playlist = rowSums(across(c(spotify_playlist_count, deezer_playlist_count, apple_music_playlist_count, amazon_playlist_count)), na.rm = TRUE)
-  )
-
-top10playlist_songs=
-  dataset_2024 |>
-  arrange(desc(cumulative_playlist)) |>
-  slice_head(n = 10)
-
-table_top10playlist_songs =
-  top10playlist_songs |>
-  select(track, artist, cumulative_playlist) |>
-         gt() |>
-         tab_header(
-           title = "Top 10 Streamed Songs in 2024",
-           subtitle = "Aggregated across Spotify, Deezer, Apple Music, and Amazon Music"
-         ) |>
-         fmt_number(
-           columns = cumulative_playlist,
-           decimals = 0
-         ) |>
-         cols_label(
-           track = "Song Title",
-           artist = "Artist",
-           cumulative_playlist = "Cumulative Playlist Count"
-         )
-
-
-table_top10playlist_songs
-```
-
-*Top 10 Artists by Number of Most Streamed Songs*
+### Top 10 Artists by Number of Most Streamed Songs
 
 ```{r top artists}
 data_set_artist =
@@ -323,7 +230,126 @@ table_top10artist_songs =
 table_top10artist_songs
 ```
 
-*Streaming Platform Data*
+Interpretation: This table represent the top 10 artists in the data set based on the amount of songs included in the data set which captures the most streamed songs. The mix of artists is diverse including Latin music, reggeton, pop, and rap artists. 
+
+### Artists with the Top 10 Spotify Streams
+
+```{r}
+ dataset_2024 |>
+    drop_na(artist)|>
+  group_by(artist) |>
+  summarize(total_spotify_streams = sum(spotify_streams, na.rm = TRUE)) |> 
+  arrange(desc(total_spotify_streams)) |> 
+  top_n(10, total_spotify_streams) |> 
+  ggplot(aes(x=total_spotify_streams, y=reorder(artist, total_spotify_streams))) +
+  geom_bar(stat = "identity", fill = "skyblue") + 
+  labs(
+    title = "Top 10 Artists Spotify Streams",
+    x = "Total Spotify Streams",
+    y = "Artist"
+  ) +
+  theme_minimal()
+  
+```
+
+### Artists with the Top 10 Soundcloud Streams
+```{r}
+ dataset_2024 |>
+    drop_na(artist)|>
+  group_by(artist) |>
+  summarize(total_sc_streams = sum(soundcloud_streams, na.rm = TRUE)) |> 
+  arrange(desc(total_sc_streams)) |> 
+  top_n(10, total_sc_streams) |> 
+  ggplot(aes(x=total_sc_streams, y=reorder(artist, total_sc_streams))) +
+  geom_bar(stat = "identity", fill = "skyblue") + 
+  labs(
+    title = "Top 10 Artists Soundcloud Streams",
+    x = "Total Soundcloud Streams",
+    y = "Artist"
+  ) +
+  theme_minimal()
+```
+
+### Artists with the Top 10 YouTube Views
+```{r}
+ dataset_2024 |>
+    drop_na(artist)|>
+  group_by(artist) |>
+  summarize(total_yt = sum(you_tube_views, na.rm = TRUE)) |> 
+  arrange(desc(total_yt)) |> 
+  top_n(10, total_yt) |> 
+  ggplot(aes(x=total_yt, y=reorder(artist, total_yt))) +
+  geom_bar(stat = "identity", fill = "skyblue") + 
+  labs(
+    title = "Top 10 Artists YouTube Views",
+    x = "Total YouTube Views",
+    y = "Artist"
+  ) +
+  theme_minimal()
+```
+
+### Artists with the Top 10 TikTok Views
+```{r}
+ dataset_2024 |>
+    drop_na(artist)|>
+  group_by(artist) |>
+  summarize(total_tt = sum(tik_tok_views, na.rm = TRUE)) |> 
+  arrange(desc(total_tt)) |> 
+  top_n(10, total_tt) |> 
+  ggplot(aes(x=total_tt, y=reorder(artist, total_tt))) +
+  geom_bar(stat = "identity", fill = "skyblue") + 
+  labs(
+    title = "Top 10 Artists TikTok Views",
+    x = "Total TikTok Views",
+    y = "Artist"
+  ) +
+  theme_minimal()
+```
+
+*Interpretation*
+The top 10 artists with the most streams or views across Spotify, Soundcloud, YouTube, and TikTok vary widely. Streaming platforms like Spotify and TikTok (which have the highest number of user streams) have top artists that more fall under the pop genre, while Soundcloud has almost exclusively rap artists (with the exception of Major Lazer). 
+
+## Top Songs on Streaming Apps
+
+### Top 10 Streamed Songs
+```{r top 10 streams}
+dataset_2024 =
+  dataset_2024 |>
+  mutate(
+    cumulative_streams = rowSums(across(c(pandora_streams, spotify_streams, soundcloud_streams, you_tube_views)), na.rm = TRUE)
+  )
+
+top10stream_songs=
+  dataset_2024 |>
+  arrange(desc(cumulative_streams)) |>
+  slice_head(n = 10)
+
+table_top10streams =
+  top10stream_songs |>
+  select(track, artist, cumulative_streams) |>
+         gt() |>
+         tab_header(
+           title = "Top 10 Streamed Songs in 2024",
+           subtitle = "Aggregated across Spotify, Pandora, YouTube, TikTok, and Soundcloud"
+         ) |>
+         fmt_number(
+           columns = cumulative_streams,
+           decimals = 0
+         ) |>
+         cols_label(
+           track = "Song Title",
+           artist = "Artist",
+           cumulative_streams = "Cumulative Streams"
+         )
+
+table_top10streams
+```
+
+*Interpretation*
+This table aggregates the views and streams from Spotify, Pandora, YouTube and SoundCloud to show which song had the most streams. Streaming is defined loosely to include views as streams, both of which are arguably passive consumption compared to a like. The highest streamed song has over 200 billion streams. There is no overlap between the top 10 songs by all time rank and the list of most streamed songs indicating some dissonance between the the popularity of the song as defined by the all_time_rank variable and the streams.  
+
+
+### Top 10 Streamed Songs on Spotify and Soundcloud
 
 ```{r}
 get_top_songs <- function(data, metric, top_n = 5) {
@@ -357,107 +383,115 @@ top_soundcloud
 top_youtube
 top_tiktok
 ```
+
+
+## Top Songs on Socials
+
+###Top 10 Liked Songs (Based on TikTok Likes)
+
+```{r top 10 tiktok}
+top10tiktok_songs=
+  dataset_2024 |>
+  arrange(desc(tik_tok_likes)) |>
+  slice_head(n = 10)
+
+table_top10tiktok =
+  top10tiktok_songs |>
+  select(track, artist, tik_tok_likes) |>
+         gt() |>
+         tab_header(
+           title = "Top 10 Songs by TikTok Likes"
+         ) |>
+         fmt_number(
+           columns = tik_tok_likes,
+           decimals = 0
+         ) |>
+         cols_label(
+           track = "Song Title",
+           artist = "Artist",
+           tik_tok_likes = "TikTok Likes"
+         )
+
+table_top10tiktok
+
+```
+
+*Interpretation* 
+This table captures the top 10 songs by count of TikTok likes. In this table, there is overlap between the most streamed songs specifically "Monkeys Spinning Monkeys", "Love You So", "Oh No", "Funny Song", "Aesthetic", "STAY (with Justin Bieber)", and "Pieces". This makes sense considering TikTok views might in the aggregation of streams skew the data in the previous table. However, it might also point to a greater phenomena recognized on social media as the "TikTok-ification" of music, where popularity and excellence might be defined by streams, likes, and 'going viral' on TikTok. 
+
+### Top 10 Songs Liked on YouTube
+
+```{r top 10 youtube}
+top10yt_songs=
+  dataset_2024 |>
+  arrange(desc(you_tube_likes)) |>
+  slice_head(n = 10)
+
+table_top10yt =
+  top10yt_songs |>
+  select(track, artist, you_tube_likes) |>
+         gt() |>
+         tab_header(
+           title = "Top 10 Songs by YouTube Likes"
+         ) |>
+         fmt_number(
+           columns = you_tube_likes,
+           decimals = 0
+         ) |>
+         cols_label(
+           track = "Song Title",
+           artist = "Artist",
+           you_tube_likes = "YouTube Likes"
+         )
+
+table_top10yt
+```
+
+Interpretation: This table captures the top 10 songs by YouTube likes and offers a different insight on song popularity. YouTube is a platform mostly for music videos so this captures a different measure for song popularity based on the music video popularity. This list does not have any overlap with the songs from the previous tables. One notable song in this list is Baby Shark which is toop 3 with most youtube likes in the list. 
+
+### Streaming Platform Data
+
+```{r}
+get_top_songs <- function(data, metric, top_n = 10) {
+  data |> 
+    select(track, artist, !!sym(metric)) |> 
+    drop_na(track) |> 
+    arrange(desc(!!sym(metric))) |> 
+    head(top_n) |> 
+    gt() |> 
+    tab_header(
+      title = paste("Top Songs by", gsub("_", " ", metric)),
+      subtitle = paste("Based on", metric, "metrics")
+    ) |> 
+    fmt_number(
+      columns = !!sym(metric),
+      decimals = 0
+    ) |> 
+    cols_label(
+      track = "Track Name",
+      artist = "Artist",
+      !!sym(metric) := gsub("_", " ", metric)
+    )
+}
+top_spotify <- get_top_songs(dataset_2024, "spotify_streams")
+top_soundcloud <- get_top_songs(dataset_2024, "soundcloud_streams")
+top_youtube <- get_top_songs(dataset_2024, "you_tube_views")
+top_tiktok <- get_top_songs(dataset_2024, "tik_tok_views")
+
+top_spotify
+top_soundcloud
+top_youtube
+top_tiktok
+```
+
 *Interpretation*
 Based on this 2024 dataset, there is almost no overlap among the most popular five songs streamed for Spotify, Soundcloud, YouTube, and TikTok. The only track in common is "Shape of You" by Ed Sheeran, where this is on the Top 5 Songs for YouTube and Spotify. These tables also allow us to compare popularity of streaming platforms, where Tik Tok's most viewed song (Mokeys Spinning Monkeys by Kevin MacLeod) has 233,232,311,463 views, and Soundcloud's most streamed song has 319,835,943 streams. This factor of a hundred difference demonstrates TikTok's popularity compared to other streaming platforms such as SoundCloud. It is also interesting that SoundCloud's Top 5 streamed songs are all in the rap genre, where Spotify's Top 5 streamed songs generally fall into today's hits/pop. 
 
-### Visualizations
 
-*Percentage of Explicit Tracks*
+## Streams, Views, and Intrigue by TikTok Popularity
 
-```{r percent explicit, warning=FALSE}
-explicit_song =
-  dataset_2024 |>
-  mutate(explicit_track = ifelse(explicit_track == 1, "Explicit", "Non-Explicit"))|>
-  count(explicit_track) |>
-  mutate(percentage = n / sum(n) * 100)
-  
-  explicit_pie_chart =
-  ggplot(explicit_song, aes(x = "", y = percentage, fill = explicit_track)) +
-  geom_col(width = 1) +
-  coord_polar(theta = "y") + 
-  geom_text(
-    aes(label = paste0(round(percentage, 1), "%")), 
-    position = position_stack(vjust = 0.5),
-    color = "white", 
-    size = 5 ) +
-  labs(
-    title = "Percentage of Explicit vs Non-Explicit Songs",
-    fill = "Song Type") +
-  theme_void() +
-  theme(
-    plot.title = element_text(hjust = 0.5, size = 16, face = "bold")) +
-  scale_fill_manual(values = c("Explicit" = "#E63946", "Non-Explicit" = "#457B9D"))
-  
-  explicit_pie_chart
-```
+### Comparing Tik Tok Likes to Streams Across Spotify, Soundcloud, and Youtube
 
-*Explicit Tracks and Popularity*
-```{r explicit tracks by popularity}
-explicit_song2 =
-  dataset_2024 |>
-  mutate(explicit_track = ifelse(explicit_track == 1, "Explicit", "Non-Explicit"))
- 
-ggplot(explicit_song2, aes(x = explicit_track, y = spotify_popularity, fill = explicit_track)) +
-  geom_boxplot() +
-  labs(
-    title = "Distribution of Popularity for Explicit and Non-Explicit Songs",
-    x = "Track Type",
-    y = "Popularity"
-  ) +
-  scale_fill_manual(values = c("Explicit" = "coral", "Non-Explicit" = "skyblue")) +
-  theme_minimal()
-
-```
-
-*Explicit/Nonexplicit Distribution of Streams*
-
-```{r explicit tracks by stream count, warning=FALSE}
-explicit_song2 =
-  dataset_2024 |>
-  mutate(explicit_track = ifelse(explicit_track == 1, "Explicit", "Non-Explicit"))|>
-  mutate(
-    cumulative_streams = rowSums(across(c(pandora_streams, spotify_streams, soundcloud_streams, you_tube_views, tik_tok_views)), na.rm = TRUE)
-  )
-  
- 
-ggplot(explicit_song2, aes(x = explicit_track, y = cumulative_streams, fill = explicit_track)) +
-  geom_boxplot() +
-  scale_y_log10() +
-  labs(
-    title = "Distribution of Streams for Explicit and Non-Explicit Songs",
-    x = "Track Type",
-    y = "Number Streams"
-  ) +
-  scale_fill_manual(values = c("Explicit" = "coral", "Non-Explicit" = "skyblue")) +
-  theme_minimal()
-
-```
-
-*Explicit/Nonexplicit Distribution of Likes*
-
-```{r explicit tracks by like count, warning=FALSE}
-explicit_song2 =
-  dataset_2024 |>
-  mutate(explicit_track = ifelse(explicit_track == 1, "Explicit", "Non-Explicit"))|>
-  mutate(
-    cumulative_likes = rowSums(across(c(you_tube_likes, tik_tok_likes)), na.rm = TRUE)
-  )
- 
-ggplot(explicit_song2, aes(x = explicit_track, y = cumulative_likes, fill = explicit_track)) +
-  geom_boxplot() +
-  scale_y_log10() +
-  labs(
-    title = "Distribution of Likes for Explicit and Non-Explicit Songs",
-    x = "Track Type",
-    y = "Number Likes"
-  ) +
-  scale_fill_manual(values = c("Explicit" = "coral", "Non-Explicit" = "skyblue")) +
-  theme_minimal()
-
-```
-
-
-*Comparing Tik Tok Likes to Streams Across Spotify, Soundcloud, and Youtube*
 ```{r, warning=FALSE}
 dataset_2024 |> 
   drop_na(tik_tok_likes) |> 
@@ -526,7 +560,8 @@ mutate(
   theme_minimal()
 ```
 
-*Comparing Tik Tok Likes to Shazam Counts*
+### Comparing Tik Tok Likes to Shazam Counts
+
 ```{r}
 dataset_2024 |> 
   drop_na(tik_tok_likes) |> 
@@ -550,87 +585,13 @@ mutate(
   scale_y_log10() +
   theme_minimal()
 ```
+
 *Interpretation*
 When looking at the graphs that compare Spotify streams,  YouTube views, Soundcloud streams, and Shazam counts, one can see that increased Tik Tok likes (going from the Low to High category) is associated with increased track streams or views. This makes sense that the more popular songs on streaming platforms or songs that people want to know the name of (through using Shazam) would also be popular on TikTok. 
 
 Note: Due to the very large range of TikTok likes, a log base 10 was taken when creating a categorical variable (`tiktok_category`) for TikTok likes. Log base 10 was also taken of YouTube Views, Soundcloud streams, and Shazam counts to make data easier to digest and interpret when comparing to TikTok Likes categories.
 
 
-*Artists with the Top 10 Spotify Streams*
-```{r}
- dataset_2024 |>
-    drop_na(artist)|>
-  group_by(artist) |>
-  summarize(total_spotify_streams = sum(spotify_streams, na.rm = TRUE)) |> 
-  arrange(desc(total_spotify_streams)) |> 
-  top_n(10, total_spotify_streams) |> 
-  ggplot(aes(x=total_spotify_streams, y=reorder(artist, total_spotify_streams))) +
-  geom_bar(stat = "identity", fill = "skyblue") + 
-  labs(
-    title = "Top 10 Artists Spotify Streams",
-    x = "Total Spotify Streams",
-    y = "Artist"
-  ) +
-  theme_minimal()
-  
-```
-
-*Artists with the Top 10 Soundcloud Streams*
-```{r}
- dataset_2024 |>
-    drop_na(artist)|>
-  group_by(artist) |>
-  summarize(total_sc_streams = sum(soundcloud_streams, na.rm = TRUE)) |> 
-  arrange(desc(total_sc_streams)) |> 
-  top_n(10, total_sc_streams) |> 
-  ggplot(aes(x=total_sc_streams, y=reorder(artist, total_sc_streams))) +
-  geom_bar(stat = "identity", fill = "skyblue") + 
-  labs(
-    title = "Top 10 Artists Soundcloud Streams",
-    x = "Total Soundcloud Streams",
-    y = "Artist"
-  ) +
-  theme_minimal()
-```
-
-*Artists with the Top 10 YouTube Views*
-```{r}
- dataset_2024 |>
-    drop_na(artist)|>
-  group_by(artist) |>
-  summarize(total_yt = sum(you_tube_views, na.rm = TRUE)) |> 
-  arrange(desc(total_yt)) |> 
-  top_n(10, total_yt) |> 
-  ggplot(aes(x=total_yt, y=reorder(artist, total_yt))) +
-  geom_bar(stat = "identity", fill = "skyblue") + 
-  labs(
-    title = "Top 10 Artists YouTube Views",
-    x = "Total YouTube Views",
-    y = "Artist"
-  ) +
-  theme_minimal()
-```
-
-*Artists with the Top 10 TikTok Views*
-```{r}
- dataset_2024 |>
-    drop_na(artist)|>
-  group_by(artist) |>
-  summarize(total_tt = sum(tik_tok_views, na.rm = TRUE)) |> 
-  arrange(desc(total_tt)) |> 
-  top_n(10, total_tt) |> 
-  ggplot(aes(x=total_tt, y=reorder(artist, total_tt))) +
-  geom_bar(stat = "identity", fill = "skyblue") + 
-  labs(
-    title = "Top 10 Artists TikTok Views",
-    x = "Total TikTok Views",
-    y = "Artist"
-  ) +
-  theme_minimal()
-```
-
-*Interpretation*
-The top 10 artists with the most streams or views across Spotify, Soundcloud, YouTube, and TikTok vary widely. Streaming platforms like Spotify and TikTok (which have the highest number of user streams) have top artists that more fall under the pop genre, while Soundcloud has almost exclusively rap artists (with the exception of Major Lazer). 
 
 
 
