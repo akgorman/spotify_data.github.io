@@ -1,6 +1,6 @@
 ---
 title:
-output: 
+output:
   html_document
 ---
 
