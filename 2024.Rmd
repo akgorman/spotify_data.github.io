@@ -352,106 +352,6 @@ This table aggregates the views and streams from Spotify, Pandora, YouTube and S
 ### Top 10 Streamed Songs on Spotify and Soundcloud
 
 ```{r}
-get_top_songs <- function(data, metric, top_n = 5) {
-  data |> 
-    select(track, artist, !!sym(metric)) |> 
-    drop_na(track) |> 
-    arrange(desc(!!sym(metric))) |> 
-    head(top_n) |> 
-    gt() |> 
-    tab_header(
-      title = paste("Top Songs by", gsub("_", " ", metric)),
-      subtitle = paste("Based on", metric, "metrics")
-    ) |> 
-    fmt_number(
-      columns = !!sym(metric),
-      decimals = 0
-    ) |> 
-    cols_label(
-      track = "Track Name",
-      artist = "Artist",
-      !!sym(metric) := gsub("_", " ", metric)
-    )
-}
-top_spotify <- get_top_songs(dataset_2024, "spotify_streams")
-top_soundcloud <- get_top_songs(dataset_2024, "soundcloud_streams")
-top_youtube <- get_top_songs(dataset_2024, "you_tube_views")
-top_tiktok <- get_top_songs(dataset_2024, "tik_tok_views")
-
-top_spotify
-top_soundcloud
-top_youtube
-top_tiktok
-```
-
-
-## Top Songs on Socials
-
-###Top 10 Liked Songs (Based on TikTok Likes)
-
-```{r top 10 tiktok}
-top10tiktok_songs=
-  dataset_2024 |>
-  arrange(desc(tik_tok_likes)) |>
-  slice_head(n = 10)
-
-table_top10tiktok =
-  top10tiktok_songs |>
-  select(track, artist, tik_tok_likes) |>
-         gt() |>
-         tab_header(
-           title = "Top 10 Songs by TikTok Likes"
-         ) |>
-         fmt_number(
-           columns = tik_tok_likes,
-           decimals = 0
-         ) |>
-         cols_label(
-           track = "Song Title",
-           artist = "Artist",
-           tik_tok_likes = "TikTok Likes"
-         )
-
-table_top10tiktok
-
-```
-
-*Interpretation* 
-This table captures the top 10 songs by count of TikTok likes. In this table, there is overlap between the most streamed songs specifically "Monkeys Spinning Monkeys", "Love You So", "Oh No", "Funny Song", "Aesthetic", "STAY (with Justin Bieber)", and "Pieces". This makes sense considering TikTok views might in the aggregation of streams skew the data in the previous table. However, it might also point to a greater phenomena recognized on social media as the "TikTok-ification" of music, where popularity and excellence might be defined by streams, likes, and 'going viral' on TikTok. 
-
-### Top 10 Songs Liked on YouTube
-
-```{r top 10 youtube}
-top10yt_songs=
-  dataset_2024 |>
-  arrange(desc(you_tube_likes)) |>
-  slice_head(n = 10)
-
-table_top10yt =
-  top10yt_songs |>
-  select(track, artist, you_tube_likes) |>
-         gt() |>
-         tab_header(
-           title = "Top 10 Songs by YouTube Likes"
-         ) |>
-         fmt_number(
-           columns = you_tube_likes,
-           decimals = 0
-         ) |>
-         cols_label(
-           track = "Song Title",
-           artist = "Artist",
-           you_tube_likes = "YouTube Likes"
-         )
-
-table_top10yt
-```
-
-Interpretation: This table captures the top 10 songs by YouTube likes and offers a different insight on song popularity. YouTube is a platform mostly for music videos so this captures a different measure for song popularity based on the music video popularity. This list does not have any overlap with the songs from the previous tables. One notable song in this list is Baby Shark which is toop 3 with most youtube likes in the list. 
-
-### Streaming Platform Data
-
-```{r}
 get_top_songs <- function(data, metric, top_n = 10) {
   data |> 
     select(track, artist, !!sym(metric)) |> 
@@ -480,8 +380,108 @@ top_tiktok <- get_top_songs(dataset_2024, "tik_tok_views")
 
 top_spotify
 top_soundcloud
-top_youtube
+```
+*Interpretation* 
+Interestingly, the top 10 spotify streamed songs and the top 10 soundcloud streamed songs had no overlap in track or artist. Spotify's top songs are more mainstream and fall under the Pop genre, while SoundCloud's top songs fall under the Hip Hop/Rap genres.
+
+## Top Songs on Socials
+
+###Top 10 Liked Songs (Based on TikTok Likes and TikTok Views)
+
+```{r top 10 tiktok}
+top10tiktok_songs=
+  dataset_2024 |>
+  arrange(desc(tik_tok_likes)) |>
+  slice_head(n = 10)
+
+table_top10tiktok =
+  top10tiktok_songs |>
+  select(track, artist, tik_tok_likes) |>
+         gt() |>
+         tab_header(
+           title = "Top 10 Songs by TikTok Likes"
+         ) |>
+         fmt_number(
+           columns = tik_tok_likes,
+           decimals = 0
+         ) |>
+         cols_label(
+           track = "Song Title",
+           artist = "Artist",
+           tik_tok_likes = "TikTok Likes"
+         )
+
+table_top10tiktok
 top_tiktok
+```
+
+*Interpretation* 
+In the table capturing top 10 songs by count of TikTok likes, there is overlap between the most streamed songs specifically "Monkeys Spinning Monkeys", "Love You So", "Oh No", "Funny Song", "Aesthetic", "STAY (with Justin Bieber)", and "Pieces". This makes sense considering TikTok views might in the aggregation of streams skew the data in the previous table. However, it might also point to a greater phenomena recognized on social media as the "TikTok-ification" of music, where popularity and excellence might be defined by streams, likes, and 'going viral' on TikTok. In the table capturing top 10 songs by count of TikTok views, we see that the top three songs are the same as the top four songs for TikTok likes, and "STAY (with Justin Bieber)" and "Pieces" are ranked #10 and #8 respectively for both charts as well. Other songs that are  included in both charts, but are ranked differently, include "Spongebob", "Funny Song", and "She Share Story",  
+
+### Top 10 Songs (Based on YouTube Likes and YouTube Views)
+
+```{r top 10 youtube}
+top10yt_songs=
+  dataset_2024 |>
+  arrange(desc(you_tube_likes)) |>
+  slice_head(n = 10)
+
+table_top10yt =
+  top10yt_songs |>
+  select(track, artist, you_tube_likes) |>
+         gt() |>
+         tab_header(
+           title = "Top 10 Songs by YouTube Likes"
+         ) |>
+         fmt_number(
+           columns = you_tube_likes,
+           decimals = 0
+         ) |>
+         cols_label(
+           track = "Song Title",
+           artist = "Artist",
+           you_tube_likes = "YouTube Likes"
+         )
+
+table_top10yt
+top_youtube
+```
+
+Interpretation: The table capturing the top 10 songs by YouTube likes and offers a different insight on song popularity. YouTube is a platform mostly for music videos so this captures a different measure for song popularity based on the music video popularity. This list does not have any overlap with the songs from the previous tables. One notable song in this list is Baby Shark which is toop 3 with most youtube likes in the list. The table displaying the top 10 songs by YouTube views also includes "Despacito" as its #2 ranked song. Other songs that are in both tables, but are ranked differently, include "Baby Shark", "Shape of You", "See You Again (feat. Charlie Puth)", and "Perfect".
+
+### Streaming Platform Data
+
+```{r}
+get_top_5_songs <- function(data, metric, top_n = 5) {
+  data |> 
+    select(track, artist, !!sym(metric)) |> 
+    drop_na(track) |> 
+    arrange(desc(!!sym(metric))) |> 
+    head(top_n) |> 
+    gt() |> 
+    tab_header(
+      title = paste("Top Songs by", gsub("_", " ", metric)),
+      subtitle = paste("Based on", metric, "metrics")
+    ) |> 
+    fmt_number(
+      columns = !!sym(metric),
+      decimals = 0
+    ) |> 
+    cols_label(
+      track = "Track Name",
+      artist = "Artist",
+      !!sym(metric) := gsub("_", " ", metric)
+    )
+}
+top_5_spotify <- get_top_5_songs(dataset_2024, "spotify_streams")
+top_5_soundcloud <- get_top_5_songs(dataset_2024, "soundcloud_streams")
+top_5_youtube <- get_top_5_songs(dataset_2024, "you_tube_views")
+top_5_tiktok <- get_top_5_songs(dataset_2024, "tik_tok_views")
+
+top_5_spotify
+top_5_soundcloud
+top_5_youtube
+top_5_tiktok
 ```
 
 *Interpretation*
