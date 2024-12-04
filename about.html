@@ -11,7 +11,7 @@
 
 
 
-<title>Data</title>
+<title>Project Data</title>
 
 <script src="site_libs/header-attrs-2.28/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -277,11 +277,16 @@ $(document).ready(function () {
     <li>
       <a href="2024.html">2024 Analysis</a>
     </li>
-    <li class="dropdown-header">Cross-Year Analysis</li>
+    <li>
+      <a href="2023_2024_analysis.html">Cross-Year Analysis</a>
+    </li>
   </ul>
 </li>
 <li>
   <a href="Report.html">Project Report</a>
+</li>
+<li>
+  <a href="shiny_dashboard.rmd">Dashboard</a>
 </li>
 <li>
   <a href="https://github.com/akgorman/spotify_data.github.io">
@@ -298,7 +303,7 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Data</h1>
+<h1 class="title toc-ignore">Project Data</h1>
 
 </div>
 
@@ -321,35 +326,90 @@ href="https://www.kaggle.com/datasets/nelgiriyewithana/most-streamed-spotify-son
 The cleaned datasets, available on our <a
 href="https://github.com/akgorman/spotify_data.github.io.git">GitHub
 project</a> have ____ observations. We ran several analyses on the
-following variables, defined below.</p>
+variables, defined below.</p>
 <p>The following variables were present in the 2023 dataset:</p>
 <ul>
-<li><code>track_name</code>: name of the song</li>
-<li><code>artist(s)_name</code>: name artist(s) of the song</li>
-<li><code>artist_count</code>: number of artists contributing to the
-song</li>
-<li><code>released_year</code>: year song was released</li>
-<li><code>released_month</code>: month song was released</li>
-<li><code>released_day</code>: day song was released</li>
-<li><code>in_spotify_playlists</code>: number of Spotify playlists song
-is included in</li>
-<li><code>in_spotify_charts</code>: presence and rank of song on Spotify
-charts</li>
-<li><code>streams</code>: total number of streams on Spotify</li>
-<li><code>bpm</code>: beats per minute, measure of tempo</li>
-<li><code>key</code>: key of the song</li>
-<li><code>mode</code>: mode of the song (major or minor)</li>
-<li><code>danceability_%</code>: percentage indicating how suitable song
-is for dancing</li>
-<li><code>valence</code>: positivity of song’s musical content</li>
-<li><code>energy_%</code>: perceived energy level of the song</li>
-<li><code>acousticness_%</code>: amount of acoustic sound in the
-song</li>
-<li><code>instrumentalness_%</code>: amount of instrumental content in
-the song</li>
-<li><code>liveness_%</code>: presence of live performance elements in
-song</li>
-<li><code>speechiness_%</code>: amount of spoken words in the song</li>
+<li><code>track_name</code>: Name of the song.</li>
+<li><code>artist(s)_name</code>: Name of the artist(s) of the song.</li>
+<li><code>artist_count</code>: Number of artists contributing to the
+song.</li>
+<li><code>released_year</code>: Year song was released.</li>
+<li><code>released_month</code>: Month song was released.</li>
+<li><code>released_day</code>: Day song was released.</li>
+<li><code>in_spotify_playlists</code>: Number of Spotify playlists song
+is included in.</li>
+<li><code>in_spotify_charts</code>: Presence and rank of song on Spotify
+charts.</li>
+<li><code>streams</code>: Total number of streams on Spotify.</li>
+<li><code>bpm</code>: Beats per minute, measure of tempo.</li>
+<li><code>key</code>: Key of the song.</li>
+<li><code>mode</code>: Mode of the song (major or minor).</li>
+<li><code>danceability_%</code>: Percentage indicating how suitable song
+is for dancing.</li>
+<li><code>valence</code>: Positivity of song’s musical content.</li>
+<li><code>energy_%</code>: Perceived energy level of the song.</li>
+<li><code>acousticness_%</code>: Amount of acoustic sound in the
+song.</li>
+<li><code>instrumentalness_%</code>: Amount of instrumental content in
+the song.</li>
+<li><code>liveness_%</code>: Presence of live performance elements in
+song.</li>
+<li><code>speechiness_%</code>: Amount of spoken words in the song.</li>
+</ul>
+<p>The following variables were present in the 2024 dataset:</p>
+<ul>
+<li><code>track_name</code>: Name of the song.</li>
+<li><code>album_name</code>: Name of the album the song belongs to.</li>
+<li><code>artist</code>: Name of the artist(s) of the song.</li>
+<li><code>release_date</code>: Date when the song was released.</li>
+<li><code>isrc</code>: International Standard Recording Code for the
+song.</li>
+<li><code>all_time_rank</code>: Ranking of the song based on its
+all-time popularity.</li>
+<li><code>track_score</code>: Score assigned to the track based on
+various factors.</li>
+<li><code>spotify_streams</code>: Total number of streams on
+Spotify.</li>
+<li><code>spotify_playlist_count</code>: Number of Spotify playlists the
+song is included in.</li>
+<li><code>spotify_playlist_reach</code>: Reach of the song across
+Spotify playlists.</li>
+<li><code>spotify_popularity</code>: Popularity score of the song on
+Spotify.</li>
+<li><code>you_tube_views</code>: Total views of the song’s official
+video on YouTube.</li>
+<li><code>you_tube_likes</code>: Total likes on the song’s official
+video on YouTube.</li>
+<li><code>tik_tok_posts</code>: Number of TikTok posts featuring the
+song.</li>
+<li><code>tik_tok_likes</code>: Total likes on TikTok posts featuring
+the song.</li>
+<li><code>tik_tok_views</code>: Total views on TikTok posts featuring
+the song.</li>
+<li><code>you_tube_playlist_reach</code>: Reach of the song across
+YouTube playlists.</li>
+<li><code>apple_music_playlist_count</code>: Number of Apple Music
+playlists the song is included in.</li>
+<li><code>airplay_spins</code>: Number of times the song has been played
+on radio stations.</li>
+<li><code>siriusxm_spins</code>: Number of times the song has been
+played on SiriusXM.</li>
+<li><code>deezer_playlist_count</code>: Number of Deezer playlists the
+song is included in.</li>
+<li><code>deezer_playlist_reach</code>: Reach of the song across Deezer
+playlists.</li>
+<li><code>amazon_playlist_count</code>: Number of Amazon Music playlists
+the song is included in.</li>
+<li><code>pandora_streams</code>: Total number of streams on
+Pandora.</li>
+<li><code>pandora_track_stations</code>: Number of Pandora stations
+featuring the song.</li>
+<li><code>soundcloud_streams</code>: Total number of streams on
+Soundcloud.</li>
+<li><code>shazam_counts</code>: Total number of times the song has been
+Shazamed.</li>
+<li><code>explicit_track</code>: Indicates whether the song contains
+explicit content.</li>
 </ul>
 </div>
 
