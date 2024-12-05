@@ -11,7 +11,7 @@
 
 
 
-<title>Shiny Dashboard</title>
+<title>About Out Project</title>
 
 <script src="site_libs/header-attrs-2.28/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -299,57 +299,27 @@ $(document).ready(function () {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div id="section-header">
+<div id="header">
 
 
 
-<h1 class="title toc-ignore">Shiny Dashboard</h1>
+<h1 class="title toc-ignore">About Out Project</h1>
 
 </div>
 
 
-<pre><code>## 
-## Attaching package: &#39;shinydashboard&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:flexdashboard&#39;:
-## 
-##     renderValueBox, valueBox, valueBoxOutput</code></pre>
-<pre><code>## The following object is masked from &#39;package:graphics&#39;:
-## 
-##     box</code></pre>
-<iframe data-deferred-src="appf4ca977b880ec8a804d6bf019334e0ce/?w=&amp;__subapp__=1" width="100%" height="400" class="shiny-frame shiny-frame-deferred"></iframe>
-<div id="section-column" class="section level2 sidebar">
-<h2 class="sidebar">Column</h2>
+<div id="what-was-the-purpose" class="section level2">
+<h2>What was the purpose?</h2>
 </div>
-<div id="section-column-1" class="section level2" data-width="650">
-<h2>Column</h2>
-<div id="section-chart-a" class="section level3">
-<h3>Chart A</h3>
-<pre class="r"><code>explicit_song2 =
-  dataset_2024 |&gt;
-  mutate(explicit_track = ifelse(explicit_track == 1, &quot;Explicit&quot;, &quot;Non-Explicit&quot;))
- 
-ggplot(explicit_song2, aes(x = explicit_track, y = spotify_popularity, fill = explicit_track)) +
-  geom_boxplot() +
-  labs(
-    title = &quot;Distribution of Popularity for Explicit and Non-Explicit Songs&quot;,
-    x = &quot;Track Type&quot;,
-    y = &quot;Popularity&quot;
-  ) +
-  scale_fill_manual(values = c(&quot;Explicit&quot; = &quot;coral&quot;, &quot;Non-Explicit&quot; = &quot;skyblue&quot;)) +
-  theme_minimal()</code></pre>
-<pre><code>## Warning: Removed 763 rows containing non-finite outside the scale range
-## (`stat_boxplot()`).</code></pre>
-<p><img src="shiny_dashboard_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<div id="what-motivated-us" class="section level2">
+<h2>What motivated us?</h2>
 </div>
+<div id="what-were-our-intial-questions-and-thoughts"
+class="section level2">
+<h2>What were our intial questions and thoughts?</h2>
 </div>
-<div id="section-column-2" class="section level2" data-width="350">
-<h2>Column</h2>
-<div id="section-chart-b" class="section level3">
-<h3>Chart B</h3>
-</div>
-<div id="section-chart-c" class="section level3">
-<h3>Chart C</h3>
-</div>
+<div id="what-did-we-do" class="section level2">
+<h2>What did we do?</h2>
 </div>
 
 <!DOCTYPE html>
@@ -396,7 +366,7 @@ $(document).ready(function () {
 
 <script>
 $(document).ready(function () {
-  window.buildTabsets("section-TOC");
+  window.buildTabsets("TOC");
 });
 
 $(document).ready(function () {
