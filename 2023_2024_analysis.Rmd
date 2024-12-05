@@ -292,14 +292,14 @@ This table shows that all top songs consistent across our 2023 and 2023 datasets
 ### Visualizations and Analysis
 
 #### Musical Attributes Summary
-*Distribution of BPM by Song Count*
+*Distribution of Song Count by BPM*
 ```{r, warning=FALSE}
 bpm_histogram <- ggplot(spotify_df, aes(x = bpm)) +
   geom_histogram(stat = "count", binwidth = 5, aes(fill = ..count..), color = "black", alpha = 0.7) +
   scale_fill_viridis_c(option = "plasma", end = 0.9) +
   scale_y_continuous(labels = scales::comma) + 
   labs(
-    title = "Histogram of BPM by Song Count",
+    title = "Histogram of Song Count by BPM",
     subtitle = "Distribution of BPM values across songs in the dataset",
     x = "Beats Per Minute (BPM)",
     y = "Song Count"
@@ -317,7 +317,7 @@ interactive_bpm_histogram <- ggplotly(bpm_histogram)
 interactive_bpm_histogram
 ```
 
-*Distribution of Key by Song Count*
+*Distribution of Song Count by Key*
 ```{r}
 key_count_df <- spotify_df |> 
   filter(!is.na(key)) |>
@@ -345,7 +345,7 @@ interactive_key_histogram <- ggplotly(key_histogram)
 interactive_key_histogram
 ```
 
-*Distribution of Mode by Song Count*
+*Distribution of Song Count by Mode*
 ```{r}
 mode_count_df <- spotify_df |> 
   filter(!is.na(mode)) |>
@@ -376,6 +376,7 @@ interactive_mode_histogram
 ```
 
 #### Musical Attributes Compared to Streaming Data
+*Distribution of Spotify Streams by Danceability*
 ```{r danceability}
 spotify_df|>
   filter(!is.na(danceability))|>
@@ -407,6 +408,7 @@ spotify_df|>
 
 ```
 
+*Distribution of Spotify Streams by Energy*
 ```{r energy}
 spotify_df|>
   filter(!is.na(energy))|>
@@ -437,6 +439,7 @@ spotify_df|>
   ) 
 ```
 
+*Distribution of Spotify Streams by Liveness*
 ```{r liveness}
 spotify_df|>
   filter(!is.na(liveness))|>
@@ -470,7 +473,7 @@ spotify_df|>
 There appears to be no correlation between increasing Spotify streams (combined 2023 and 2024 streams) and increasing energy and danceability. Songs with both low and high musical attributes (e.g., danceability and energy) have the highest amount of Spotify streams. It appears that songs with lower liveness have less Spotify streams, where the groups of songs with higher liveness generally have higher  streams.
 
 #### Musical Attributes Compared to TikTok Data
-*Association Between Danceability and TikTok Engagement*
+*Distribution of TikTok Engagement by Danceability*
 ```{r danceability and tiktok enagagement}
 dance_df=
   spotify_df|>
@@ -510,7 +513,7 @@ interactive_dance_barplot
 
 This plot demonstrates the association between danceability and average TikTok engagement, a variable which is aggregated by posts made with the song, likes and views. The highest engagement on TikTok is among from 4 songs with a danceability score of 71 and the distribution is a weak bimodal one.
 
-*Energy and TikTok Engagement*
+*Plot of TikTok Engagement by Energy*
 ```{r energy and tiktok engagement}
 energy_df = 
   spotify_df |>
@@ -547,7 +550,7 @@ interactive_energy_scatterplot
 This plot demonstrates the association between energy and average TikTok engagement, a variable which is aggregated by posts made with the song, likes and views. The highest engagement on TikTok is among from 1 song with a energy score of 68.
 
 
-*Liveness and TikTok Engagement*
+*Plot of TikTok Engagement by Liveness*
 ```{r liveness and tiktok engagement}
 liveness_df = 
   spotify_df |>
