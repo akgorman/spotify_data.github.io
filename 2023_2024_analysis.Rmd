@@ -291,6 +291,7 @@ This table shows that all top songs consistent across our 2023 and 2023 datasets
 
 ### Visualizations and Analysis
 
+#### Musical Attributes Summary
 *Distribution of BPM by Song Count*
 ```{r, warning=FALSE}
 bpm_histogram <- ggplot(spotify_df, aes(x = bpm)) +
@@ -374,6 +375,101 @@ interactive_mode_histogram <- ggplotly(mode_histogram)
 interactive_mode_histogram
 ```
 
+#### Musical Attributes Compared to Streaming Data
+```{r danceability}
+spotify_df|>
+  filter(!is.na(danceability))|>
+  mutate(spotify_streams = 
+           `2024_spotify_streams` + `2023_spotify_streams`) |> 
+  distinct(track, artist, .keep_all = TRUE) |> 
+  arrange(desc(spotify_streams)) |> 
+  group_by(danceability) |> 
+  summarise(song_count = n(), spotify_streams = mean(spotify_streams, na.rm = TRUE)) |> 
+  arrange(as.numeric(danceability)) |> 
+  ggplot(aes(x = danceability, y = spotify_streams, fill = song_count)) +
+  geom_bar(stat = "identity", color = "pink", alpha = 0.8) +
+  scale_fill_gradient(low = "green", high = "darkgreen") + 
+  labs(
+    title = "Spotify Streams by Danceability",
+    subtitle = "Bars filled based on song count",
+    x = "Danceability",
+    y = "Spotify Streams",
+    fill = "Song Count"
+  ) +
+  theme_minimal(base_size = 15) +
+  theme(
+    plot.title = element_text(face = "bold", size = 18, hjust = 0.5),
+    plot.subtitle = element_text(size = 14, hjust = 0.5),
+    axis.text = element_text(size = 12),
+    axis.title = element_text(size = 14),
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  ) 
+
+```
+
+```{r energy}
+spotify_df|>
+  filter(!is.na(energy))|>
+  mutate(spotify_streams = 
+           `2024_spotify_streams` + `2023_spotify_streams`) |> 
+  distinct(track, artist, .keep_all = TRUE) |> 
+  arrange(desc(spotify_streams)) |> 
+  group_by(energy) |> 
+  summarise(song_count = n(), spotify_streams = mean(spotify_streams, na.rm = TRUE)) |> 
+  arrange(as.numeric(energy)) |> 
+  ggplot(aes(x = energy, y = spotify_streams, fill = song_count)) +
+  geom_bar(stat = "identity", color = "pink", alpha = 0.8) +
+  scale_fill_gradient(low = "green", high = "darkgreen") + 
+  labs(
+    title = "Spotify Streams by Energy",
+    subtitle = "Bars filled based on song count",
+    x = "Energy",
+    y = "Spotify Streams",
+    fill = "Song Count"
+  ) +
+  theme_minimal(base_size = 15) +
+  theme(
+    plot.title = element_text(face = "bold", size = 18, hjust = 0.5),
+    plot.subtitle = element_text(size = 14, hjust = 0.5),
+    axis.text = element_text(size = 12),
+    axis.title = element_text(size = 14),
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  ) 
+```
+
+```{r liveness}
+spotify_df|>
+  filter(!is.na(liveness))|>
+  mutate(spotify_streams = 
+           `2024_spotify_streams` + `2023_spotify_streams`) |> 
+  distinct(track, artist, .keep_all = TRUE) |> 
+  arrange(desc(spotify_streams)) |> 
+  group_by(liveness) |> 
+  summarise(song_count = n(), spotify_streams = mean(spotify_streams, na.rm = TRUE)) |> 
+  arrange(as.numeric(liveness)) |> 
+  ggplot(aes(x = liveness, y = spotify_streams, fill = song_count)) +
+  geom_bar(stat = "identity", color = "pink", alpha = 0.8) +
+  scale_fill_gradient(low = "green", high = "darkgreen") + 
+  labs(
+    title = "Spotify Streams by Liveness",
+    subtitle = "Bars filled based on song count",
+    x = "Liveness",
+    y = "Spotify Streams",
+    fill = "Song Count"
+  ) +
+  theme_minimal(base_size = 15) +
+  theme(
+    plot.title = element_text(face = "bold", size = 18, hjust = 0.5),
+    plot.subtitle = element_text(size = 14, hjust = 0.5),
+    axis.text = element_text(size = 12),
+    axis.title = element_text(size = 14),
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  ) 
+```
+*Interpretation*
+There appears to be no correlation between increasing Spotify streams (combined 2023 and 2024 streams) and increasing energy and danceability. Songs with both low and high musical attributes (e.g., danceability and energy) have the highest amount of Spotify streams. It appears that songs with lower liveness have less Spotify streams, where the groups of songs with higher liveness generally have higher  streams.
+
+#### Musical Attributes Compared to TikTok Data
 *Association Between Danceability and TikTok Engagement*
 ```{r danceability and tiktok enagagement}
 dance_df=
