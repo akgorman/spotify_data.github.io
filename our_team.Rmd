@@ -10,7 +10,7 @@ library(magick)
 <div style="text-align: center;">
 Meet our project team, and feel free to reach out to any of us to connect!
 </div>
-
+<br>
 
 <div style="display: grid; justify-items: start;">
 
