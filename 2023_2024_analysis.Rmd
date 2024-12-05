@@ -588,7 +588,7 @@ interactive_liveness_scatterplot
 This plot demonstrates the association between liveness and average TikTok engagement, a variable which is aggregated by posts made with the song, likes and views. The highest engagement on TikTok is among from 1 song with a liveness score of 3.
 
 
-*Regression Model of Danceability, Energy, Liveness, Valence, and Acousticness on TikTok Engagement*
+*Linear Regression Model of TikTok Engagement by Danceability, Energy, and Liveness*
 
 ```{r regression on tik tok engagement and qualitative features}
 spotify_df=
@@ -625,4 +625,49 @@ model_table
 ```
 
 Based on the linear regression assessing the relationship between TikTok engagement and qualitative features of the song such as danceability, energy, and liveness, none of the variables have a statistically significant association with  TikTok engagement. However, one interesting insight is that danceability has a positive association with TikTok engagement although it is not statistically significant. This regression was driven by the hypothesis that livelier and energetic music will have more TikTok engagement considering the popularity of TikTok dance challenges. Although the findings were not statically significant, they were interesting. 
+
+*Logistic Regression Model of TikTok Engagement by Danceability, Energy, and Liveness*
+```{r}
+spotify_df |> 
+  mutate(
+    tiktok_engagement = `2024_tik_tok_posts` + `2024_tik_tok_likes` + `2024_tik_tok_views`,
+    engagement_category = case_when(
+      tiktok_engagement < 750e6 ~ "Low",  # Less than 750 million
+      tiktok_engagement <= 20e9 ~ "Medium",  # Between 750 million and 20 billion
+      tiktok_engagement > 20e9 ~ "High"  # Above 20 billion
+    )
+  ) |> 
+  mutate(engagement_category = factor(engagement_category, levels = c("Low", "Medium", "High")))
+
+logistic_model = glm(
+  engagement_category ~ danceability + energy + liveness,
+  family = binomial(link = "logit"),
+  data = spotify_df
+)
+
+tidy_model = broom::tidy(logistic_model) |> 
+  mutate(
+    estimate = round(estimate, 3),
+    std.error = round(std.error, 3),
+    statistic = round(statistic, 2),
+    p.value = ifelse(p.value < 0.001, "<0.001", round(p.value, 3))
+  )
+
+model_table = tidy_model |> 
+  kable(
+    col.names = c("Predictor", "Estimate", "Standard Error", "z-Statistic", "P-Value"),
+    caption = "Logistic Regression: Danceability, Energy, and Liveness on TikTok Engagement Categories",
+    digits = 3,
+    format = "html"
+  ) |> 
+  kable_styling(
+    full_width = FALSE,
+    position = "center",
+    font_size = 14
+  )
+
+model_table
+```
+
+Alternatively, logistic regression was used to model TikTok engagement by danceability, energy, and liveness. TikTok engagement was operationalized by combining view, post, and like counts and categorizing into low (<750 million total), medium (>750 million and <20 billion total), and high (>20 billion) engagement. Only liveness was shown to be statistically significant with a p-value of 0.028 and supports the previous finding that songs with fewer live elements are more popular on TikTok. The lack of significance of these predictors in the logistic regression model and the exponentiated estimates being very close to 1 show that music characteristics don't necessarily influence popularity on TikTok.
 
