@@ -11,29 +11,29 @@ library(magick)
 Meet our project team, and feel free to reach out to any of us to connect!
 </div>
 
+
 <div style="display: grid; justify-items: start;">
-<br></br>
 
-# <img src="images/placeholder_headshot.jpg" alt="Avatar" width="150" height="150" style="border:2px solid green"> Meredith Steinberg
+# <img src="images/ms_dsimage.jpg" alt="Avatar" width="150" height="150" style="border:2px solid green"> Meredith Steinberg | [LinkedIn](https://www.linkedin.com/in/meredith-steinberg/)
 
-<br></br>
+<br>
 
-# <img src="images/placeholder_headshot.jpg" alt="Avatar" width="150" height="150" style="border:2px solid green"> Laura Bulmer
+# <img src="images/lb_dsimage.jpeg" alt="Avatar" width="150" height="150" style="border:2px solid green"> Laura Bulmer | [LinkedIn](www.linkedin.com/in/laura-bulmer-935ab4171)
 
-<br></br>
+<br>
 
-# <img src="images/placeholder_headshot.jpg" alt="Avatar" width="150" height="150" style="border:2px solid green"> Anne Gorman
+# <img src="images/placeholder_headshot.jpg" alt="Avatar" width="150" height="150" style="border:2px solid green"> Anne Gorman | [LinkedIn](https://www.linkedin.com/in/annie-gorman-216a47257/)
 
-<br></br>
+<br>
 
-# <img src="images/placeholder_headshot.jpg" alt="Avatar" width="150" height="150" style="border:2px solid green"> Iris Hart
+# <img src="images/placeholder_headshot.jpg" alt="Avatar" width="150" height="150" style="border:2px solid green"> Iris Hart | [LinkedIn](https://www.linkedin.com/in/irishart/)
 
-<br></br>
+<br>
 
-# <img src="images/placeholder_headshot.jpg" alt="Avatar" width="150" height="150" style="border:2px solid green"> Mia Isaacs
+# <img src="images/mi_dsimage.jpg" alt="Avatar" width="150" height="150" style="border:2px solid green"> Mia Isaacs | [LinkedIn](www.linkedin.com/in/miaisaacs)
 
-<br></br>
+<br>
 
-# <img src="images/placeholder_headshot.jpg" alt="Avatar" width="150" height="150" style="border:2px solid green"> Carolyn Martinez Jorge
+# <img src="images/placeholder_headshot.jpg" alt="Avatar" width="150" height="150" style="border:2px solid green"> Carolyn Martinez Jorge | [LinkedIn](https://www.linkedin.com/in/carolyn-martinez12/)
 
 </div>
