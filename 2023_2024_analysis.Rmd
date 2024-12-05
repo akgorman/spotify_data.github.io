@@ -635,9 +635,7 @@ spotify_df |>
       tiktok_engagement < 750e6 ~ "Low",  # Less than 750 million
       tiktok_engagement <= 20e9 ~ "Medium",  # Between 750 million and 20 billion
       tiktok_engagement > 20e9 ~ "High"  # Above 20 billion
-    )
-  ) |> 
-  mutate(engagement_category = factor(engagement_category, levels = c("Low", "Medium", "High")))
+    ))
 
 logistic_model = glm(
   engagement_category ~ danceability + energy + liveness,
