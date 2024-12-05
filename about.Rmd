@@ -62,3 +62,32 @@ The following variables were present in the 2024 dataset:
 - `soundcloud_streams`: Total number of streams on Soundcloud.
 - `shazam_counts`: Total number of times the song has been Shazamed.
 - `explicit_track`: Indicates whether the song contains explicit content.
+
+From the two cleaned datasets above, we created a third dataset in order to perform cross-year
+analyses. Some variable names were amended prior to merging the data. The following variables were present in the merged 2023/2024 dataset (spotify_df):
+
+  - `track`: Name of the song.
+  - `artist`: Name of the artist(s) of the song.
+  - `released_year`: Year the song was released.
+  - `released_month`: Month the song was released.
+  - `released_day`: Day of the month the song was released.
+  - `2024_spotify_streams`: Total number of streams on Spotify in 2024.
+  - `2024_spotify_playlist_count`: Number of Spotify playlists the song is included in in 2024.
+  - `2024_apple_music_playlist_count`: Number of Apple Music playlists the song is included in in 2024.
+  - `2024_deezer_playlist_count`: Number of Deezer playlists the song is included in in 2024.
+  - `2023_spotify_streams`: Total number of streams on Spotify in 2023.
+  - `2023_spotify_playlist_count`: Number of Spotify playlists the song is included in in 2023.
+  - `2023_apple_music_playlist_count`: Number of Apple Music playlists the song is included in in 2023.
+  - `2023_deezer_playlist_count`: Number of Deezer playlists the song is included in in 2023.
+  - `2024_tik_tok_posts`: Number of TikTok posts featuring the song in 2024.
+  - `2024_tik_tok_likes`: Total likes on TikTok posts featuring the song in 2024.
+  - `2024_tik_tok_views`: Total views on TikTok posts featuring the song in 2024.
+  - `bpm`: Beats per minute, a measure of song tempo.
+  - `key`: Key of the song.
+  - `mode`: Mode of the song (major or minor).
+  - `danceability`: Percentage indicating how suitable the song is for dancing.
+  - `valence`: Positivity of the song's musical content.
+  - `energy`: Perceived energy level of the song.
+  - `acousticness`: Amount of acoustic sound in the song.
+  - `liveness`: Presence of live performance elements.
+  - `speechiness`: Amount of spoken words in the song.
