@@ -52,6 +52,7 @@ view(spotify2023_df)
 The track "Love Grows" by Edison Lighthouse contained a "streams" observation that was not a numerical value but rather a very long character value and was preventing the aggregation of streaming data. To address this, the value was set as "NA".
 
 The dataset includes the following variables:
+
 - `track_name`: Name of the song.
 - `artist`: Name of the artist(s).
 - `artist_count`: Number of artists contributing to the song.

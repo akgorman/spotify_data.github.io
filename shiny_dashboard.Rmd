@@ -107,10 +107,11 @@ ggplot(explicit_song2, aes(x = explicit_track, y = spotify_popularity, fill = ex
   })
 }
 
-# Run the application
-shinyApp(ui, server)
 ```
 
+```{r}
+shinyApp(ui = ui, server = server)
+```
 Column {.sidebar}
 -----------------------------------------------------------------------
 
