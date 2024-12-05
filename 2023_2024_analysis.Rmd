@@ -104,6 +104,7 @@ Prior to merging the datasets, in the 2023 dataset, we renamed  `track_name` to 
 Datasets were merged based on `track`, `released_year`, `released_month`, and `released_day`. The `artist` variable for the 2023 was kept because the 2023 dataset includes the artists that are featured on the track as well. 
 
 When merging the datasets (through inner_join), we found that there were 17 duplicate songs where the duplicates all contain information for both 2023 and 2024 Spotify streams, Spotify playlist count, and Apple Music playlist count. Some duplicates, however, have varying missing information about 2024 Deezer playlist count and/or TikTok data. Some other notable discrepancies we found among the 17 tracks where the following:
+
 - “Daylight” and “Numb” are duplicate track names but are from different artists 
 - “My Universe” has limited information in both duplicates
 - “SNAP” has two duplicates (4 total) 
