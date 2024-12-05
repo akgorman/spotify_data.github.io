@@ -8,7 +8,7 @@ The data from this project were obtained from [Kaggle](https://www.kaggle.com/),
 
 ## Variables and Codebook 
 
-We used two raw datasets, one from [2023](https://www.kaggle.com/datasets/nelgiriyewithana/top-spotify-songs-2023), and one from [2024](https://www.kaggle.com/datasets/nelgiriyewithana/most-streamed-spotify-songs-2024). The cleaned datasets, available on our [GitHub project](https://github.com/akgorman/spotify_data.github.io.git) have ____ observations. We ran several analyses on the variables, defined below. 
+We used two raw datasets, one from [2023](https://www.kaggle.com/datasets/nelgiriyewithana/top-spotify-songs-2023), and one from [2024](https://www.kaggle.com/datasets/nelgiriyewithana/most-streamed-spotify-songs-2024). The cleaned datasets for 2023 and 2024, available on our [GitHub project](https://github.com/akgorman/spotify_data.github.io.git) have 953 and 4425 observations, respectively. We ran several analyses on the variables, defined below. 
 
 The following variables were present in the 2023 dataset:
 
