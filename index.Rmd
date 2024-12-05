@@ -22,7 +22,7 @@ Overall, our project goal was to provide context for why songs and artists becom
 ## Project Data
 </div>
 
-To perform our analyses, we explored two datasets from Kaggle inclusive of Spotify's most stream songs  by year for 2023 and 2024. Given the data available, we performed different analyses per year. We also created a combined dataset and performed cross-year analyses, where available and appropriate. A detailed codebook can be found here, and a discussion of raw data is included within the relevant exploratory analysis pages. 
+To perform our analyses, we explored two datasets from Kaggle inclusive of Spotify's most stream songs  by year for 2023 and 2024. Given the data available, we performed different analyses per year. We also created a combined dataset and performed cross-year analyses, where available and appropriate. A detailed codebook can be found [here](about.html), and a discussion of raw data is included within the relevant exploratory analysis pages. 
 
 <div style="text-align: center;">
 
@@ -30,7 +30,7 @@ To perform our analyses, we explored two datasets from Kaggle inclusive of Spoti
 ## Explore Our Website
 </div>
 
-Our project website consists of about About section, within which you can get to know our project goals, data, and our team. The Exploratory Analysis section is inclusive of all analyses performed, separated by the examined year(s). Our Project Report summarizes the entirety of our work as well as a discussion of our outcomes, and our Dashboard provides a visual representation of a portion of our results. If you're short on time, we encourage you to watch the screencast below for a short summary of our project. 
+Our project website consists of about [About](about_our_project.html) section, within which you can get to know our project goals, data, and our team. The [Exploratory Analysis](2023.html) section is inclusive of all analyses performed, separated by the examined year(s). Our [Project Report](Report.html) summarizes the entirety of our work as well as a discussion of our outcomes, and our Dashboard provides a visual representation of a portion of our results. If you're short on time, we encourage you to watch the screencast below for a short summary of our project. 
 
 We encourage you to explore our website, project screencast, and report. Thanks for checking us out! 
 

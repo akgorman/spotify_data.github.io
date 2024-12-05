@@ -8,7 +8,7 @@ title: "About Our Project"
 
 The initial motivation for the project was to expand the understanding of why songs and artists trend on music streaming platforms, such as Spotify. Quality of music is certainly subjective, however it is interesting to consider whether measurable qualities such as danceability, valence, or beats per minute are associated with popularity. As a step further, we were motivated to examine whether these relationships between measurable quantities and popularities remained consistent throughout the calendar year or rather ebbed and flowed as the seasons changed. 
 
-We were also curious about the consistency and interaction between various streaming and social media platforms. With the rapid rise of the social media site tik tok and continued usage of platforms such as Youtube and SoundCloud, we looked to examine whether popularity on one site might correlate to another, or alternatively if the sites appealed to user bases with different music preferences.
+We were also curious about the consistency and interaction between various streaming and social media platforms. With the rapid rise of the social media site Tik Tok and continued usage of platforms such as Youtube and SoundCloud, we looked to examine whether popularity on one site might correlate to another, or alternatively if the sites appealed to user bases with different music preferences.
 
 Overall, our project goal was to provide context for why songs and artists become and maintain popularity. We aimed to perform exploratory analysis on our original motivating questions, as well as any secondary questions that arose throughout the project. 
 
@@ -16,23 +16,23 @@ Overall, our project goal was to provide context for why songs and artists becom
 
 As we examined the data prior to shaping our initial hypotheses, we were able to tailor our initial questions to the data on hand. We summarized our initial questions below.
 
-<u>2023</u>
+  <u>2023</u>
 
-* Is song popularity consistent or different across different steaming platforms?
-* Are measurable song characteristics (bpm, danceability, valence, key, etc.) associated with popularity?
+  * Is song popularity consistent or different across different steaming platforms?
+  * Are measurable song characteristics (bpm, danceability, valence, key, etc.) associated with popularity?
 
 <u>2024</u>
 
-* Is song popularity consistent or different across different steaming platforms?
-* Are artists more popular on certain platforms compared to others?
-* Does categorization as 'explicit' effect song popularity or number of streams?
-* Is TikTok engagement related to the number of streams across other platforms?
+  * Is song popularity consistent or different across different steaming platforms?
+  * Are artists more popular on certain platforms compared to others?
+  * Does categorization as 'explicit' effect song popularity or number of streams?
+  * Is TikTok engagement related to the number of streams across other platforms?
 
 <u>2023 and 2024 Cross-Year</u>
 
-* How much overlap in top songs existed between the two years?
-* Did top songs within each year have common characteristics?
-* Were specific track characteristics (e.g., danceability) associated with greated popularity (e.g., Tik Tok engagement)?
+  * How much overlap in top songs existed between the two years?
+  * Did top songs within each year have common characteristics?
+  * Were specific track characteristics (e.g., danceability) associated with greated popularity (e.g., Tik Tok engagement)?
 
 ### What did we do?
 
