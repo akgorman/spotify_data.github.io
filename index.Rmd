@@ -12,9 +12,25 @@ output:
 ## Project Information
 </div>
 
-Our project aims to explore the association between popularity of songs and qualities of those songs that can be quantified. To do so, we explored two datasets from Kaggle inclusive of Spotify's most stream songs  by year for 2023 and 2024. Given the data available, we performed different analyses per year. We also created a combined dataset and performed cross-year analyses, where available and appropriate. 
+Our project aims to explore the association between popularity of songs and qualities of those songs that can be quantified. As active Spotify users, our team members were motivated to build our understanding of whether measurable qualities such as danceability, valence, or bpm are associated with popularity. We also dug into the alignment between several streaming and social media sites, with the assumption that apps such as Tik Tok are a driving force behind song popularity.
 
-We encourage you to explore our website, project screencast, and report. 
+Overall, our project goal was to provide context for why songs and artists become and maintain popularity. We aimed to perform exploratory analysis on our original motivating questions, as well as any secondary questions that arose throughout the project.
+
+<div style="text-align: center;">
+## Project Data
+</div>
+
+To perform our analyses, we explored two datasets from Kaggle inclusive of Spotify's most stream songs  by year for 2023 and 2024. Given the data available, we performed different analyses per year. We also created a combined dataset and performed cross-year analyses, where available and appropriate. A detailed codebook can be found here, and a discussion of raw data is included within the relevant exploratory analysis pages. 
+
+<div style="text-align: center;">
+## Explore Our Website
+</div>
+
+Our project website consists of about About section, within which you can get to know our project goals, data, and our team. The Exploratory Analysis section is inclusive of all analyses performed, separated by the examined year(s). Our Project Report summarizes the entirety of our work as well as a discussion of our outcomes, and our Dashboard provides a visual representation of a portion of our results. If you're short on time, we encourage you to watch the screencast below for a short summary of our project. 
+
+We encourage you to explore our website, project screencast, and report. Thanks for checking us out! 
+
+## 
 
 <div style="text-align: center;">
 ## Screencast
