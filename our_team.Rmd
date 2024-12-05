@@ -18,7 +18,7 @@ Meet our project team, and feel free to reach out to any of us to connect!
 
 <br>
 
-# <img src="images/lb_dsimage.jpeg" alt="Avatar" width="150" height="150" style="border:2px solid green"> Laura Bulmer | [LinkedIn](www.linkedin.com/in/laura-bulmer-935ab4171)
+# <img src="images/lb_dsimage.jpeg" alt="Avatar" width="150" height="150" style="border:2px solid green"> Laura Bulmer | [LinkedIn](www.linkedin.com/in/laura-bulmer-935ab4171/)
 
 <br>
 
@@ -30,7 +30,7 @@ Meet our project team, and feel free to reach out to any of us to connect!
 
 <br>
 
-# <img src="images/mi_dsimage.jpg" alt="Avatar" width="150" height="150" style="border:2px solid green"> Mia Isaacs | [LinkedIn](www.linkedin.com/in/miaisaacs)
+# <img src="images/mi_dsimage.jpg" alt="Avatar" width="150" height="150" style="border:2px solid green"> Mia Isaacs | [LinkedIn](www.linkedin.com/in/miaisaacs/)
 
 <br>
 
