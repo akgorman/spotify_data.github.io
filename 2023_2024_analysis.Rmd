@@ -17,7 +17,9 @@ library(scales)
 library(broom)
 library(knitr)
 library(kableExtra)
+library(patchwork)
 ```
+
 # Exploratory Data Analysis
 ### Discussion of Raw Data
 This page will focus on data that has merged both the 2023 and 2024 Spotify datasets. While the 2023 dataset has more qualitative data about the tracks themselves (e.g., bpm, key, danceability, valence, etc.), the 2024 dataset has a lot more information about the popularity of the tracks across several platforms (e.g. TikTok, etc.). We are specifically interested in tracks that are included in both of these datasets. The 2023 dataset has 953 tracks included, while the 2024 dataset has 4425 tracks. For more information about the individual datasets, visit [2023](2023.html) and [2024](2024.html).
@@ -79,23 +81,6 @@ spotify_df |>
   group_by(track) |> 
 filter(n() > 1) |> 
   arrange(track)
-```
-
-```{r}
-# Can also use the dataset in a longer format.
-spotify_long_df=
-  spotify_df |>
-  select(
-     `2023_spotify_streams`,  `2023_spotify_playlist_count`, `2023_apple_music_playlist_count`, `2023_deezer_playlist_count`, `2024_spotify_streams`, `2024_spotify_playlist_count`,    
-`2024_apple_music_playlist_count`, `2024_deezer_playlist_count`, everything()     
-  ) |> 
-    pivot_longer(
-    cols = c(`2023_spotify_streams`,  `2023_spotify_playlist_count`, `2023_apple_music_playlist_count`, `2023_deezer_playlist_count`, `2024_spotify_streams`, `2024_spotify_playlist_count`,    
-`2024_apple_music_playlist_count`, `2024_deezer_playlist_count`, `2024_tik_tok_posts`,             `2024_tik_tok_likes`, `2024_tik_tok_views`),
-    names_to = c("year", "metric"),                 
-    names_pattern = "(\\d{4})_(.*)",    
-   values_to = "value"  
-  )
 ```
 
 ### Data Cleaning and Merging
@@ -250,45 +235,31 @@ table_top10tiktok
 ```
 TikTok engagement was summarized by adding total views, likes, and posts. Data was collected from 2024, but the table only shows songs released before 2024.
 
-*Number of Top Songs By Release Year*
-```{r}
+*Distribution of Top Songs By Release Year*
+
+```{r histogram of song release by year}
 songs_by_year <- spotify_df |> 
   count(released_year, name = "song_count") |> 
   arrange(desc(released_year))
 
-table_songs_by_year <- songs_by_year |> 
-  gt() |> 
-  tab_header(
-    title = "Count of Songs by Release Year"
-  ) |> 
-  fmt_number(
-    columns = song_count,
-    decimals = 0
-  ) |> 
-  cols_label(
-    released_year = "Release Year",
-    song_count = "Number of Songs"
-  )
-
-table_songs_by_year
-```
-
-An alternative way of displaying this can be via histogram: 
-
-```{r histogram of song release by year}
 ggplot(songs_by_year, aes(x = released_year, y = song_count)) +
-  geom_bar(stat = "identity", fill = "steelblue", alpha = 0.8) +
+  geom_bar(stat = "identity", fill = "#1DB954", alpha = 0.8) +
   labs(
     title = "Number of Songs by Release Year",
     x = "Release Year",
     y = "Number of Songs"
   ) +
-  theme_minimal() +
+ theme_minimal(base_size = 15) +
   theme(
-    axis.text.x = element_text(angle = 45, hjust = 1)  # Rotate x-axis labels for better readability
-  )
+    plot.title = element_text(face = "bold", size = 18, hjust = 0.5),
+    plot.subtitle = element_text(size = 14, hjust = 0.5),
+    axis.text = element_text(size = 12),
+    axis.title = element_text(size = 14),
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  ) 
 ```
-This table shows that all top songs consistent across our 2023 and 2023 datasets were released in the year 2000 or later. 2021-2023 show the highest number of top songs, the greatest being in 2022. This may indicate that most songs reach their max popularity when they have had a few years to gain attention and recurring listeners.
+
+This histogram shows that all top songs consistent across our 2023 and 2023 datasets were released in the year 2000 or later. 2021-2023 show the highest number of top songs, the greatest being in 2022. This may indicate that most songs reach their max popularity when they have had a few years to gain attention and recurring listeners.
 
 ### Visualizations and Analysis
 
@@ -296,8 +267,8 @@ This table shows that all top songs consistent across our 2023 and 2023 datasets
 *Distribution of Song Count by BPM*
 ```{r, warning=FALSE}
 bpm_histogram <- ggplot(spotify_df, aes(x = bpm)) +
-  geom_histogram(stat = "count", binwidth = 5, aes(fill = ..count..), color = "black", alpha = 0.7) +
-  scale_fill_viridis_c(option = "plasma", end = 0.9) +
+  geom_histogram(binwidth = 5, aes(fill = ..count..), color = "#1DB954", alpha = 0.7) +
+  scale_fill_gradient(low = "#1DB954", high = "darkgreen") + 
   scale_y_continuous(labels = scales::comma) + 
   labs(
     title = "Histogram of Song Count by BPM",
@@ -305,14 +276,14 @@ bpm_histogram <- ggplot(spotify_df, aes(x = bpm)) +
     x = "Beats Per Minute (BPM)",
     y = "Song Count"
   ) +
-  theme_minimal(base_size = 15) +
+ theme_minimal(base_size = 15) +
   theme(
     plot.title = element_text(face = "bold", size = 18, hjust = 0.5),
     plot.subtitle = element_text(size = 14, hjust = 0.5),
     axis.text = element_text(size = 12),
-    axis.title = element_text(size = 14)
-  )
-
+    axis.title = element_text(size = 14),
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  ) 
 interactive_bpm_histogram <- ggplotly(bpm_histogram)
 
 interactive_bpm_histogram
@@ -325,21 +296,22 @@ key_count_df <- spotify_df |>
   count(key)
 
 key_histogram <- ggplot(key_count_df, aes(x = reorder(key, n), y = n, fill = n)) +
-  geom_bar(stat = "identity", color = "black", alpha = 0.7) +
-  scale_fill_viridis_c(option = "plasma", end = 0.9) + 
+  geom_bar(stat = "identity", color = "pink", alpha = 0.7) +
+  scale_fill_gradient(low = "#1DB954", high = "darkgreen") + 
   labs(
     title = "Histogram of Song Count by Key",
     subtitle = "Distribution of songs across different musical keys",
     x = "Key",
     y = "Song Count"
   ) +
-  theme_minimal(base_size = 15) +
+ theme_minimal(base_size = 15) +
   theme(
     plot.title = element_text(face = "bold", size = 18, hjust = 0.5),
     plot.subtitle = element_text(size = 14, hjust = 0.5),
     axis.text = element_text(size = 12),
     axis.title = element_text(size = 14),
-    axis.text.x = element_text(angle = 45, hjust = 1))
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  ) 
 
 interactive_key_histogram <- ggplotly(key_histogram)
 
@@ -354,8 +326,8 @@ mode_count_df <- spotify_df |>
   arrange(desc(n))
 
 mode_histogram <- ggplot(mode_count_df, aes(x = reorder(mode, n), y = n, fill = n)) +
-  geom_bar(stat = "identity", color = "black", alpha = 0.7) +
-  scale_fill_viridis_c(option = "plasma", end = 0.9) +
+  geom_bar(stat = "identity", color = "pink", alpha = 0.7) +
+  scale_fill_gradient(low = "#1DB954", high = "darkgreen") + 
   labs(
     title = "Histogram of Song Count by Mode",
     subtitle = "Distribution of songs across different musical modes",
@@ -369,12 +341,113 @@ mode_histogram <- ggplot(mode_count_df, aes(x = reorder(mode, n), y = n, fill = 
     axis.text = element_text(size = 12),
     axis.title = element_text(size = 14),
     axis.text.x = element_text(angle = 45, hjust = 1)
-  )
+  ) 
 
 interactive_mode_histogram <- ggplotly(mode_histogram)
 
 interactive_mode_histogram
+
 ```
+
+*Distribution of Song Count by Danceability*
+```{r}
+dance_count_df <- spotify_df |> 
+  filter(!is.na(danceability)) |>
+  count(danceability) |> 
+  arrange(desc(n))
+
+dance_histogram <- ggplot(dance_count_df, aes(x = danceability, y = n, fill = n)) +
+  geom_bar(stat = "identity", color = "pink", alpha = 0.7) +
+  scale_fill_gradient(low = "#1DB954", high = "darkgreen") + 
+  labs(
+    title = "Histogram of Song Count by Danceability",
+    subtitle = "Distribution of songs by danceability",
+    x = "Danceability Score",
+    y = "Song Count"
+  ) +
+  theme_minimal(base_size = 15) +
+  theme(
+    plot.title = element_text(face = "bold", size = 18, hjust = 0.5),
+    plot.subtitle = element_text(size = 14, hjust = 0.5),
+    axis.text = element_text(size = 12),
+    axis.title = element_text(size = 14),
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  ) 
+
+interactive_dance_histogram <- ggplotly(dance_histogram)
+
+interactive_dance_histogram
+
+```
+
+*Distribution of Song Count by Energy*
+
+```{r}
+energy_count_df <- spotify_df |> 
+  filter(!is.na(energy)) |>
+  count(energy) |> 
+  arrange(desc(n))
+
+energy_histogram <- ggplot(energy_count_df, aes(x = energy, y = n, fill = n)) +
+  geom_bar(stat = "identity", color = "pink", alpha = 0.7) +
+  scale_fill_gradient(low = "#1DB954", high = "darkgreen") + 
+  labs(
+    title = "Histogram of Song Count by Energy",
+    subtitle = "Distribution of songs by energy",
+    x = "Energy Level",
+    y = "Song Count"
+  ) +
+  theme_minimal(base_size = 15) +
+  theme(
+    plot.title = element_text(face = "bold", size = 18, hjust = 0.5),
+    plot.subtitle = element_text(size = 14, hjust = 0.5),
+    axis.text = element_text(size = 12),
+    axis.title = element_text(size = 14),
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  ) 
+
+interactive_energy_histogram <- ggplotly(energy_histogram)
+
+interactive_energy_histogram
+
+```
+
+
+*Distribution of Song Count by Liveness*
+
+```{r}
+live_count_df <- spotify_df |> 
+  filter(!is.na(liveness)) |>
+  count(liveness) |> 
+  arrange(desc(n))
+
+liveness_histogram <- ggplot(live_count_df, aes(x = liveness, y = n, fill = n)) +
+  geom_bar(stat = "identity", color = "pink", alpha = 0.7) +
+  scale_fill_gradient(low = "#1DB954", high = "darkgreen") + 
+  labs(
+    title = "Histogram of Song Count by Liveness",
+    subtitle = "Distribution of songs by liveness",
+    x = "Liveness",
+    y = "Song Count"
+  ) +
+  theme_minimal(base_size = 15) +
+  theme(
+    plot.title = element_text(face = "bold", size = 18, hjust = 0.5),
+    plot.subtitle = element_text(size = 14, hjust = 0.5),
+    axis.text = element_text(size = 12),
+    axis.title = element_text(size = 14),
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  ) 
+
+interactive_liveness_histogram <- ggplotly(liveness_histogram)
+
+interactive_liveness_histogram
+
+```
+
+*Interpretation*
+
+The musical attributes that are most common among the songs in the data set are 120 bpm, key C#, major mode, a danceability score of 70, an energy level of 20, and a liveness score of 9. Notable distributions are the normal distribution of danceability scores around the score of 70, the normal distribution around the energy level of 68, and the right skewed distribution of energy levels around the score of 11. 
 
 #### Musical Attributes Compared to Streaming Data
 *Distribution of Spotify Streams by Danceability*
@@ -489,8 +562,8 @@ dance_df=
 
 dance_barplot =
   ggplot(dance_df, aes(x = danceability, y = tiktok_engagement, fill = song_count)) +
-  geom_bar(stat = "identity", color = "black", alpha = 0.8) +
-  scale_fill_gradient(low = "lightblue", high = "blue") + 
+  geom_bar(stat = "identity", color = "pink", alpha = 0.8) +
+  scale_fill_gradient(low = "green", high = "darkgreen") + 
   labs(
     title = "TikTok Engagement by Danceability",
     subtitle = "Bars filled based on song count",
@@ -527,7 +600,7 @@ energy_df =
 
 energy_scatterplot =
   ggplot(energy_df, aes(x = energy, y = tiktok_engagement)) +
-  geom_point(alpha = 0.7, color = "blue") +
+  geom_point(alpha = 0.7, color = "darkgreen") +
   labs(
     title = "TikTok Engagement by Energy, 2023",
     subtitle = "Each point represents a single song",
@@ -565,7 +638,7 @@ liveness_df =
 # Scatter plot
 liveness_scatterplot =
   ggplot(liveness_df, aes(x = liveness, y = tiktok_engagement)) +
-  geom_point(alpha = 0.7, color = "blue") +
+  geom_point(alpha = 0.7, color = "darkgreen") +
   labs(
     title = "TikTok Engagement by Liveness",
     subtitle = "Each point represents a single song",
