@@ -512,7 +512,7 @@ interactive_pie_chart
 ```
 
 
-**Data Wrapped: The Top Chart-Toppers of 2023**
+**Data Wrapped: The Ultimate Chart-Toppers of 2023**
 
 *Top 10 Artists with the Most Danceable Songs (Danceability > 50)*
 ```{r}
@@ -536,7 +536,7 @@ ggplot(top_artists_danceability, aes(x = reorder(artist, danceable_songs), y = d
   theme(legend.position = "none")
 ```
 
-*Artists with the Most Songs by Count*
+*Top 10 Artists with the Most Songs by Count*
 ```{r}
 top_artists_songs <- spotify2023_df %>%
   group_by(artist) %>%
