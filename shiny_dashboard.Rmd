@@ -1,8 +1,10 @@
 ---
-title: "Shiny Dashboard"
-output: html_document
+title: "Shiny Dashboard Spotify Analysis"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
 runtime: shiny
-theme: journal
 ---
 
 ```{r setup, echo=FALSE}
@@ -66,7 +68,7 @@ ui <- dashboardPage(
 
 
 # Define server logic (empty for now)
-server <- function(input, output) {
+# server <- function(input, output) {
   # Server-side logic goes here (if any)
      # For 2023 Tab
   output$plot2023 <- renderPlot({explicit_song2 =
@@ -105,13 +107,10 @@ ggplot(explicit_song2, aes(x = explicit_track, y = spotify_popularity, fill = ex
     # Create histogram
     hist(data, main = "Comparing Years Histogram", xlab = "Values", col = "lightcoral")
   })
-}
+
 
 ```
 
-```{r}
-shinyApp(ui = ui, server = server)
-```
 Column {.sidebar}
 -----------------------------------------------------------------------
 
