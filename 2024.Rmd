@@ -186,8 +186,9 @@ explicit_song =
     fill = "Song Type") +
   theme_void() +
   theme(
-    plot.title = element_text(hjust = 0.5, size = 16, face = "bold")) +
-  scale_fill_manual(values = c("Explicit" = "#E63946", "Non-Explicit" = "#457B9D"))
+    plot.title = element_text(hjust = 0.5, size = 18, face = "bold"),
+    plot.subtitle = element_text(size = 14, hjust = 0.5)) +
+  scale_fill_manual(values = c("Explicit" = "#1DB954", "Non-Explicit" = "darkgreen"))
   
   explicit_pie_chart
 ```
@@ -242,13 +243,20 @@ Interpretation: This table represent the top 10 artists in the data set based on
   arrange(desc(total_spotify_streams)) |> 
   top_n(10, total_spotify_streams) |> 
   ggplot(aes(x=total_spotify_streams, y=reorder(artist, total_spotify_streams))) +
-  geom_bar(stat = "identity", fill = "skyblue") + 
+  geom_bar(stat = "identity", fill = "#1DB954") + 
   labs(
     title = "Top 10 Artists Spotify Streams",
     x = "Total Spotify Streams",
     y = "Artist"
   ) +
-  theme_minimal()
+  theme_minimal(base_size = 15) +
+  theme(
+    plot.title = element_text(face = "bold", size = 18, hjust = 0.5),
+    plot.subtitle = element_text(size = 14, hjust = 0.5),
+    axis.text = element_text(size = 12),
+    axis.title = element_text(size = 14),
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  ) 
   
 ```
 
@@ -261,13 +269,20 @@ Interpretation: This table represent the top 10 artists in the data set based on
   arrange(desc(total_sc_streams)) |> 
   top_n(10, total_sc_streams) |> 
   ggplot(aes(x=total_sc_streams, y=reorder(artist, total_sc_streams))) +
-  geom_bar(stat = "identity", fill = "skyblue") + 
+  geom_bar(stat = "identity", fill = "#1DB954") + 
   labs(
     title = "Top 10 Artists Soundcloud Streams",
     x = "Total Soundcloud Streams",
     y = "Artist"
   ) +
-  theme_minimal()
+  theme_minimal(base_size = 15) +
+  theme(
+    plot.title = element_text(face = "bold", size = 18, hjust = 0.5),
+    plot.subtitle = element_text(size = 14, hjust = 0.5),
+    axis.text = element_text(size = 12),
+    axis.title = element_text(size = 14),
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  ) 
 ```
 
 ### Artists with the Top 10 YouTube Views
@@ -279,13 +294,20 @@ Interpretation: This table represent the top 10 artists in the data set based on
   arrange(desc(total_yt)) |> 
   top_n(10, total_yt) |> 
   ggplot(aes(x=total_yt, y=reorder(artist, total_yt))) +
-  geom_bar(stat = "identity", fill = "skyblue") + 
+  geom_bar(stat = "identity", fill = "#1DB954") + 
   labs(
     title = "Top 10 Artists YouTube Views",
     x = "Total YouTube Views",
     y = "Artist"
   ) +
-  theme_minimal()
+  theme_minimal(base_size = 15) +
+  theme(
+    plot.title = element_text(face = "bold", size = 18, hjust = 0.5),
+    plot.subtitle = element_text(size = 14, hjust = 0.5),
+    axis.text = element_text(size = 12),
+    axis.title = element_text(size = 14),
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  ) 
 ```
 
 ### Artists with the Top 10 TikTok Views
@@ -297,13 +319,20 @@ Interpretation: This table represent the top 10 artists in the data set based on
   arrange(desc(total_tt)) |> 
   top_n(10, total_tt) |> 
   ggplot(aes(x=total_tt, y=reorder(artist, total_tt))) +
-  geom_bar(stat = "identity", fill = "skyblue") + 
+  geom_bar(stat = "identity", fill = "#1DB954") + 
   labs(
     title = "Top 10 Artists TikTok Views",
     x = "Total TikTok Views",
     y = "Artist"
   ) +
-  theme_minimal()
+   theme_minimal(base_size = 15) +
+  theme(
+    plot.title = element_text(face = "bold", size = 18, hjust = 0.5),
+    plot.subtitle = element_text(size = 14, hjust = 0.5),
+    axis.text = element_text(size = 12),
+    axis.title = element_text(size = 14),
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  ) 
 ```
 
 *Interpretation*
@@ -506,13 +535,27 @@ mutate(
   ) |> 
   ggplot(aes(x = tiktok_category, y = spotify_streams, fill = tiktok_category)) +
   geom_boxplot() +
+  scale_fill_manual(
+  values = c(
+    "Low" = "pink",
+    "Medium" = "#1DB954",
+    "High" = "darkgreen"
+  )
+) +
   labs(
     title = "Comparing Spotify Streams to Amount of TikTok Likes",
     x = "TikTok Likes",
     y = "Spotify Streams",
    fill = "TikTok Likes Category"
   ) +
-  theme_minimal()
+   theme_minimal(base_size = 15) +
+  theme(
+    plot.title = element_text(face = "bold", size = 18, hjust = 0.5),
+    plot.subtitle = element_text(size = 14, hjust = 0.5),
+    axis.text = element_text(size = 12),
+    axis.title = element_text(size = 14),
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  ) 
 
 
 dataset_2024 |> 
@@ -528,6 +571,13 @@ mutate(
   ) |> 
   ggplot(aes(x = tiktok_category, y = you_tube_views, fill = tiktok_category)) +
   geom_boxplot() +
+   scale_fill_manual(
+  values = c(
+    "Low" = "pink",
+    "Medium" = "#1DB954",
+    "High" = "darkgreen"
+  )
+) +
   labs(
     title = "Comparing YouTube Views to Amount of TikTok Likes",
     x = "TikTok Likes",
@@ -535,7 +585,14 @@ mutate(
    fill = "TikTok Likes Category"
   ) +
   scale_y_log10() +
-  theme_minimal()
+   theme_minimal(base_size = 15) +
+  theme(
+    plot.title = element_text(face = "bold", size = 18, hjust = 0.5),
+    plot.subtitle = element_text(size = 14, hjust = 0.5),
+    axis.text = element_text(size = 12),
+    axis.title = element_text(size = 14),
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  ) 
 
 dataset_2024 |> 
   drop_na(tik_tok_likes) |> 
@@ -550,6 +607,13 @@ mutate(
   ) |> 
   ggplot(aes(x = tiktok_category, y = soundcloud_streams, fill = tiktok_category)) +
   geom_boxplot() +
+   scale_fill_manual(
+  values = c(
+    "Low" = "pink",
+    "Medium" = "#1DB954",
+    "High" = "darkgreen"
+  )
+) +
   labs(
     title = "Comparing Soundcloud Streams to Amount of TikTok Likes",
     x = "TikTok Likes",
@@ -557,7 +621,14 @@ mutate(
    fill = "TikTok Likes Category"
   ) +
   scale_y_log10() +
-  theme_minimal()
+   theme_minimal(base_size = 15) +
+  theme(
+    plot.title = element_text(face = "bold", size = 18, hjust = 0.5),
+    plot.subtitle = element_text(size = 14, hjust = 0.5),
+    axis.text = element_text(size = 12),
+    axis.title = element_text(size = 14),
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  ) 
 ```
 
 ### Comparing Tik Tok Likes to Shazam Counts
@@ -576,6 +647,13 @@ mutate(
   ) |> 
   ggplot(aes(x = tiktok_category, y = shazam_counts, fill = tiktok_category)) +
   geom_boxplot() +
+   scale_fill_manual(
+  values = c(
+    "Low" = "pink",
+    "Medium" = "#1DB954",
+    "High" = "darkgreen"
+  )
+) +
   labs(
     title = "Comparing Shazam Counts to Amount of TikTok Likes",
     x = "TikTok Likes",
@@ -583,7 +661,14 @@ mutate(
    fill = "TikTok Likes Category"
   ) +
   scale_y_log10() +
-  theme_minimal()
+   theme_minimal(base_size = 15) +
+  theme(
+    plot.title = element_text(face = "bold", size = 18, hjust = 0.5),
+    plot.subtitle = element_text(size = 14, hjust = 0.5),
+    axis.text = element_text(size = 12),
+    axis.title = element_text(size = 14),
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  ) 
 ```
 
 *Interpretation*
