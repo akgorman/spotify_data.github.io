@@ -25,11 +25,6 @@ spotify2023_df =
 view(spotify2023_df)
 ```
 
-```{r include = FALSE}
-library(tidyverse)
-library(plotly)
-```
-
 # Exploratory Data Analysis
 ### Discussion of Raw Data
 
@@ -47,9 +42,7 @@ spotify2023_df =
 view(spotify2023_df)
 ```
 
-(Include issues that come up with data here.)
-
-The track "Love Grows" by Edison Lighthouse contained a "streams" observation that was not a numerical value but rather a very long character value and was preventing the aggregation of streaming data. To address this, the value was set as "NA".
+The dataset was already quite clean, but we did come across a few minor issues. For example, the track "Love Grows" by Edison Lighthouse contained a "streams" observation that was not a numerical value but rather a very long character value and was preventing the aggregation of streaming data. To address this, the value was set as "NA".
 
 The dataset includes the following variables:
 - `track_name`: Name of the song.
@@ -302,32 +295,31 @@ Assessing popularity through number of playlists a song is included on showed mi
 
 *Spotify Streams by BPM*
 ```{r}
-bpm_streams_df <- spotify2023_df |> 
-  filter(streams > 10000000)
-
-bpm_streams_plot <- ggplot(bpm_streams_df, aes(x = bpm, y = streams)) +
-  geom_point(aes(color = bpm), size = 3, alpha = 0.7) + 
-  scale_y_log10(labels = scales::comma) +           
-  scale_color_viridis_c(option = "plasma", end = 0.9) +
+bpm_histogram <- ggplot(spotify2023_df, aes(x = bpm, fill = ..count..)) +
+  geom_histogram(
+    binwidth = 5,  
+    color = "pink", 
+    alpha = 0.8
+  ) +
+  scale_fill_gradient(low = "green", high = "darkgreen") +
   labs(
-    title = "BPM vs Spotify Streams",
-    subtitle = "Analyzing the relationship between song tempo and popularity",
+    title = "Distribution of Song Count by BPM",
+    subtitle = "Analyzing the frequency of different tempos",
     x = "Beats Per Minute (BPM)",
-    y = "Spotify Streams (log scale)",
-    color = "BPM"
+    y = "Frequency",
+    fill = "Frequency"
   ) +
   theme_minimal(base_size = 15) +       
   theme(
     plot.title = element_text(face = "bold", size = 18, hjust = 0.5),
     plot.subtitle = element_text(size = 14, hjust = 0.5),
     axis.text = element_text(size = 12),
-    axis.title = element_text(size = 14),
-    legend.position = "right"
+    axis.title = element_text(size = 14)
   )
 
-interactive_bpm_streams_plot <- ggplotly(bpm_streams_plot, tooltip = c("x", "y", "color"))
+interactive_bpm_histogram <- ggplotly(bpm_histogram, tooltip = c("x", "fill"))
 
-interactive_bpm_streams_plot
+interactive_bpm_histogram
 ```
 
 *Spotify Streams by Key*
