@@ -293,33 +293,36 @@ Assessing popularity through number of playlists a song is included on showed mi
 
 ### Visualizations
 
-*Spotify Streams by BPM*
+*Distribution of Spotify Streams by BPM*
 ```{r}
-bpm_histogram <- ggplot(spotify2023_df, aes(x = bpm, fill = ..count..)) +
-  geom_histogram(
-    binwidth = 5,  
-    color = "pink", 
-    alpha = 0.8
-  ) +
-  scale_fill_gradient(low = "green", high = "darkgreen") +
+streams_by_bpm <- spotify2023_df |>
+  filter(!is.na(bpm)) |>
+  group_by(bpm) |>
+  summarise(total_streams = sum(streams, na.rm = TRUE)) |>
+  arrange(bpm)  # Sort bpm numerically
+
+streams_by_bpm_plot <- ggplot(streams_by_bpm, aes(x = bpm, y = total_streams, fill = total_streams)) +
+  geom_bar(stat = "identity", color = "pink", alpha = 0.7) +   
+  scale_y_continuous(labels = scales::comma) +                  
+  scale_fill_gradient(low = "lightgreen", high = "darkgreen") +  # Green gradient fill for total streams
+  scale_x_continuous(breaks = seq(floor(min(streams_by_bpm$bpm)/10)*10, ceiling(max(streams_by_bpm$bpm)/10)*10, by = 10)) +  # Show bpm in increments of 10
   labs(
-    title = "Distribution of Song Count by BPM",
-    subtitle = "Analyzing the frequency of different tempos",
-    x = "Beats Per Minute (BPM)",
-    y = "Frequency",
-    fill = "Frequency"
+    title = "Total Streams by BPM",
+    x = "Beats per Minute (BPM)",
+    y = "Total Streams"
   ) +
-  theme_minimal(base_size = 15) +       
+  theme_minimal(base_size = 15) +
   theme(
     plot.title = element_text(face = "bold", size = 18, hjust = 0.5),
     plot.subtitle = element_text(size = 14, hjust = 0.5),
     axis.text = element_text(size = 12),
-    axis.title = element_text(size = 14)
+    axis.title = element_text(size = 14),
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    legend.position = "none",
+    panel.grid.minor = element_blank()  
   )
 
-interactive_bpm_histogram <- ggplotly(bpm_histogram, tooltip = c("x", "fill"))
-
-interactive_bpm_histogram
+streams_by_bpm_plot
 ```
 
 *Spotify Streams by Key*
@@ -330,10 +333,10 @@ streams_by_key <- spotify2023_df |>
   summarise(total_streams = sum(streams, na.rm = TRUE)) |>
   arrange(desc(total_streams))
 
-streams_by_key_plot <- ggplot(streams_by_key, aes(x = reorder(key, total_streams), y = total_streams, fill = key)) +
-  geom_bar(stat = "identity", color = "black", alpha = 0.7) +   
+streams_by_key_plot <- ggplot(streams_by_key, aes(x = reorder(key, total_streams), y = total_streams, fill = total_streams)) +
+  geom_bar(stat = "identity", color = "pink", alpha = 0.7) +   
   scale_y_continuous(labels = scales::comma) +                  
-  scale_fill_viridis_d(option = "magma", end = 0.9) +           
+  scale_fill_gradient(low = "lightgreen", high = "darkgreen") + 
   labs(
     title = "Total Streams by Musical Key",
     x = "Musical Key",
@@ -359,10 +362,10 @@ streams_by_mode <- spotify2023_df |>
   summarise(total_streams = sum(streams, na.rm = TRUE)) |>
   arrange(desc(total_streams))
 
-streams_by_mode_plot <- ggplot(streams_by_mode, aes(x = reorder(mode, total_streams), y = total_streams, fill = mode)) +
-  geom_bar(stat = "identity", color = "black", alpha = 0.7) + 
+streams_by_mode_plot <- ggplot(streams_by_mode, aes(x = reorder(mode, total_streams), y = total_streams, fill = total_streams)) +
+  geom_bar(stat = "identity", color = "pink", alpha = 0.7) + 
   scale_y_continuous(labels = scales::comma) +               
-  scale_fill_viridis_d(option = "magma", end = 0.9) +    
+  scale_fill_gradient(low = "lightgreen", high = "darkgreen") + 
   labs(
     title = "Total Streams by Musical Mode",
     x = "Musical Mode",
