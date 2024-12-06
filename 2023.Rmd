@@ -220,6 +220,8 @@ table_top10charts <- top10charts |>
 table_top10charts
 ```
 
+The top 10 songs vary among top streamed, presence on playlists, and presence on charts. There are a few consistencies across Top 10 Streamed Songs and Top 10 Songs By Presence on Playlists, such as "Blinding Lights" and "One Dance", but overall the top songs differ completely by these measures.
+
 *Top 10 Artists by Total Number of Spotify Streams*
 ```{r top 10 artist}
 top10artists <- spotify2023_df |>
@@ -325,8 +327,9 @@ streams_by_bpm_plot <- ggplot(streams_by_bpm, aes(x = bpm, y = total_streams, fi
 
 streams_by_bpm_plot
 ```
+The distribution of total streams by BPM shows that most top songs have a BPM somewhere between 90-150. The data show a slightly right-skewed distribution, suggesting that songs with higher BPMs may be less popular. The sweet spot appears to be 120 BPM, where the greatest number of streams were recorded in 2023.
 
-*Spotify Streams by Key*
+*Distribution of Spotify Streams by Key*
 ```{r}
 streams_by_key <- spotify2023_df |>
   filter(!is.na(key)) |>
@@ -354,8 +357,9 @@ streams_by_key_plot <- ggplot(streams_by_key, aes(x = reorder(key, total_streams
 
 streams_by_key_plot
 ```
+The most common key for top songs is C#, whereas the least popular is D#. The distribution among other keys of music appears to be relatively even.
 
-*Spotify Streams by Mode*
+*Distribution of Spotify Streams by Mode*
 ```{r}
 streams_by_mode <- spotify2023_df |>
   filter(!is.na(mode)) |>
@@ -383,6 +387,7 @@ streams_by_mode_plot <- ggplot(streams_by_mode, aes(x = reorder(mode, total_stre
 
 streams_by_mode_plot
 ```
+More streams occurred among songs in a major key, suggesting that upbeat, positive, and joyful songs were more popular than darker, melancholic, and emotional songs. 
 
 *Danceability vs. Energy*
 ```{r}
