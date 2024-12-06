@@ -296,6 +296,7 @@ Assessing popularity through number of playlists a song is included on showed mi
 ### Visualizations
 #### A Year in Sound: What Made 2023's Music Stand Out?
 
+
 **Tuning Into Music: A Journey Through Keys and Modes**
 
 *Distribution of Spotify Streams by Key*
