@@ -1,0 +1,93 @@
+---
+title: "2024: Decoding Spotify Trends"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(tidyverse)
+library(p8105.datasets)
+library(plotly)
+```
+
+```{r}
+data("rest_inspec")
+
+rest_clean =
+  rest_inspec %>%
+  mutate(zipcode = as.character(zipcode)) %>%
+  drop_na(score) %>%
+  mutate(
+    inspec_year = as.numeric(format(inspection_date, "%Y")),
+  ) %>%
+  mutate(month = month(inspection_date))%>%
+  filter(inspec_year == 2016) %>%
+  select (boro, zipcode, critical_flag, cuisine_description, inspection_date, inspec_year, month, score)
+```
+
+```{r}
+
+```
+
+
+Column {data-width=550}
+-----------------------------------------------------------------------
+
+### Chart A
+
+```{r}
+rest_clean %>%
+  mutate(
+    boro = na_if(boro, "Missing") 
+  ) %>%
+  plot_ly(x = ~boro, y = ~score, type = "box", color = ~boro, 
+          colors = "viridis", marker = list(opacity = 0.1)) %>%
+  layout(
+    title = "Distribution of Inspection Scores",
+    xaxis = list(title = "Borough"),
+    yaxis = list(title = "Restaurant Inspection Score"),
+    legend = list(title = list(text = "Borough"))
+  )
+```
+
+Column {data-width=450}
+-----------------------------------------------------------------------
+
+### Chart B
+
+```{r}
+rest_clean %>%
+  mutate(
+    boro = na_if(boro, "Missing") 
+  ) %>%
+  count(month,boro)%>%
+  plot_ly(x=~month, y = ~n, type = "scatter", mode = "lines+markers",
+          color = ~boro, colors = "viridis")%>%
+  
+  layout(title = "Number of Inspections by Month",
+         xaxis = list(title = "Month", 
+                      tickvals = 1:12, 
+                      ticktext = month.abb),
+         yaxis = list(title = "Number of Inspections"),
+         legend = list(title = list(text = "Borough")))
+```
+
+### Chart C
+
+```{r}
+rest_clean %>%
+  filter (boro == "QUEENS") %>%
+      filter (critical_flag == "Critical")%>%
+  count(zipcode)%>%
+  mutate(zipcode = fct_reorder(zipcode, n))%>%
+  plot_ly( x = ~zipcode, y = ~n, type = "bar", 
+           color = ~zipcode, colors = "viridis"
+  ) %>%
+  layout(title = "'Critical' Inspections in Queens",
+         xaxis = list(title = "Zip Code"),               # X-axis title
+         yaxis = list(title = "Number of 'Critical' Inspections"),
+         legend = list(title = list(text = "Zipcode")))
+```
