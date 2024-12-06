@@ -24,12 +24,6 @@ spotify2023_df =
   rename(artist = artist_s_name)
 view(spotify2023_df)
 ```
-
-```{r include = FALSE}
-library(tidyverse)
-library(plotly)
-```
-
 # Exploratory Data Analysis
 ### Discussion of Raw Data
 
@@ -47,9 +41,7 @@ spotify2023_df =
 view(spotify2023_df)
 ```
 
-(Include issues that come up with data here.)
-
-The track "Love Grows" by Edison Lighthouse contained a "streams" observation that was not a numerical value but rather a very long character value and was preventing the aggregation of streaming data. To address this, the value was set as "NA".
+The dataset was already quite clean, but we did come across a few minor issues. For example, the track "Love Grows" by Edison Lighthouse contained a "streams" observation that was not a numerical value but rather a very long character value and was preventing the aggregation of streaming data. To address this, the value was set as "NA".
 
 The dataset includes the following variables:
 
@@ -227,6 +219,8 @@ table_top10charts <- top10charts |>
 table_top10charts
 ```
 
+The top 10 songs vary among top streamed, presence on playlists, and presence on charts. There are a few consistencies across Top 10 Streamed Songs and Top 10 Songs By Presence on Playlists, such as "Blinding Lights" and "One Dance", but overall the top songs differ completely by these measures.
+
 *Top 10 Artists by Total Number of Spotify Streams*
 ```{r top 10 artist}
 top10artists <- spotify2023_df |>
@@ -300,38 +294,12 @@ table_top3_combined
 Assessing popularity through number of playlists a song is included on showed minimal overlap between Spotify, Apple Music, and Deezer. Only top 3 were included for the sake of simplicity in the table. "Get Lucky - Radio Edit" by Pharrell Williams, Nile Rodgers, and Daft Punk is among the top 3 songs by playlist count on both Spotify and Deezer.
 
 ### Visualizations
+#### A Year in Sound: What Made 2023's Music Stand Out?
 
-*Spotify Streams by BPM*
-```{r}
-bpm_streams_df <- spotify2023_df |> 
-  filter(streams > 10000000)
 
-bpm_streams_plot <- ggplot(bpm_streams_df, aes(x = bpm, y = streams)) +
-  geom_point(aes(color = bpm), size = 3, alpha = 0.7) + 
-  scale_y_log10(labels = scales::comma) +           
-  scale_color_viridis_c(option = "plasma", end = 0.9) +
-  labs(
-    title = "BPM vs Spotify Streams",
-    subtitle = "Analyzing the relationship between song tempo and popularity",
-    x = "Beats Per Minute (BPM)",
-    y = "Spotify Streams (log scale)",
-    color = "BPM"
-  ) +
-  theme_minimal(base_size = 15) +       
-  theme(
-    plot.title = element_text(face = "bold", size = 18, hjust = 0.5),
-    plot.subtitle = element_text(size = 14, hjust = 0.5),
-    axis.text = element_text(size = 12),
-    axis.title = element_text(size = 14),
-    legend.position = "right"
-  )
+**Tuning Into Music: A Journey Through Keys and Modes**
 
-interactive_bpm_streams_plot <- ggplotly(bpm_streams_plot, tooltip = c("x", "y", "color"))
-
-interactive_bpm_streams_plot
-```
-
-*Spotify Streams by Key*
+*Distribution of Spotify Streams by Key*
 ```{r}
 streams_by_key <- spotify2023_df |>
   filter(!is.na(key)) |>
@@ -339,10 +307,10 @@ streams_by_key <- spotify2023_df |>
   summarise(total_streams = sum(streams, na.rm = TRUE)) |>
   arrange(desc(total_streams))
 
-streams_by_key_plot <- ggplot(streams_by_key, aes(x = reorder(key, total_streams), y = total_streams, fill = key)) +
-  geom_bar(stat = "identity", color = "black", alpha = 0.7) +   
+streams_by_key_plot <- ggplot(streams_by_key, aes(x = reorder(key, total_streams), y = total_streams, fill = total_streams)) +
+  geom_bar(stat = "identity", color = "pink", alpha = 0.7) +   
   scale_y_continuous(labels = scales::comma) +                  
-  scale_fill_viridis_d(option = "magma", end = 0.9) +           
+  scale_fill_gradient(low = "lightgreen", high = "darkgreen") + 
   labs(
     title = "Total Streams by Musical Key",
     x = "Musical Key",
@@ -359,8 +327,35 @@ streams_by_key_plot <- ggplot(streams_by_key, aes(x = reorder(key, total_streams
 
 streams_by_key_plot
 ```
+The most common key for top songs is C#, whereas the least popular is D#. The distribution among other keys of music appears to be relatively even.
 
-*Spotify Streams by Mode*
+*Counts of Songs by Musical Key*
+```{r}
+key_counts <- as.data.frame(table(spotify2023_df$key))
+
+str(key_counts)
+
+colnames(key_counts) <- c("key", "count")
+
+p <- ggplot(key_counts, aes(x = key, y = count, 
+                            fill = as.numeric(key),  
+                            text = paste("Key: ", key, 
+                                         "<br>Count: ", count))) +
+  geom_bar(stat = "identity", color = "pink", width = 0.7) +  
+  labs(title = "Count of Songs by Musical Key",
+       x = "Musical Key",
+       y = "Count of Songs") +
+  theme_minimal() +
+  scale_fill_gradient(low = "lightgreen", high = "darkgreen", name = "Key") +  
+  theme(legend.position = "none")  # Remove the legend
+
+interactive_plot <- ggplotly(p, tooltip = "text")
+
+interactive_plot
+```
+95 missing key data (NA)
+
+*Distribution of Spotify Streams by Mode*
 ```{r}
 streams_by_mode <- spotify2023_df |>
   filter(!is.na(mode)) |>
@@ -368,10 +363,10 @@ streams_by_mode <- spotify2023_df |>
   summarise(total_streams = sum(streams, na.rm = TRUE)) |>
   arrange(desc(total_streams))
 
-streams_by_mode_plot <- ggplot(streams_by_mode, aes(x = reorder(mode, total_streams), y = total_streams, fill = mode)) +
-  geom_bar(stat = "identity", color = "black", alpha = 0.7) + 
+streams_by_mode_plot <- ggplot(streams_by_mode, aes(x = reorder(mode, total_streams), y = total_streams, fill = total_streams)) +
+  geom_bar(stat = "identity", color = "pink", alpha = 0.7) + 
   scale_y_continuous(labels = scales::comma) +               
-  scale_fill_viridis_d(option = "magma", end = 0.9) +    
+  scale_fill_gradient(low = "lightgreen", high = "darkgreen") + 
   labs(
     title = "Total Streams by Musical Mode",
     x = "Musical Mode",
@@ -389,6 +384,43 @@ streams_by_mode_plot <- ggplot(streams_by_mode, aes(x = reorder(mode, total_stre
 streams_by_mode_plot
 ```
 
+More streams occurred among songs in a major key, suggesting that upbeat, positive, and joyful songs were more popular than darker, melancholic, and emotional songs. 
+
+**Tempo Trends: Fast or Slow Beats?** 
+
+*Distribution of Spotify Streams by BPM*
+```{r}
+streams_by_bpm <- spotify2023_df |>
+  filter(!is.na(bpm)) |>
+  group_by(bpm) |>
+  summarise(total_streams = sum(streams, na.rm = TRUE)) |>
+  arrange(bpm) 
+
+streams_by_bpm_plot <- ggplot(streams_by_bpm, aes(x = bpm, y = total_streams, fill = total_streams)) +
+  geom_bar(stat = "identity", color = "pink", alpha = 0.7) +   
+  scale_y_continuous(labels = scales::comma) +                  
+  scale_fill_gradient(low = "lightgreen", high = "darkgreen") +  
+  scale_x_continuous(breaks = seq(floor(min(streams_by_bpm$bpm)/10)*10, ceiling(max(streams_by_bpm$bpm)/10)*10, by = 10)) +  
+  labs(
+    title = "Total Streams by BPM",
+    x = "Beats per Minute (BPM)",
+    y = "Total Streams"
+  ) +
+  theme_minimal(base_size = 15) +
+  theme(
+    plot.title = element_text(face = "bold", size = 18, hjust = 0.5),
+    plot.subtitle = element_text(size = 14, hjust = 0.5),
+    axis.text = element_text(size = 12),
+    axis.title = element_text(size = 14),
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    legend.position = "none",
+    panel.grid.minor = element_blank()  
+  )
+
+streams_by_bpm_plot
+```
+The distribution of total streams by BPM shows that most top songs have a BPM somewhere between 90-150. The data show a slightly right-skewed distribution, suggesting that songs with higher BPMs may be less popular. The sweet spot appears to be 120 BPM, where the greatest number of streams were recorded in 2023.
+
 *Danceability vs. Energy*
 ```{r}
 spotify2023_df$artist <- iconv(spotify2023_df$artist, to = "ASCII", sub = "")
@@ -400,8 +432,8 @@ p <- ggplot(spotify2023_df, aes(x = danceability, y = energy, color = danceabili
                                    "<br>Danceability: ", round(danceability, 2),
                                    "<br>Energy: ", round(energy, 2)))) +
   geom_point(alpha = 0.7) +
-  scale_color_gradient(low = "blue", high = "red") +
-  labs(title = "Danceability vs Energy",
+  scale_color_gradient(low = "lightgreen", high = "darkgreen") +
+  labs(title = "Groove Meter: Danceability vs. Energy",
        x = "Danceability",
        y = "Energy") +
   theme_minimal()
@@ -409,97 +441,26 @@ p <- ggplot(spotify2023_df, aes(x = danceability, y = energy, color = danceabili
 interactive_plot <- ggplotly(p, tooltip = "text")
 
 interactive_plot
-
-
 ```
 
-*Counts of songs by musical key*
+*Energy vs Danceability*
 ```{r}
-spotify2023_df$key <- factor(spotify2023_df$key, levels = c("A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#"))
-
-levels(spotify2023_df$key)
-
-table(spotify2023_df$key)
-
-p <- ggplot(spotify2023_df, aes(x = key, fill = key, 
-                                text = paste("Track: ", track_name, 
-                                             "<br>Key: ", key))) +
-  geom_bar(stat = "count") +
-  labs(title = "Count of Songs by Musical Key",
-       x = "Musical Key",
-       y = "Count of Songs") +
-  theme_minimal() +
-  scale_fill_brewer(palette = "Set3") 
-
-interactive_plot <- ggplotly(p, tooltip = "text")
-
-interactive_plot
-```
-
-*BPM vs Danceability*
-```{r}
-p <- ggplot(spotify2023_df, aes(x = bpm, fill = "bpm")) +
-  geom_density(alpha = 0.5) +
-  geom_density(aes(x = danceability, fill = "danceability"), alpha = 0.5) +
-  scale_fill_manual(values = c("bpm" = "blue", "danceability" = "red")) +
-  labs(title = "Density Plot: BPM vs Danceability",
+p <- ggplot(spotify2023_df) +
+  geom_density(aes(x = energy, fill = "energy", color = "pink"), alpha = 0.5) +  
+  geom_density(aes(x = danceability, fill = "danceability", color = "pink"), alpha = 0.5) +  
+  scale_fill_manual(values = c("energy" = "darkgreen", "danceability" = "lightgreen")) +  # Fill colors
+  scale_color_manual(values = c("pink" = "pink")) + 
+  labs(title = "Fueling the Beat: The Energy-Danceability Connection",
        x = "Value",
        y = "Density") +
-  theme_minimal()
+  theme_minimal() +
+  guides(fill = guide_legend(title = "Dynamics")) +  
+  guides(color = "none")  
 
 print(p)
-
 ```
 
-*Spotify Playlists vs Charts Count*
-```{r}
-scatter_plot <- ggplot(
-  spotify2023_df, 
-  aes(
-    x = in_spotify_playlists, 
-    y = in_spotify_charts, 
-    text = paste(
-      "Track:", track_name, 
-      "<br>Artist:", artist, 
-      "<br>Playlists Count:", in_spotify_playlists, 
-      "<br>Charts Count:", in_spotify_charts
-    )
-  )
-) +
-  geom_point(color = "#1DB954", alpha = 0.6) +
-  labs(
-    title = "Spotify Playlists vs Charts Count",
-    x = "Count in Spotify Playlists",
-    y = "Count in Spotify Charts"
-  ) +
-  theme_minimal()
-
-# Convert the plot to an interactive version
-interactive_scatter <- ggplotly(scatter_plot, tooltip = "text")
-interactive_scatter
-
-```
-
-*Acousticness vs Instrumentalness*
-```{r}
-
-hexbin_plot <- ggplot(spotify2023_df, aes(x = liveness, y = speechiness)) +
-  geom_hex(bins = 30) +  # Increase the number of bins for finer granularity
-  scale_fill_gradient(low = "lightgreen", high = "darkgreen") +  # Darker, more intense green gradient
-  scale_x_continuous(limits = c(0, 50)) +  # Limit x-axis to 0-50
-  scale_y_continuous(limits = c(0, 50)) +  # Limit y-axis to 0-50
-  labs(
-    title = "Hexbin Plot: Liveness vs Speechiness (Density)",
-    x = "Liveness",
-    y = "Speechiness",
-    fill = "Density"
-  ) +
-  theme_minimal()
-
-interactive_hexbin <- ggplotly(hexbin_plot)
-interactive_hexbin
-
-```
+**Multidimensional World of Sound**
 
 *Liveness vs Speechiness* 
 ```{r}
@@ -513,23 +474,46 @@ scatter_plot_liveness_speechiness <- ggplot(
       "<br>Artist:", artist, 
       "<br>Liveness:", round(liveness, 2), 
       "<br>Speechiness:", round(speechiness, 2)
-    )
+    ),
+    color = liveness  
   )
 ) +
-  geom_point(color = "#1DB954", alpha = 0.7, size = 3) +
-  scale_x_continuous(limits = c(0, 50)) +  # Limit x-axis to 0-50
-  scale_y_continuous(limits = c(0, 50)) +  # Limit y-axis to 0-50
-  scale_fill_gradient(low = "#A8D5BA", high = "#1DB954") +  # Green color gradient
+  geom_point(alpha = 0.7, size = 3) +
+  scale_color_gradient(low = "lightgreen", high = "darkgreen") +  
+  scale_x_continuous(limits = c(0, 100)) +  
+  scale_y_continuous(limits = c(0, 75)) +  
   labs(
-    title = "Scatter Plot: Liveness vs Speechiness (Track Names in Tooltip)",
+    title = "From Silence to Sound: Liveness and Speechiness",
     x = "Liveness",
     y = "Speechiness"
   ) +
-  theme_minimal()
+  theme_minimal() +
+  theme(legend.position = "none")  
 
 interactive_scatter_liveness_speechiness <- ggplotly(scatter_plot_liveness_speechiness, tooltip = "text")
 interactive_scatter_liveness_speechiness
 ```
+
+*Vocal vs. Instrumental*
+```{r}
+track_counts_df <- as.data.frame(table(ifelse(spotify2023_df$instrumentalness > 0.5, "Instrumental", "Vocal")))
+
+colnames(track_counts_df) <- c("Status", "Count")
+
+
+interactive_pie_chart <- plot_ly(track_counts_df, labels = ~Status, values = ~Count, type = 'pie',
+                                  textinfo = 'label+percent', # This shows both label and percentage
+                                  marker = list(colors = c('darkgreen', 'lightgreen'))) %>%
+  layout(
+    title = "The Sound Spectrum: Vocal or Instrumental?",
+    showlegend = F
+  )
+
+interactive_pie_chart
+```
+
+
+**Data Wrapped: The Ultimate Chart-Toppers of 2023**
 
 *Top 10 Artists with the Most Danceable Songs (Danceability > 50)*
 ```{r}
@@ -540,7 +524,7 @@ top_artists_danceability <- spotify2023_df %>%
   arrange(desc(danceable_songs)) %>%
   slice_head(n = 10) 
 
-ggplot(top_artists_danceability, aes(x = reorder(artist, danceable_songs), y = danceable_songs, fill = artist)) +
+ggplot(top_artists_danceability, aes(x = reorder(artist, danceable_songs), y = danceable_songs, fill = danceable_songs)) +
   geom_bar(stat = "identity") +
   coord_flip() +  
   labs(
@@ -548,50 +532,99 @@ ggplot(top_artists_danceability, aes(x = reorder(artist, danceable_songs), y = d
     x = "Artist",
     y = "Number of Danceable Songs"
   ) +
+  scale_fill_gradient(low = "lightgreen", high = "darkgreen") +  # Green gradient added here
   theme_minimal() +
-  theme(legend.position = "none")  
+  theme(legend.position = "none")
 ```
 
-*Top 10 Artists with the Most Songs in Spotify Playlists*
+*Top 10 Artists with the Most Songs by Count*
 ```{r}
-top_artists_playlists <- spotify2023_df %>%
-  filter(in_spotify_playlists > 0) %>%  # Filter for tracks that are in playlists
+top_artists_songs <- spotify2023_df %>%
   group_by(artist) %>%
-  summarise(
-    songs_in_playlists = n() 
-  ) %>%
-  arrange(desc(songs_in_playlists)) %>%
-  slice_head(n = 10)  
+  summarise(songs_count = n()) %>%
+  arrange(desc(songs_count)) %>%
+  slice_head(n = 10)
 
-ggplot(top_artists_playlists, aes(x = reorder(artist, songs_in_playlists), y = songs_in_playlists, fill = artist)) +
+ggplot(top_artists_songs, aes(x = reorder(artist, songs_count), y = songs_count, fill = songs_count)) +
   geom_bar(stat = "identity") +
-  coord_flip() + 
+  coord_flip() +  
   labs(
-    title = "Top 10 Artists with the Most Songs in Spotify Playlists",
+    title = "Top 10 Artists with the Most Songs in 2023",
     x = "Artist",
-    y = "Number of Songs in Playlists"
+    y = "Number of Songs"
   ) +
+  scale_fill_gradient(low = "lightgreen", high = "darkgreen") +  # Green gradient
   theme_minimal() +
-  theme(legend.position = "none") 
+  theme(legend.position = "none")
+
 ```
 
 *Top 10 Tracks with the Most Appearances in Spotify Charts*
 ```{r}
 top_charts <- spotify2023_df %>%
+  filter(in_spotify_charts > 0) %>%  
   arrange(desc(in_spotify_charts)) %>%  
   slice_head(n = 10)  
 
-ggplot(top_charts, aes(x = reorder(track_name, in_spotify_charts), y = in_spotify_charts, fill = track_name)) +
+ggplot(top_charts, aes(x = reorder(track_name, in_spotify_charts), y = in_spotify_charts, fill = in_spotify_charts)) +
   geom_bar(stat = "identity") +
   coord_flip() +  
   labs(
     title = "Top 10 Tracks with the Most Appearances in Spotify Charts",
-    x = "Track Name",
+    x = "Song",
     y = "Number of Appearances in Charts"
   ) +
+  scale_fill_gradient(low = "lightgreen", high = "darkgreen") +  
   theme_minimal() +
   theme(legend.position = "none")  
 ```
+
+*Top 10 Tracks with the Highest Energy*
+```{r}
+top_energetic_songs <- spotify2023_df %>%
+  arrange(desc(energy)) %>%  
+  slice_head(n = 10)  
+
+ggplot(top_energetic_songs, aes(x = reorder(track_name, energy), y = energy, fill = energy)) +
+  geom_bar(stat = "identity") +
+  coord_flip() +  
+  labs(
+    title = "Top 10 Most Energetic Songs",
+    x = "Song",
+    y = "Energy"
+  ) +
+  scale_fill_gradient(low = "lightgreen", high = "darkgreen") +  
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+
+*Top 10 Songs in the Most Playlists*
+```{r}
+top_songs_playlists <- spotify2023_df %>%
+  filter(in_spotify_playlists > 0) %>%  
+  group_by(track_name) %>%  
+  summarise(
+    playlists_count = sum(in_spotify_playlists)  
+  ) %>%
+  arrange(desc(playlists_count)) %>%  
+  slice_head(n = 10)  
+
+ggplot(top_songs_playlists, aes(x = reorder(track_name, playlists_count), y = playlists_count, fill = playlists_count)) +
+  geom_bar(stat = "identity") +
+  coord_flip() +  
+  labs(
+    title = "Top 10 Songs in the Most Playlists",
+    x = "Song",
+    y = "Total Playlist Appearances"
+  ) +
+  scale_fill_gradient(low = "lightgreen", high = "darkgreen") +  
+  theme_minimal() +
+  theme(legend.position = "none")  
+
+```
+
+
 
 
 =======
