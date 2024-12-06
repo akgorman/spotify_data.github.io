@@ -328,7 +328,7 @@ streams_by_key_plot
 ```
 The most common key for top songs is C#, whereas the least popular is D#. The distribution among other keys of music appears to be relatively even.
 
-*Counts of songs by musical key*
+*Counts of Songs by Musical Key*
 ```{r}
 key_counts <- as.data.frame(table(spotify2023_df$key))
 
