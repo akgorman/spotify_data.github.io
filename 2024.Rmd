@@ -550,7 +550,7 @@ mutate(
   ) +
    theme_minimal(base_size = 15) +
   theme(
-    plot.title = element_text(face = "bold", size = 18, hjust = 0.5),
+    plot.title = element_text(face = "bold", size = 14, hjust = 0.5),
     plot.subtitle = element_text(size = 14, hjust = 0.5),
     axis.text = element_text(size = 12),
     axis.title = element_text(size = 14),
@@ -587,7 +587,7 @@ mutate(
   scale_y_log10() +
    theme_minimal(base_size = 15) +
   theme(
-    plot.title = element_text(face = "bold", size = 18, hjust = 0.5),
+    plot.title = element_text(face = "bold", size = 14, hjust = 0.5),
     plot.subtitle = element_text(size = 14, hjust = 0.5),
     axis.text = element_text(size = 12),
     axis.title = element_text(size = 14),
@@ -623,7 +623,7 @@ mutate(
   scale_y_log10() +
    theme_minimal(base_size = 15) +
   theme(
-    plot.title = element_text(face = "bold", size = 18, hjust = 0.5),
+    plot.title = element_text(face = "bold", size = 14, hjust = 0.5),
     plot.subtitle = element_text(size = 14, hjust = 0.5),
     axis.text = element_text(size = 12),
     axis.title = element_text(size = 14),
@@ -663,7 +663,7 @@ mutate(
   scale_y_log10() +
    theme_minimal(base_size = 15) +
   theme(
-    plot.title = element_text(face = "bold", size = 18, hjust = 0.5),
+    plot.title = element_text(face = "bold", size = 14, hjust = 0.5),
     plot.subtitle = element_text(size = 14, hjust = 0.5),
     axis.text = element_text(size = 12),
     axis.title = element_text(size = 14),
