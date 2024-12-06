@@ -531,7 +531,7 @@ ggplot(top_artists_danceability, aes(x = reorder(artist, danceable_songs), y = d
     x = "Artist",
     y = "Number of Danceable Songs"
   ) +
-  scale_fill_gradient(low = "darkgreen", high = "lightgreen") +  # Green gradient added here
+  scale_fill_gradient(low = "lightgreen", high = "darkgreen") +  # Green gradient added here
   theme_minimal() +
   theme(legend.position = "none")
 ```
@@ -592,7 +592,7 @@ ggplot(top_energetic_songs, aes(x = reorder(track_name, energy), y = energy, fil
     x = "Song",
     y = "Energy"
   ) +
-  scale_fill_gradient(low = "darkgreen", high = "lightgreen") +  
+  scale_fill_gradient(low = "lightgreen", high = "darkgreen") +  
   theme_minimal() +
   theme(legend.position = "none")
 ```
@@ -617,7 +617,7 @@ ggplot(top_songs_playlists, aes(x = reorder(track_name, playlists_count), y = pl
     x = "Song",
     y = "Total Playlist Appearances"
   ) +
-  scale_fill_gradient(low = "darkgreen", high = "lightgreen") +  
+  scale_fill_gradient(low = "lightgreen", high = "darkgreen") +  
   theme_minimal() +
   theme(legend.position = "none")  
 
