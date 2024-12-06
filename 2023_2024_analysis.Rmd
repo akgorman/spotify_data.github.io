@@ -124,27 +124,6 @@ The merged 2023/2024 dataset (spotify_df) includes the following 25 variables:
   - `liveness`: Presence of live performance elements.
   - `speechiness`: Amount of spoken words in the song.
 
-
-The merged 2023/2024 longer dataset (spotify_longer_df) includes the following variables:
-
-- `track`: Name of the song.
-- `artist`: Name of the artist(s) of the song.
-- `released_year`: Year the song was released.
-- `released_month`: Month the song was released.
-- `released_day`: Day of the month the song was released.
-- `year`: year (2023 or 2024) corresponding to the listed `metric` variable
-- `metric`: spotify_streams, spotify_playlist_count, apple_music_playlist_count, or deezer_playlist_count
-- `value`: numeric value of the `metric` variable listed
-- `bpm`: Beats per minute, a measure of song tempo.
-- `key`: Key of the song.
-- `mode`: Mode of the song (major or minor).
-- `danceability`: Percentage indicating how suitable the song is for dancing.
-- `valence`: Positivity of the song's musical content.
-- `energy`: Perceived energy level of the song.
-- `acousticness`: Amount of acoustic sound in the song.
-- `liveness`: Presence of live performance elements.
-- `speechiness`: Amount of spoken words in the song.
-
 ### Summary Data
 
 *Top 10 Songs by Spotify Streams*
