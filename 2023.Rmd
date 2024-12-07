@@ -353,7 +353,7 @@ interactive_plot <- ggplotly(p, tooltip = "text")
 
 interactive_plot
 ```
-95 missing key data (NA)
+The musical key with the highest song count is C#(120), with G#(96) and G(91) being the next highest. The lowest count key was D# with 33 songs. There was slight variance between other keys, however most were comparable. 
 
 *Distribution of Spotify Streams by Mode*
 ```{r}
@@ -385,6 +385,7 @@ streams_by_mode_plot
 ```
 
 More streams occurred among songs in a major key, suggesting that upbeat, positive, and joyful songs were more popular than darker, melancholic, and emotional songs. 
+
 
 **Tempo Trends: Fast or Slow Beats?** 
 
@@ -442,6 +443,8 @@ interactive_plot <- ggplotly(p, tooltip = "text")
 
 interactive_plot
 ```
+This plot shows where songs stand with danceability and energy ratings. The main cluster of songs occurs between the 70-90 range on danceability and  50-90 range on energy. Few songs rank both low in energy and danceability. 
+
 
 *Energy vs Danceability*
 ```{r}
@@ -459,6 +462,8 @@ p <- ggplot(spotify2023_df) +
 
 print(p)
 ```
+This plot further explains the overlap of danceability and energy through an overlapped plot. 
+
 
 **Multidimensional World of Sound**
 
@@ -493,6 +498,8 @@ scatter_plot_liveness_speechiness <- ggplot(
 interactive_scatter_liveness_speechiness <- ggplotly(scatter_plot_liveness_speechiness, tooltip = "text")
 interactive_scatter_liveness_speechiness
 ```
+This plot shows a dense cluster in low liveness and speechiness, indicating that listeners likely prefer music that is not live and with fewer words. 
+
 
 *Vocal vs. Instrumental*
 ```{r}
@@ -511,6 +518,7 @@ interactive_pie_chart <- plot_ly(track_counts_df, labels = ~Status, values = ~Co
 
 interactive_pie_chart
 ```
+This pie chart breaks down the percent of vocal(90.9%) to instrumental(9.13%) tracks, showing a clear dominance to those that are vocal. 
 
 
 **Data Wrapped: The Ultimate Chart-Toppers of 2023**
@@ -623,7 +631,7 @@ ggplot(top_songs_playlists, aes(x = reorder(track_name, playlists_count), y = pl
   theme(legend.position = "none")  
 
 ```
-
+These top ten charts display popular songs and artists that made the charts, various spotify playlists, and who created iconic, danceworthy music!
 
 
 
