@@ -1,0 +1,10 @@
+name: spotify_dash
+title:
+username: lbulmer
+account: lbulmer
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 13544519
+bundleId: 9477142
+url: https://lbulmer.shinyapps.io/spotify_dash/
+version: 1

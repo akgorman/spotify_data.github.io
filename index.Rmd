@@ -32,7 +32,7 @@ To perform our analyses, we explored two datasets from Kaggle inclusive of Spoti
 
 Our project website consists of about [About](about_our_project.html) section, within which you can get to know our project goals, data, and our team. The [Exploratory Analysis](2023.html) section is inclusive of all analyses performed, separated by the examined year(s). Our [Project Report](Report.html) summarizes the entirety of our work as well as a discussion of our outcomes, and our Dashboard provides a visual representation of a portion of our results. If you're short on time, we encourage you to watch the screencast below for a short summary of our project. 
 
-We encourage you to explore our website, project screencast, and report. Thanks for checking us out! 
+We encourage you to explore our website, project screencast, dashboard, and report. Thanks for checking us out! 
 
 <div style="text-align: center;">
 ## Screencast

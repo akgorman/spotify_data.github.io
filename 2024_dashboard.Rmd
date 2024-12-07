@@ -11,46 +11,55 @@ library(flexdashboard)
 library(tidyverse)
 library(p8105.datasets)
 library(plotly)
+library(janitor)
 ```
 
 ```{r}
-data("rest_inspec")
-
-rest_clean =
-  rest_inspec %>%
-  mutate(zipcode = as.character(zipcode)) %>%
-  drop_na(score) %>%
+dataset_2024 <- read_csv("data/2024_data.csv") |>
+                clean_names() |>
+                select(-tidal_popularity)|>
   mutate(
-    inspec_year = as.numeric(format(inspection_date, "%Y")),
-  ) %>%
-  mutate(month = month(inspection_date))%>%
-  filter(inspec_year == 2016) %>%
-  select (boro, zipcode, critical_flag, cuisine_description, inspection_date, inspec_year, month, score)
-```
-
-```{r}
-
+    track = iconv(track, from = "UTF-8", to = "ASCII//TRANSLIT"),
+    artist = iconv(artist, from = "UTF-8", to = "ASCII//TRANSLIT")
+  ) |> 
+  filter(artist!= "xSyborg")
 ```
 
 
 Column {data-width=550}
 -----------------------------------------------------------------------
 
-### Chart A
+### Comparing Spotify Streams to Amount of Tik Tok Likes
 
 ```{r}
-rest_clean %>%
-  mutate(
-    boro = na_if(boro, "Missing") 
-  ) %>%
-  plot_ly(x = ~boro, y = ~score, type = "box", color = ~boro, 
-          colors = "viridis", marker = list(opacity = 0.1)) %>%
-  layout(
-    title = "Distribution of Inspection Scores",
-    xaxis = list(title = "Borough"),
-    yaxis = list(title = "Restaurant Inspection Score"),
-    legend = list(title = list(text = "Borough"))
+dataset_2024 |> 
+  drop_na(tik_tok_likes) |> 
+  mutate(tik_tok_likes_log=log10(tik_tok_likes)) |> 
+mutate(
+    tiktok_category = case_when(
+      tik_tok_likes_log <= log10(1e6) ~ "Low",       
+      tik_tok_likes_log <= log10(1e8) ~ "Medium",    
+      tik_tok_likes_log > log10(1e8) ~ "High"        
+    ),
+    tiktok_category = factor(tiktok_category, levels = c("Low", "Medium", "High")) 
+  ) |> 
+  ggplot(aes(x = tiktok_category, y = spotify_streams, fill = tiktok_category)) +
+  geom_boxplot() +
+  scale_fill_manual(
+  values = c(
+    "Low" = "pink",
+    "Medium" = "#1DB954",
+    "High" = "darkgreen"
   )
+) +
+  labs(
+    title = "Comparing Spotify Streams to Amount of TikTok Likes",
+    x = "TikTok Likes",
+    y = "Spotify Streams",
+   fill = "TikTok Likes Category"
+  ) +
+   theme_minimal() 
+
 ```
 
 Column {data-width=450}
@@ -59,35 +68,51 @@ Column {data-width=450}
 ### Chart B
 
 ```{r}
-rest_clean %>%
-  mutate(
-    boro = na_if(boro, "Missing") 
-  ) %>%
-  count(month,boro)%>%
-  plot_ly(x=~month, y = ~n, type = "scatter", mode = "lines+markers",
-          color = ~boro, colors = "viridis")%>%
-  
-  layout(title = "Number of Inspections by Month",
-         xaxis = list(title = "Month", 
-                      tickvals = 1:12, 
-                      ticktext = month.abb),
-         yaxis = list(title = "Number of Inspections"),
-         legend = list(title = list(text = "Borough")))
+ dataset_2024 |>
+    drop_na(artist)|>
+  group_by(artist) |>
+  summarize(total_spotify_streams = sum(spotify_streams, na.rm = TRUE)) |> 
+  arrange(desc(total_spotify_streams)) |> 
+  top_n(10, total_spotify_streams) |> 
+  ggplot(aes(x=total_spotify_streams, y=reorder(artist, total_spotify_streams))) +
+  geom_bar(stat = "identity", fill = "#1DB954") + 
+  labs(
+    title = "Top 10 Artists Spotify Streams",
+    x = "Total Spotify Streams",
+    y = "Artist"
+  ) +
+  theme_minimal(base_size = 15) +
+  theme(
+    plot.title = element_text(face = "bold", size = 18, hjust = 0.5),
+    plot.subtitle = element_text(size = 14, hjust = 0.5),
+    axis.text = element_text(size = 12),
+    axis.title = element_text(size = 14),
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  ) 
 ```
 
 ### Chart C
 
 ```{r}
-rest_clean %>%
-  filter (boro == "QUEENS") %>%
-      filter (critical_flag == "Critical")%>%
-  count(zipcode)%>%
-  mutate(zipcode = fct_reorder(zipcode, n))%>%
-  plot_ly( x = ~zipcode, y = ~n, type = "bar", 
-           color = ~zipcode, colors = "viridis"
-  ) %>%
-  layout(title = "'Critical' Inspections in Queens",
-         xaxis = list(title = "Zip Code"),               # X-axis title
-         yaxis = list(title = "Number of 'Critical' Inspections"),
-         legend = list(title = list(text = "Zipcode")))
+ dataset_2024 |>
+    drop_na(artist)|>
+  group_by(artist) |>
+  summarize(total_tt = sum(tik_tok_views, na.rm = TRUE)) |> 
+  arrange(desc(total_tt)) |> 
+  top_n(10, total_tt) |> 
+  ggplot(aes(x=total_tt, y=reorder(artist, total_tt))) +
+  geom_bar(stat = "identity", fill = "#1DB954") + 
+  labs(
+    title = "Top 10 Artists TikTok Views",
+    x = "Total TikTok Views",
+    y = "Artist"
+  ) +
+   theme_minimal(base_size = 15) +
+  theme(
+    plot.title = element_text(face = "bold", size = 18, hjust = 0.5),
+    plot.subtitle = element_text(size = 14, hjust = 0.5),
+    axis.text = element_text(size = 12),
+    axis.title = element_text(size = 14),
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  ) 
 ```

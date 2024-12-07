@@ -21,10 +21,8 @@ navbar:
         href: 2023_2024_analysis.html
     - text: "Project Report"
       href: Report.html
-    - text: "Dashboards"
-      menu:
-      - text: "2024 Dashboard"
-        href: 2024_dashboard.html
+    - text: "Dashboard"
+      href: https://lbulmer.shinyapps.io/spotify_dash/
     - icon: fa-github fa-lg
       href: <https://akgorman.shinyapps.io/spotify_datagithub/>
 output:
