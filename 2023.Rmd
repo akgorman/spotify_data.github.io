@@ -70,9 +70,7 @@ The dataset includes the following variables:
 - `liveness`: Presence of live performance elements.
 - `speechiness`: Amount of spoken words in the song.
 
-### Summary Data
-
-*Summary Statistics*
+### Summary Statistics
 ```{r}
 summary_table = spotify2023_df |> 
   summarize(
@@ -137,7 +135,7 @@ summary_table |>
 *Interpretation*
 Total number of streams was only available for Spotify and displays a much greater mean than median, indicating a right-skewed distribution. The mean, median, and IQR for number of playlists each song was on are significantly larger for Spotify than Apple and Deezer. This suggests that the total number of playlists on Spotify is much larger than the total number of playlists on Apple or Deezer. The distributions of number of playlists for Spotify, Apple, and Deezer are also right-skewed.
 
-*Top 10 Streamed Songs*
+### Top 10 Streamed Songs
 ```{r top 10 streams}
 top10streamed = spotify2023_df |>
   arrange(desc(streams)) |> 
@@ -161,7 +159,7 @@ table_top10streamed = top10streamed |>
 table_top10streamed
 ```
 
-*Top 10 Songs by Playlist Count*
+### Top 10 Songs by Playlist Count
 ```{r top 10 playlist}
 top10playlist <- spotify2023_df |>
   mutate(
@@ -190,7 +188,7 @@ table_top10playlist <- top10playlist |>
 table_top10playlist
 ```
 
-*Top 10 Songs by Rank Across Platforms*
+### Top 10 Songs by Rank Across Platforms
 ```{r top 10 rank}
 top10charts <- spotify2023_df |>
   mutate(
@@ -221,7 +219,7 @@ table_top10charts
 
 The top 10 songs vary among top streamed, presence on playlists, and presence on charts. There are a few consistencies across Top 10 Streamed Songs and Top 10 Songs By Presence on Playlists, such as "Blinding Lights" and "One Dance", but overall the top songs differ completely by these measures.
 
-*Top 10 Artists by Total Number of Spotify Streams*
+### Top 10 Artists by Total Number of Spotify Streams
 ```{r top 10 artist}
 top10artists <- spotify2023_df |>
   group_by(artist) |>
@@ -247,7 +245,7 @@ table_top10artists <- top10artists |>
 table_top10artists
 ```
 
-*Top 3 Songs by Playlist Count Between Platforms*
+### Top 3 Songs by Playlist Count Between Platforms
 ```{r}
 top3_combined <- bind_rows(
   spotify2023_df |>
@@ -291,6 +289,7 @@ table_top3_combined <- top3_combined |>
 
 table_top3_combined
 ```
+
 Assessing popularity through number of playlists a song is included on showed minimal overlap between Spotify, Apple Music, and Deezer. Only top 3 were included for the sake of simplicity in the table. "Get Lucky - Radio Edit" by Pharrell Williams, Nile Rodgers, and Daft Punk is among the top 3 songs by playlist count on both Spotify and Deezer.
 
 ### Visualizations
@@ -299,7 +298,7 @@ Assessing popularity through number of playlists a song is included on showed mi
 
 **Tuning Into Music: A Journey Through Keys and Modes**
 
-*Distribution of Spotify Streams by Key*
+### Distribution of Spotify Streams by Key
 ```{r}
 streams_by_key <- spotify2023_df |>
   filter(!is.na(key)) |>
@@ -330,7 +329,7 @@ streams_by_key_plot
 
 The most common key for top songs is C#, whereas the least popular is D#. The distribution among other keys of music appears to be relatively even.
 
-*Counts of Songs by Musical Key*
+### Counts of Songs by Musical Key
 ```{r results = 'hide'}
 key_counts <- as.data.frame(table(spotify2023_df$key))
 
@@ -357,7 +356,7 @@ interactive_plot
 
 The musical key with the highest song count is C#(120), with G#(96) and G(91) being the next highest. The lowest count key was D# with 33 songs. There was slight variance between other keys, however most were comparable. 
 
-*Distribution of Spotify Streams by Mode*
+### Distribution of Spotify Streams by Mode
 ```{r}
 streams_by_mode <- spotify2023_df |>
   filter(!is.na(mode)) |>
@@ -391,7 +390,7 @@ More streams occurred among songs in a major key, suggesting that upbeat, positi
 
 **Tempo Trends: Fast or Slow Beats?** 
 
-*Distribution of Spotify Streams by BPM*
+### Distribution of Spotify Streams by BPM
 ```{r}
 streams_by_bpm <- spotify2023_df |>
   filter(!is.na(bpm)) |>
@@ -425,7 +424,7 @@ streams_by_bpm_plot
 
 The distribution of total streams by BPM shows that most top songs have a BPM somewhere between 90-150. The data show a slightly right-skewed distribution, suggesting that songs with higher BPMs may be less popular. The sweet spot appears to be 120 BPM, where the greatest number of streams were recorded in 2023.
 
-*Danceability vs. Energy*
+### Danceability vs. Energy
 ```{r}
 spotify2023_df$artist <- iconv(spotify2023_df$artist, to = "ASCII", sub = "")
 spotify2023_df$track_name <- iconv(spotify2023_df$track_name, to = "ASCII", sub = "")
@@ -450,7 +449,7 @@ interactive_plot
 This plot shows where songs stand with danceability and energy ratings. The main cluster of songs occurs between the 70-90 range on danceability and  50-90 range on energy. Few songs rank both low in energy and danceability. 
 
 
-*Energy vs Danceability*
+### Energy vs Danceability
 ```{r}
 p <- ggplot(spotify2023_df) +
   geom_density(aes(x = energy, fill = "energy", color = "pink"), alpha = 0.5) +  
@@ -472,7 +471,7 @@ This plot further explains the overlap of danceability and energy through an ove
 
 **Multidimensional World of Sound**
 
-*Liveness vs Speechiness* 
+### Liveness vs Speechiness
 ```{r}
 scatter_plot_liveness_speechiness <- ggplot(
   spotify2023_df, 
@@ -503,10 +502,11 @@ scatter_plot_liveness_speechiness <- ggplot(
 interactive_scatter_liveness_speechiness <- ggplotly(scatter_plot_liveness_speechiness, tooltip = "text")
 interactive_scatter_liveness_speechiness
 ```
+
 This plot shows a dense cluster in low liveness and speechiness, indicating that listeners likely prefer music that is not live and with fewer words. 
 
 
-*Vocal vs. Instrumental*
+### Vocal vs. Instrumental
 ```{r}
 track_counts_df <- as.data.frame(table(ifelse(spotify2023_df$instrumentalness > 0.5, "Instrumental", "Vocal")))
 
@@ -523,12 +523,13 @@ interactive_pie_chart <- plot_ly(track_counts_df, labels = ~Status, values = ~Co
 
 interactive_pie_chart
 ```
+
 This pie chart breaks down the percent of vocal(90.9%) to instrumental(9.13%) tracks, showing a clear dominance to those that are vocal. 
 
 
 **Data Wrapped: The Ultimate Chart-Toppers of 2023**
 
-*Top 10 Artists with the Most Danceable Songs (Danceability > 50)*
+### Top 10 Artists with the Most Danceable Songs (Danceability > 50)
 ```{r}
 top_artists_danceability <- spotify2023_df %>%
   filter(danceability > 50) %>%  
@@ -550,7 +551,7 @@ ggplot(top_artists_danceability, aes(x = reorder(artist, danceable_songs), y = d
   theme(legend.position = "none")
 ```
 
-*Top 10 Artists with the Most Songs by Count*
+### Top 10 Artists with the Most Songs by Count
 ```{r}
 top_artists_songs <- spotify2023_df %>%
   group_by(artist) %>%
@@ -572,7 +573,7 @@ ggplot(top_artists_songs, aes(x = reorder(artist, songs_count), y = songs_count,
 
 ```
 
-*Top 10 Tracks with the Most Appearances in Spotify Charts*
+### Top 10 Tracks with the Most Appearances in Spotify Charts
 ```{r}
 top_charts <- spotify2023_df %>%
   filter(in_spotify_charts > 0) %>%  
@@ -592,7 +593,7 @@ ggplot(top_charts, aes(x = reorder(track_name, in_spotify_charts), y = in_spotif
   theme(legend.position = "none")  
 ```
 
-*Top 10 Tracks with the Highest Energy*
+### Top 10 Tracks with the Highest Energy
 ```{r}
 top_energetic_songs <- spotify2023_df %>%
   arrange(desc(energy)) %>%  
@@ -611,8 +612,7 @@ ggplot(top_energetic_songs, aes(x = reorder(track_name, energy), y = energy, fil
   theme(legend.position = "none")
 ```
 
-
-*Top 10 Songs in the Most Playlists*
+### Top 10 Songs in the Most Playlists
 ```{r}
 top_songs_playlists <- spotify2023_df %>%
   filter(in_spotify_playlists > 0) %>%  
