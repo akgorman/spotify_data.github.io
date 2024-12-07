@@ -191,7 +191,7 @@ Using the 2023 and 2024 merged data, we conducted a linear regression assessing 
 
 ## Discussion
 
-#### 2023
+#### 2023 Discussion
 
 In order to get a better idea of what listeners gravitated towards on Spotify in 2023, we analyzed the year’s top streamed songs. With variables such as BPM, key, danceability, energy, and more, we crafted a unique listening personality for the year. To bring this analysis to life, we designed a Spotify wrapped inspired page that accurately showcases some of the top hits and highlights that defined 2023. 
 
@@ -203,7 +203,7 @@ Top ten charts were created in order to get a better idea of what songs and arti
 
 The Spotify Wrapped feature of 2023 introduced 12 unique listening personalities based on users’ Spotify habits. Based on our analysis of the top streamed songs, 2023’s collective musical personality would align with The Luminary. This character is defined by a preference for light, upbeat music. Songs that dominated the charts and playlists were reflective of luminary traits, resonating with listeners who were looking for uplifting, energizing tunes throughout the year!
 
-#### 2024 Dataset
+#### 2024 Discussion
 
 In the 2024 dataset, we found that the mean versus median streams or views across all the platforms are very different from each other, indicating that the distribution of data is skewed for each platform. It is also interesting to note TikTok's popularity, where the platform has both the most mean and median views compared to the other platforms. Spotify has the second greatest amount of mean and median streams for 2024. Additionally, we found that there is almost no overlap among the most popular five songs streamed for Spotify, Soundcloud, YouTube, and TikTok. Our analysis also allowed us to compare the popularity of streaming platforms, where Tik Tok's most viewed song has 233,232,311,463 views, and Soundcloud's most streamed song has 319,835,943 streams. This factor of a hundred difference demonstrates TikTok's popularity compared to other streaming platforms such as SoundCloud. It is also interesting that SoundCloud's top streamed songs are all in the hip hop/rap genre, where Spotify's Top 5 streamed songs generally fall into today's hits/pop.
 
@@ -211,7 +211,7 @@ When looking at the graphs that compare Spotify streams,  YouTube views, Soundcl
 
 The top 10 artists with the most streams or views across Spotify, Soundcloud, YouTube, and TikTok vary widely. Streaming platforms like Spotify and TikTok (which have the highest number of user streams) have top artists that more fall under the pop genre, while Soundcloud has almost exclusively rap artists (with the exception of Major Lazer). 
 
-#### 2023/2024 Dataset
+#### Cross-Year Discussion
 
 When analyzing musical attributes (e.g., danceability, liveness, and energy) and Spotify streams (both 2023 and 2024 combined), we found that there appears to be no correlation between increasing Spotify streams and increasing energy and danceability. Songs with both low and high musical attributes (e.g., danceability and energy) have the highest amount of Spotify streams. It appears that songs with lower liveness have less Spotify streams, where the groups of songs with higher liveness generally have higher streams.
 
