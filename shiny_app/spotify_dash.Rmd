@@ -19,102 +19,92 @@ library(janitor)
 =======================================================================
 
 ```{r}
-dataset_2024 <- read_csv("data/2024_data.csv") |>
-                clean_names() |>
-                select(-tidal_popularity)|>
-  mutate(
-    track = iconv(track, from = "UTF-8", to = "ASCII//TRANSLIT"),
-    artist = iconv(artist, from = "UTF-8", to = "ASCII//TRANSLIT")
-  ) |> 
-  filter(artist!= "xSyborg")
+spotify2023_df = 
+  read_csv("data/spotify-2023.csv") |> 
+  janitor::clean_names() |> 
+  rename_with(~ gsub("_percent", "", .), contains("_percent")) |> 
+  rename(artist = artist_s_name)
+view(spotify2023_df)
 ```
 
 Column {data-width=550}
 -----------------------------------------------------------------------
 
-### Spotify Streams by Tik Tok Engagement
+### Danceability vs. Energy
 
 ```{r}
-dataset_2024 |> 
-  drop_na(tik_tok_likes) |> 
-  mutate(tik_tok_likes_log=log10(tik_tok_likes)) |> 
-mutate(
-    tiktok_category = case_when(
-      tik_tok_likes_log <= log10(1e6) ~ "Low",       
-      tik_tok_likes_log <= log10(1e8) ~ "Medium",    
-      tik_tok_likes_log > log10(1e8) ~ "High"        
-    ),
-    tiktok_category = factor(tiktok_category, levels = c("Low", "Medium", "High")) 
-  ) |> 
-  ggplot(aes(x = tiktok_category, y = spotify_streams, fill = tiktok_category)) +
-  geom_boxplot() +
-  scale_fill_manual(
-  values = c(
-    "Low" = "pink",
-    "Medium" = "#1DB954",
-    "High" = "darkgreen"
-  )
-) +
-  labs(
-    x = "TikTok Likes",
-    y = "Spotify Streams",
-   fill = "TikTok Likes Category"
-  ) +
-   theme_minimal() 
+spotify2023_df$artist <- iconv(spotify2023_df$artist, to = "ASCII", sub = "")
+spotify2023_df$track_name <- iconv(spotify2023_df$track_name, to = "ASCII", sub = "")
 
+p <- ggplot(spotify2023_df, aes(x = danceability, y = energy, color = danceability,
+                      text = paste("Track: ", track_name, 
+                                   "<br>Artist: ", artist, 
+                                   "<br>Danceability: ", round(danceability, 2),
+                                   "<br>Energy: ", round(energy, 2)))) +
+  geom_point(alpha = 0.7) +
+  scale_color_gradient(low = "lightgreen", high = "darkgreen") +
+  labs(title = "Groove Meter: Danceability vs. Energy",
+       x = "Danceability",
+       y = "Energy") +
+  theme_minimal()
+
+interactive_plot <- ggplotly(p, tooltip = "text")
+
+interactive_plot
 ```
 
 Column {data-width=450}
 -----------------------------------------------------------------------
 
-### Top 10 Artists: Spotify Streams
+### Vocal vs. Instrumental
 
 ```{r}
- dataset_2024 |>
-    drop_na(artist)|>
-  group_by(artist) |>
-  summarize(total_spotify_streams = sum(spotify_streams, na.rm = TRUE)) |> 
-  arrange(desc(total_spotify_streams)) |> 
-  top_n(10, total_spotify_streams) |> 
-  ggplot(aes(x=total_spotify_streams, y=reorder(artist, total_spotify_streams))) +
-  geom_bar(stat = "identity", fill = "#1DB954") + 
-  labs(
-    x = "Total Spotify Streams",
-    y = "Artist"
-  ) +
-  theme_minimal(base_size = 15) +
-  theme(
-    plot.title = element_text(face = "bold", size = 18, hjust = 0.5),
-    plot.subtitle = element_text(size = 14, hjust = 0.5),
-    axis.text = element_text(size = 12),
-    axis.title = element_text(size = 14),
-    axis.text.x = element_text(angle = 45, hjust = 1)
-  ) 
+track_counts_df <- as.data.frame(table(ifelse(spotify2023_df$instrumentalness > 0.5, "Instrumental", "Vocal")))
+
+colnames(track_counts_df) <- c("Status", "Count")
+
+
+interactive_pie_chart <- plot_ly(track_counts_df, labels = ~Status, values = ~Count, type = 'pie',
+                                  textinfo = 'label+percent', # This shows both label and percentage
+                                  marker = list(colors = c('darkgreen', 'lightgreen'))) %>%
+layout(
+    title = list(
+      text = "The Sound Spectrum: Vocal vs. Instrumental",
+      x = 0.5,       
+      xanchor = "center",  
+      y = 0.99,      
+      yanchor = "top" 
+    ),
+    showlegend = F,
+    margin = list(t = 40, b = 40, l = 40, r = 40) # Add more space around the plot
+  )
+
+interactive_pie_chart
 ```
 
-### Top 10 Artists: Tik Tok Views
+### Top 10 Artists with the Most Songs
 
 ```{r}
- dataset_2024 |>
-    drop_na(artist)|>
-  group_by(artist) |>
-  summarize(total_tt = sum(tik_tok_views, na.rm = TRUE)) |> 
-  arrange(desc(total_tt)) |> 
-  top_n(10, total_tt) |> 
-  ggplot(aes(x=total_tt, y=reorder(artist, total_tt))) +
-  geom_bar(stat = "identity", fill = "#1DB954") + 
+top_songs_playlists <- spotify2023_df %>%
+  filter(in_spotify_playlists > 0) %>%  
+  group_by(track_name) %>%  
+  summarise(
+    playlists_count = sum(in_spotify_playlists)  
+  ) %>%
+  arrange(desc(playlists_count)) %>%  
+  slice_head(n = 10)  
+
+ggplot(top_songs_playlists, aes(x = reorder(track_name, playlists_count), y = playlists_count, fill = playlists_count)) +
+  geom_bar(stat = "identity") +
+  coord_flip() +  
   labs(
-    x = "Total TikTok Views",
-    y = "Artist"
+    title = "Top 10 Songs in the Most Playlists",
+    x = "Song",
+    y = "Total Playlist Appearances"
   ) +
-   theme_minimal(base_size = 15) +
-  theme(
-    plot.title = element_text(face = "bold", size = 18, hjust = 0.5),
-    plot.subtitle = element_text(size = 14, hjust = 0.5),
-    axis.text = element_text(size = 12),
-    axis.title = element_text(size = 14),
-    axis.text.x = element_text(angle = 45, hjust = 1)
-  ) 
+  scale_fill_gradient(low = "lightgreen", high = "darkgreen") +  
+  theme_minimal() +
+  theme(legend.position = "none")  
 ```
 
 2024
