@@ -1,0 +1,10 @@
+name: spotify_data
+title:
+username: lbulmer
+account: lbulmer
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 13544480
+bundleId: 9477052
+url: https://lbulmer.shinyapps.io/spotify_data/
+version: 1

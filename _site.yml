@@ -22,7 +22,7 @@ navbar:
     - text: "Project Report"
       href: Report.html
     - text: "Dashboard"
-      href: shiny_dashboard.rmd
+      href: https://lbulmer.shinyapps.io/spotify_dash/
     - icon: fa-github fa-lg
       href: https://github.com/akgorman/spotify_data.github.io.git
 output:

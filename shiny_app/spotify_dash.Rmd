@@ -1,0 +1,368 @@
+---
+title: "Spotify: Decoding Music Trends"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+runtime: shiny
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(tidyverse)
+library(p8105.datasets)
+library(plotly)
+library(janitor)
+```
+
+2023
+=======================================================================
+
+```{r}
+dataset_2024 <- read_csv("data/2024_data.csv") |>
+                clean_names() |>
+                select(-tidal_popularity)|>
+  mutate(
+    track = iconv(track, from = "UTF-8", to = "ASCII//TRANSLIT"),
+    artist = iconv(artist, from = "UTF-8", to = "ASCII//TRANSLIT")
+  ) |> 
+  filter(artist!= "xSyborg")
+```
+
+Column {data-width=550}
+-----------------------------------------------------------------------
+
+### Spotify Streams by Tik Tok Engagement
+
+```{r}
+dataset_2024 |> 
+  drop_na(tik_tok_likes) |> 
+  mutate(tik_tok_likes_log=log10(tik_tok_likes)) |> 
+mutate(
+    tiktok_category = case_when(
+      tik_tok_likes_log <= log10(1e6) ~ "Low",       
+      tik_tok_likes_log <= log10(1e8) ~ "Medium",    
+      tik_tok_likes_log > log10(1e8) ~ "High"        
+    ),
+    tiktok_category = factor(tiktok_category, levels = c("Low", "Medium", "High")) 
+  ) |> 
+  ggplot(aes(x = tiktok_category, y = spotify_streams, fill = tiktok_category)) +
+  geom_boxplot() +
+  scale_fill_manual(
+  values = c(
+    "Low" = "pink",
+    "Medium" = "#1DB954",
+    "High" = "darkgreen"
+  )
+) +
+  labs(
+    x = "TikTok Likes",
+    y = "Spotify Streams",
+   fill = "TikTok Likes Category"
+  ) +
+   theme_minimal() 
+
+```
+
+Column {data-width=450}
+-----------------------------------------------------------------------
+
+### Top 10 Artists: Spotify Streams
+
+```{r}
+ dataset_2024 |>
+    drop_na(artist)|>
+  group_by(artist) |>
+  summarize(total_spotify_streams = sum(spotify_streams, na.rm = TRUE)) |> 
+  arrange(desc(total_spotify_streams)) |> 
+  top_n(10, total_spotify_streams) |> 
+  ggplot(aes(x=total_spotify_streams, y=reorder(artist, total_spotify_streams))) +
+  geom_bar(stat = "identity", fill = "#1DB954") + 
+  labs(
+    x = "Total Spotify Streams",
+    y = "Artist"
+  ) +
+  theme_minimal(base_size = 15) +
+  theme(
+    plot.title = element_text(face = "bold", size = 18, hjust = 0.5),
+    plot.subtitle = element_text(size = 14, hjust = 0.5),
+    axis.text = element_text(size = 12),
+    axis.title = element_text(size = 14),
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  ) 
+```
+
+### Top 10 Artists: Tik Tok Views
+
+```{r}
+ dataset_2024 |>
+    drop_na(artist)|>
+  group_by(artist) |>
+  summarize(total_tt = sum(tik_tok_views, na.rm = TRUE)) |> 
+  arrange(desc(total_tt)) |> 
+  top_n(10, total_tt) |> 
+  ggplot(aes(x=total_tt, y=reorder(artist, total_tt))) +
+  geom_bar(stat = "identity", fill = "#1DB954") + 
+  labs(
+    x = "Total TikTok Views",
+    y = "Artist"
+  ) +
+   theme_minimal(base_size = 15) +
+  theme(
+    plot.title = element_text(face = "bold", size = 18, hjust = 0.5),
+    plot.subtitle = element_text(size = 14, hjust = 0.5),
+    axis.text = element_text(size = 12),
+    axis.title = element_text(size = 14),
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  ) 
+```
+
+2024
+=======================================================================
+
+```{r}
+dataset_2024 <- read_csv("data/2024_data.csv") |>
+                clean_names() |>
+                select(-tidal_popularity)|>
+  mutate(
+    track = iconv(track, from = "UTF-8", to = "ASCII//TRANSLIT"),
+    artist = iconv(artist, from = "UTF-8", to = "ASCII//TRANSLIT")
+  ) |> 
+  filter(artist!= "xSyborg")
+```
+
+Column {data-width=550}
+-----------------------------------------------------------------------
+
+### Spotify Streams by Tik Tok Engagement
+
+```{r}
+dataset_2024 |> 
+  drop_na(tik_tok_likes) |> 
+  mutate(tik_tok_likes_log=log10(tik_tok_likes)) |> 
+mutate(
+    tiktok_category = case_when(
+      tik_tok_likes_log <= log10(1e6) ~ "Low",       
+      tik_tok_likes_log <= log10(1e8) ~ "Medium",    
+      tik_tok_likes_log > log10(1e8) ~ "High"        
+    ),
+    tiktok_category = factor(tiktok_category, levels = c("Low", "Medium", "High")) 
+  ) |> 
+  ggplot(aes(x = tiktok_category, y = spotify_streams, fill = tiktok_category)) +
+  geom_boxplot() +
+  scale_fill_manual(
+  values = c(
+    "Low" = "pink",
+    "Medium" = "#1DB954",
+    "High" = "darkgreen"
+  )
+) +
+  labs(
+    x = "TikTok Likes",
+    y = "Spotify Streams",
+   fill = "TikTok Likes Category"
+  ) +
+   theme_minimal() 
+
+```
+
+Column {data-width=450}
+-----------------------------------------------------------------------
+
+### Top 10 Artists: Spotify Streams
+
+```{r}
+ dataset_2024 |>
+    drop_na(artist)|>
+  group_by(artist) |>
+  summarize(total_spotify_streams = sum(spotify_streams, na.rm = TRUE)) |> 
+  arrange(desc(total_spotify_streams)) |> 
+  top_n(10, total_spotify_streams) |> 
+  ggplot(aes(x=total_spotify_streams, y=reorder(artist, total_spotify_streams))) +
+  geom_bar(stat = "identity", fill = "#1DB954") + 
+  labs(
+    x = "Total Spotify Streams",
+    y = "Artist"
+  ) +
+  theme_minimal(base_size = 15) +
+  theme(
+    plot.title = element_text(face = "bold", size = 18, hjust = 0.5),
+    plot.subtitle = element_text(size = 14, hjust = 0.5),
+    axis.text = element_text(size = 12),
+    axis.title = element_text(size = 14),
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  ) 
+```
+
+### Top 10 Artists: Tik Tok Views
+
+```{r}
+ dataset_2024 |>
+    drop_na(artist)|>
+  group_by(artist) |>
+  summarize(total_tt = sum(tik_tok_views, na.rm = TRUE)) |> 
+  arrange(desc(total_tt)) |> 
+  top_n(10, total_tt) |> 
+  ggplot(aes(x=total_tt, y=reorder(artist, total_tt))) +
+  geom_bar(stat = "identity", fill = "#1DB954") + 
+  labs(
+    x = "Total TikTok Views",
+    y = "Artist"
+  ) +
+   theme_minimal(base_size = 15) +
+  theme(
+    plot.title = element_text(face = "bold", size = 18, hjust = 0.5),
+    plot.subtitle = element_text(size = 14, hjust = 0.5),
+    axis.text = element_text(size = 12),
+    axis.title = element_text(size = 14),
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  ) 
+```
+
+Cross-Year Analysis
+=======================================================================
+
+```{r echo=TRUE, include=FALSE}
+spotify2024_df= read_csv("data/2024_data.csv") |>
+                janitor::clean_names() |>
+                select(-tidal_popularity)|>
+  mutate(
+    track = iconv(track, from = "UTF-8", to = "ASCII//TRANSLIT"),
+    artist = iconv(artist, from = "UTF-8", to = "ASCII//TRANSLIT")
+  ) |> 
+  separate(
+    col = release_date,
+    into = c("released_month", "released_day", "released_year"),
+    sep = "/",
+    convert = TRUE  
+  ) |> 
+    rename(
+    `2024_spotify_streams` = spotify_streams,
+    `2024_spotify_playlist_count` = spotify_playlist_count,
+    `2024_apple_music_playlist_count` = apple_music_playlist_count,
+    `2024_deezer_playlist_count` = deezer_playlist_count,
+    `2024_tik_tok_posts`= tik_tok_posts,
+     `2024_tik_tok_likes`= tik_tok_likes,
+     `2024_tik_tok_views`= tik_tok_views,
+  )|> 
+  filter(artist!= "xSyborg") |> 
+  select(track, released_month, released_day, released_year, `2024_spotify_streams`, `2024_spotify_playlist_count`, `2024_apple_music_playlist_count`,
+    `2024_deezer_playlist_count`, `2024_tik_tok_posts`, `2024_tik_tok_likes`, `2024_tik_tok_views`)
+
+spotify2023_df = 
+  read_csv("data/spotify-2023.csv") |> 
+  janitor::clean_names() |> 
+  rename_with(~ gsub("_percent", "", .), contains("_percent")) |> 
+  rename(artist = artist_s_name) |> 
+  mutate(streams = ifelse(track_name == "Love Grows (Where My Rosemary Goes)", NA, streams),
+         streams = as.numeric(streams)) |> 
+  rename(
+    track=track_name,
+    '2023_spotify_streams' = streams,
+    '2023_spotify_playlist_count' = in_spotify_playlists,
+    '2023_apple_music_playlist_count' = in_apple_playlists,
+    '2023_deezer_playlist_count' = in_deezer_playlists
+    ) |> 
+  select(track, artist, released_month, released_day, released_year, '2023_spotify_streams', '2023_spotify_playlist_count', '2023_apple_music_playlist_count', '2023_deezer_playlist_count', bpm, key, mode, danceability, valence, energy, acousticness, liveness, speechiness )
+
+# Merging datasets
+spotify_df=
+  inner_join(spotify2023_df, spotify2024_df, by= c("track", "released_month", "released_day", "released_year"), relationship="many-to-many")
+
+# Info about duplicate tracks in merged file
+spotify_df |> 
+  group_by(track) |> 
+filter(n() > 1) |> 
+  arrange(track)
+```
+
+Column {data-width=550}
+-----------------------------------------------------------------------
+
+### Spotify Streams by Danceability
+
+```{r}
+spotify_df|>
+  filter(!is.na(danceability))|>
+  mutate(spotify_streams = 
+           `2024_spotify_streams` + `2023_spotify_streams`) |> 
+  distinct(track, artist, .keep_all = TRUE) |> 
+  arrange(desc(spotify_streams)) |> 
+  group_by(danceability) |> 
+  summarise(song_count = n(), spotify_streams = mean(spotify_streams, na.rm = TRUE)) |> 
+  arrange(as.numeric(danceability)) |> 
+  ggplot(aes(x = danceability, y = spotify_streams, fill = song_count)) +
+  geom_bar(stat = "identity", color = "pink", alpha = 0.8) +
+  scale_fill_gradient(low = "green", high = "darkgreen") + 
+  labs(
+    x = "Danceability",
+    y = "Spotify Streams",
+    fill = "Song Count"
+  ) +
+  theme_minimal()
+
+```
+
+Column {data-width=450}
+-----------------------------------------------------------------------
+
+### Tik Tok Engagement by Danceability
+
+```{r}
+dance_df=
+  spotify_df|>
+  filter(!is.na(danceability))|>
+  filter(released_year == "2023")|>
+  mutate(tiktok_engagement = 
+           `2024_tik_tok_posts` + `2024_tik_tok_likes` + `2024_tik_tok_views`) |> 
+  distinct(track, artist, .keep_all = TRUE) |> 
+  arrange(desc(tiktok_engagement)) |> 
+  group_by(danceability) |> 
+  summarise(song_count = n(), tiktok_engagement = mean(tiktok_engagement, na.rm = TRUE))
+
+dance_barplot =
+  ggplot(dance_df, aes(x = danceability, y = tiktok_engagement, fill = song_count)) +
+  geom_bar(stat = "identity", color = "pink", alpha = 0.8) +
+  scale_fill_gradient(low = "green", high = "darkgreen") + 
+  labs(
+    x = "Danceability",
+    y = "TikTok Engagement",
+    fill = "Song Count"
+  ) +
+  theme_minimal(base_size = 15) +
+  theme(
+    plot.title = element_text(face = "bold", size = 18, hjust = 0.5),
+    plot.subtitle = element_text(size = 14, hjust = 0.5),
+    axis.text = element_text(size = 12),
+    axis.title = element_text(size = 14),
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  ) 
+
+interactive_dance_barplot = ggplotly(dance_barplot)
+
+interactive_dance_barplot
+```
+
+### Distribution of BPM Amongst Spotify Trending Songs
+
+```{r}
+ bpm_histogram <- ggplot(spotify_df, aes(x = bpm)) +
+  geom_histogram(binwidth = 5, aes(fill = ..count..), color = "#1DB954", alpha = 0.7) +
+  scale_fill_gradient(low = "#1DB954", high = "darkgreen") + 
+  scale_y_continuous(labels = scales::comma) + 
+  labs(
+    x = "Beats Per Minute (BPM)",
+    y = "Song Count"
+  ) +
+ theme_minimal(base_size = 15) +
+  theme(
+    plot.title = element_text(face = "bold", size = 18, hjust = 0.5),
+    plot.subtitle = element_text(size = 14, hjust = 0.5),
+    axis.text = element_text(size = 12),
+    axis.title = element_text(size = 14),
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  ) 
+interactive_bpm_histogram <- ggplotly(bpm_histogram)
+
+interactive_bpm_histogram
+```

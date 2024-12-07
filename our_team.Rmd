@@ -34,6 +34,6 @@ Meet our project team, and feel free to reach out to any of us to connect!
 
 <br>
 
-# <img src="images/placeholder_headshot.jpg" alt="Avatar" width="150" height="150" style="border:2px solid green"> Carolyn Martinez Jorge | [LinkedIn](https://www.linkedin.com/in/carolyn-martinez12/)
+# <img src="images/cj_dsimage.jpg" alt="Avatar" width="150" height="150" style="border:2px solid green"> Carolyn Martinez Jorge | [LinkedIn](https://www.linkedin.com/in/carolyn-martinez12/)
 
 </div>
