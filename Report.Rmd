@@ -4,8 +4,20 @@ output:
   html_document:
     toc: true
     toc_float: true
+    toc_depth: 4
     code_folding: hide
 ---
+
+```{r include=FALSE}
+library(tidyverse)
+library(plotly)
+library(ggplot2)
+library(gt)
+library(readr)
+library(janitor)
+library(dplyr)
+library(tidyr)
+```
 
 ## Motivation
 
@@ -32,18 +44,93 @@ By combining the 2023 and 2024 datasets, we hoped to assess overlap in top songs
 ## Data
 
 #### 2023 Data
+```{r message = FALSE}
+
+spotify2023_df = 
+  read_csv("spotify-2023.csv") |> 
+  janitor::clean_names() |> 
+  rename_with(~ gsub("_percent", "", .), contains("_percent")) |> 
+  rename(artist = artist_s_name)
+view(spotify2023_df)
+
+spotify2023_df = 
+  read_csv("data/spotify-2023.csv") |> 
+  janitor::clean_names() |> 
+  rename_with(~ gsub("_percent", "", .), contains("_percent")) |> 
+  rename(artist = artist_s_name) |> 
+  mutate(streams = ifelse(track_name == "Love Grows (Where My Rosemary Goes)", NA, streams),
+         streams = as.numeric(streams))
+
+view(spotify2023_df)
+```
 
 The spotify-2023.csv dataset contains information about the most streamed songs on Spotify in 2023. Each observation includes basic information such as track name, artist, and release date, as well as streaming data on various platforms including Spotify, Apple Music, Deezer, and Shazam. Popularity is measured through total streams, presence on playlists, and presence on charts. Additionally, BPM, key, mode, and other music characteristics like danceability, energy, and liveness were included for each of the top tracks.
 
 The 2023 dataset was already fairly clean to begin with, but a few changes were made for clarity and consistency. Variable names were simplified and only one stream observation had to be set as “NA” due to the presence of an uninterpretable character variable rather than a numeric value. There were no duplicates in this dataset.
 
 #### 2024 Data
-
+```{r message=FALSE}
+dataset_2024 <- read_csv("data/2024_data.csv") |>
+                clean_names() |>
+                select(-tidal_popularity)|>
+  mutate(
+    track = iconv(track, from = "UTF-8", to = "ASCII//TRANSLIT"),
+    artist = iconv(artist, from = "UTF-8", to = "ASCII//TRANSLIT")
+  ) |> 
+  filter(artist!= "xSyborg")
+```
 The 2024_data.csv dataset contains information about the most streamed songs on Spotify in 2024. Each track includes general basic information like the track name, artist name, and album name as well as extensive information on its reach across several streaming platforms (including Spotify, SoundCloud, Youtube, TikTok, Apple Music, etc. ). Popularity is measured across these different platforms through variables such as all time rank, number of streams, playlist reach, and playlist count.
 
 Some issues that came up while cleaning the data was with values having unsupported characters (e.g., in the album_name column) and that did not allow for analysis for the all time rank analysis. Another issue that we filtered out was that two tracks had a duplicate observation, but the duplicate observations did not have any streaming information and both had "xSyborg" listed as the artist name. The `tidal_popularity` variable was removed because the entire column had no observations.
 
 #### 2023-2024 Cross-Year Data
+```{r message=FALSE, echo=TRUE}
+spotify2024_df= read_csv("data/2024_data.csv") |>
+                janitor::clean_names() |>
+                select(-tidal_popularity)|>
+  mutate(
+    track = iconv(track, from = "UTF-8", to = "ASCII//TRANSLIT"),
+    artist = iconv(artist, from = "UTF-8", to = "ASCII//TRANSLIT")
+  ) |> 
+  separate(
+    col = release_date,
+    into = c("released_month", "released_day", "released_year"),
+    sep = "/",
+    convert = TRUE  
+  ) |> 
+    rename(
+    `2024_spotify_streams` = spotify_streams,
+    `2024_spotify_playlist_count` = spotify_playlist_count,
+    `2024_apple_music_playlist_count` = apple_music_playlist_count,
+    `2024_deezer_playlist_count` = deezer_playlist_count,
+    `2024_tik_tok_posts`= tik_tok_posts,
+     `2024_tik_tok_likes`= tik_tok_likes,
+     `2024_tik_tok_views`= tik_tok_views,
+  )|> 
+  filter(artist!= "xSyborg") |> 
+  select(track, released_month, released_day, released_year, `2024_spotify_streams`, `2024_spotify_playlist_count`, `2024_apple_music_playlist_count`,
+    `2024_deezer_playlist_count`, `2024_tik_tok_posts`, `2024_tik_tok_likes`, `2024_tik_tok_views`)
+
+spotify2023_df = 
+  read_csv("data/spotify-2023.csv") |> 
+  janitor::clean_names() |> 
+  rename_with(~ gsub("_percent", "", .), contains("_percent")) |> 
+  rename(artist = artist_s_name) |> 
+  mutate(streams = ifelse(track_name == "Love Grows (Where My Rosemary Goes)", NA, streams),
+         streams = as.numeric(streams)) |> 
+  rename(
+    track=track_name,
+    '2023_spotify_streams' = streams,
+    '2023_spotify_playlist_count' = in_spotify_playlists,
+    '2023_apple_music_playlist_count' = in_apple_playlists,
+    '2023_deezer_playlist_count' = in_deezer_playlists
+    ) |> 
+  select(track, artist, released_month, released_day, released_year, '2023_spotify_streams', '2023_spotify_playlist_count', '2023_apple_music_playlist_count', '2023_deezer_playlist_count', bpm, key, mode, danceability, valence, energy, acousticness, liveness, speechiness )
+
+spotify_df=
+  inner_join(spotify2023_df, spotify2024_df, by= c("track", "released_month", "released_day", "released_year"), relationship="many-to-many")
+
+```
 
 Prior to merging the aforementioned datasets, in the 2023 dataset, we renamed  `track_name` to `track`, `streams` to `2023_spotify_streams`, `in_spotify_playlists` to `2023_spotify_playlist_count`, `in_apple_playlists` to `2023_apple_music_playlist_count`, and`in_deezer_playlists` to `2023_deezer_playlist_count`. In the 2024 dataset, we separated `release_date` into `released_year`, `released_month`, `released_day`, changed `spotify_streams` to `2024_spotify_streams`, `spotify_playlist_count`  to `2024_spotify_playlist_count`, `apple_music_playlist_count` to `2024_apple_music_playlist_count`, and `deezer_playlist_count` to `2024_deezer_playlist_count`. Variables that were removed from the 2023 dataset prior to merging include the following: `artist_count`, `in_spotify_charts`, `in_apple_charts`, `in_deezer_charts`, `in_shazam_charts`, and `instrumentalness`. Variables that were removed from the 2024 dataset prior to merging include the following: `album_name`, `isrc`, `all_time_rank`, `track_score`, `spotify_playlist_reach`, `spotify_popularity`, `you_tube_views`, `you_tube_likes`, `air_play_spins`, `sirius_xm_spins`, `deezer_playlist_reach`, `amazon_playlist_count`, `pandora_streams`, and `pandora_track_stations`. 
 

@@ -465,6 +465,22 @@ popularity (e.g., TikTok engagement).</p>
 <h2>Data</h2>
 <div id="data-1" class="section level4">
 <h4>2023 Data</h4>
+<pre class="r"><code>spotify2023_df = 
+  read_csv(&quot;spotify-2023.csv&quot;) |&gt; 
+  janitor::clean_names() |&gt; 
+  rename_with(~ gsub(&quot;_percent&quot;, &quot;&quot;, .), contains(&quot;_percent&quot;)) |&gt; 
+  rename(artist = artist_s_name)
+view(spotify2023_df)
+
+spotify2023_df = 
+  read_csv(&quot;data/spotify-2023.csv&quot;) |&gt; 
+  janitor::clean_names() |&gt; 
+  rename_with(~ gsub(&quot;_percent&quot;, &quot;&quot;, .), contains(&quot;_percent&quot;)) |&gt; 
+  rename(artist = artist_s_name) |&gt; 
+  mutate(streams = ifelse(track_name == &quot;Love Grows (Where My Rosemary Goes)&quot;, NA, streams),
+         streams = as.numeric(streams))
+
+view(spotify2023_df)</code></pre>
 <p>The spotify-2023.csv dataset contains information about the most
 streamed songs on Spotify in 2023. Each observation includes basic
 information such as track name, artist, and release date, as well as
@@ -481,6 +497,14 @@ numeric value. There were no duplicates in this dataset.</p>
 </div>
 <div id="data-2" class="section level4">
 <h4>2024 Data</h4>
+<pre class="r"><code>dataset_2024 &lt;- read_csv(&quot;data/2024_data.csv&quot;) |&gt;
+                clean_names() |&gt;
+                select(-tidal_popularity)|&gt;
+  mutate(
+    track = iconv(track, from = &quot;UTF-8&quot;, to = &quot;ASCII//TRANSLIT&quot;),
+    artist = iconv(artist, from = &quot;UTF-8&quot;, to = &quot;ASCII//TRANSLIT&quot;)
+  ) |&gt; 
+  filter(artist!= &quot;xSyborg&quot;)</code></pre>
 <p>The 2024_data.csv dataset contains information about the most
 streamed songs on Spotify in 2024. Each track includes general basic
 information like the track name, artist name, and album name as well as
@@ -500,6 +524,50 @@ column had no observations.</p>
 </div>
 <div id="cross-year-data" class="section level4">
 <h4>2023-2024 Cross-Year Data</h4>
+<pre class="r"><code>spotify2024_df= read_csv(&quot;data/2024_data.csv&quot;) |&gt;
+                janitor::clean_names() |&gt;
+                select(-tidal_popularity)|&gt;
+  mutate(
+    track = iconv(track, from = &quot;UTF-8&quot;, to = &quot;ASCII//TRANSLIT&quot;),
+    artist = iconv(artist, from = &quot;UTF-8&quot;, to = &quot;ASCII//TRANSLIT&quot;)
+  ) |&gt; 
+  separate(
+    col = release_date,
+    into = c(&quot;released_month&quot;, &quot;released_day&quot;, &quot;released_year&quot;),
+    sep = &quot;/&quot;,
+    convert = TRUE  
+  ) |&gt; 
+    rename(
+    `2024_spotify_streams` = spotify_streams,
+    `2024_spotify_playlist_count` = spotify_playlist_count,
+    `2024_apple_music_playlist_count` = apple_music_playlist_count,
+    `2024_deezer_playlist_count` = deezer_playlist_count,
+    `2024_tik_tok_posts`= tik_tok_posts,
+     `2024_tik_tok_likes`= tik_tok_likes,
+     `2024_tik_tok_views`= tik_tok_views,
+  )|&gt; 
+  filter(artist!= &quot;xSyborg&quot;) |&gt; 
+  select(track, released_month, released_day, released_year, `2024_spotify_streams`, `2024_spotify_playlist_count`, `2024_apple_music_playlist_count`,
+    `2024_deezer_playlist_count`, `2024_tik_tok_posts`, `2024_tik_tok_likes`, `2024_tik_tok_views`)
+
+spotify2023_df = 
+  read_csv(&quot;data/spotify-2023.csv&quot;) |&gt; 
+  janitor::clean_names() |&gt; 
+  rename_with(~ gsub(&quot;_percent&quot;, &quot;&quot;, .), contains(&quot;_percent&quot;)) |&gt; 
+  rename(artist = artist_s_name) |&gt; 
+  mutate(streams = ifelse(track_name == &quot;Love Grows (Where My Rosemary Goes)&quot;, NA, streams),
+         streams = as.numeric(streams)) |&gt; 
+  rename(
+    track=track_name,
+    &#39;2023_spotify_streams&#39; = streams,
+    &#39;2023_spotify_playlist_count&#39; = in_spotify_playlists,
+    &#39;2023_apple_music_playlist_count&#39; = in_apple_playlists,
+    &#39;2023_deezer_playlist_count&#39; = in_deezer_playlists
+    ) |&gt; 
+  select(track, artist, released_month, released_day, released_year, &#39;2023_spotify_streams&#39;, &#39;2023_spotify_playlist_count&#39;, &#39;2023_apple_music_playlist_count&#39;, &#39;2023_deezer_playlist_count&#39;, bpm, key, mode, danceability, valence, energy, acousticness, liveness, speechiness )
+
+spotify_df=
+  inner_join(spotify2023_df, spotify2024_df, by= c(&quot;track&quot;, &quot;released_month&quot;, &quot;released_day&quot;, &quot;released_year&quot;), relationship=&quot;many-to-many&quot;)</code></pre>
 <p>Prior to merging the aforementioned datasets, in the 2023 dataset, we
 renamed <code>track_name</code> to <code>track</code>,
 <code>streams</code> to <code>2023_spotify_streams</code>,
@@ -918,7 +986,7 @@ $(document).ready(function ()  {
 
     // establish options
     var options = {
-      selectors: "h1,h2,h3",
+      selectors: "h1,h2,h3,h4",
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {
