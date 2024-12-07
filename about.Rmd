@@ -2,7 +2,7 @@
 title: "Project Data"
 ---
 
-## About our Data 
+## About Our Data 
 
 The data from this project were obtained from [Kaggle](https://www.kaggle.com/), an AI/ML community with several datasets available for public access. The aim of our project is to quantify and understand several predictor variables of Spotify's most streamed songs across 2023 and 2024. We R very excited to crack the code for what makes a big hit on Spotify!
 
