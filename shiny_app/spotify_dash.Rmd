@@ -30,7 +30,7 @@ view(spotify2023_df)
 Column {data-width=550}
 -----------------------------------------------------------------------
 
-### Danceability vs. Energy
+### Groove Meter: Danceability vs. Energy
 
 ```{r}
 spotify2023_df$artist <- iconv(spotify2023_df$artist, to = "ASCII", sub = "")
@@ -43,7 +43,7 @@ p <- ggplot(spotify2023_df, aes(x = danceability, y = energy, color = danceabili
                                    "<br>Energy: ", round(energy, 2)))) +
   geom_point(alpha = 0.7) +
   scale_color_gradient(low = "lightgreen", high = "darkgreen") +
-  labs(title = "Groove Meter: Danceability vs. Energy",
+  labs(
        x = "Danceability",
        y = "Energy") +
   theme_minimal()
@@ -56,7 +56,7 @@ interactive_plot
 Column {data-width=450}
 -----------------------------------------------------------------------
 
-### Vocal vs. Instrumental
+### Sound Spectrum: Vocal vs. Instrumental
 
 ```{r}
 track_counts_df <- as.data.frame(table(ifelse(spotify2023_df$instrumentalness > 0.5, "Instrumental", "Vocal")))
@@ -68,13 +68,7 @@ interactive_pie_chart <- plot_ly(track_counts_df, labels = ~Status, values = ~Co
                                   textinfo = 'label+percent', # This shows both label and percentage
                                   marker = list(colors = c('darkgreen', 'lightgreen'))) %>%
 layout(
-    title = list(
-      text = "The Sound Spectrum: Vocal vs. Instrumental",
-      x = 0.5,       
-      xanchor = "center",  
-      y = 0.99,      
-      yanchor = "top" 
-    ),
+    
     showlegend = F,
     margin = list(t = 40, b = 40, l = 40, r = 40) # Add more space around the plot
   )
@@ -82,7 +76,7 @@ layout(
 interactive_pie_chart
 ```
 
-### Top 10 Artists with the Most Songs
+### Top 10 Songs Appearing in the Most Playlists
 
 ```{r}
 top_songs_playlists <- spotify2023_df %>%
@@ -98,7 +92,6 @@ ggplot(top_songs_playlists, aes(x = reorder(track_name, playlists_count), y = pl
   geom_bar(stat = "identity") +
   coord_flip() +  
   labs(
-    title = "Top 10 Songs in the Most Playlists",
     x = "Song",
     y = "Total Playlist Appearances"
   ) +
@@ -174,14 +167,7 @@ Column {data-width=450}
     x = "Total Spotify Streams",
     y = "Artist"
   ) +
-  theme_minimal(base_size = 15) +
-  theme(
-    plot.title = element_text(face = "bold", size = 18, hjust = 0.5),
-    plot.subtitle = element_text(size = 14, hjust = 0.5),
-    axis.text = element_text(size = 12),
-    axis.title = element_text(size = 14),
-    axis.text.x = element_text(angle = 45, hjust = 1)
-  ) 
+  theme_minimal()
 ```
 
 ### Top 10 Artists: Tik Tok Views
@@ -199,14 +185,7 @@ Column {data-width=450}
     x = "Total TikTok Views",
     y = "Artist"
   ) +
-   theme_minimal(base_size = 15) +
-  theme(
-    plot.title = element_text(face = "bold", size = 18, hjust = 0.5),
-    plot.subtitle = element_text(size = 14, hjust = 0.5),
-    axis.text = element_text(size = 12),
-    axis.title = element_text(size = 14),
-    axis.text.x = element_text(angle = 45, hjust = 1)
-  ) 
+   theme_minimal()
 ```
 
 Cross-Year Analysis
@@ -313,7 +292,8 @@ dance_df=
 dance_barplot =
   ggplot(dance_df, aes(x = danceability, y = tiktok_engagement, fill = song_count)) +
   geom_bar(stat = "identity", color = "pink", alpha = 0.8) +
-  scale_fill_gradient(low = "green", high = "darkgreen") + 
+  scale_fill_gradient(low = "green", high = "darkgreen",
+                      breaks = c(4, 8)) + 
   labs(
     x = "Danceability",
     y = "TikTok Engagement",
@@ -338,7 +318,9 @@ interactive_dance_barplot
 ```{r}
  bpm_histogram <- ggplot(spotify_df, aes(x = bpm)) +
   geom_histogram(binwidth = 5, aes(fill = ..count..), color = "#1DB954", alpha = 0.7) +
-  scale_fill_gradient(low = "#1DB954", high = "darkgreen") + 
+  scale_fill_gradient(low = "#1DB954", high = "darkgreen",
+                      breaks = c( 25, 50),
+    limits = c(0, 50)) + 
   scale_y_continuous(labels = scales::comma) + 
   labs(
     x = "Beats Per Minute (BPM)",
