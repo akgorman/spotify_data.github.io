@@ -23,8 +23,8 @@ navbar:
       href: Report.html
     - text: "Dashboard"
       href: https://lbulmer.shinyapps.io/spotify_dash/
-    - icon: fa-github fa-lg
-      href: https://github.com/akgorman/spotify_data.github.io.git
+    - icon: fa-github fa-lg 
+      href: https://github.com/akgorman/spotify_data.github.io.git  
 output:
   html_document:
     theme: darkly
