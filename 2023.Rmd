@@ -327,10 +327,11 @@ streams_by_key_plot <- ggplot(streams_by_key, aes(x = reorder(key, total_streams
 
 streams_by_key_plot
 ```
+
 The most common key for top songs is C#, whereas the least popular is D#. The distribution among other keys of music appears to be relatively even.
 
 *Counts of Songs by Musical Key*
-```{r}
+```{r results = 'hide'}
 key_counts <- as.data.frame(table(spotify2023_df$key))
 
 str(key_counts)
@@ -353,6 +354,7 @@ interactive_plot <- ggplotly(p, tooltip = "text")
 
 interactive_plot
 ```
+
 The musical key with the highest song count is C#(120), with G#(96) and G(91) being the next highest. The lowest count key was D# with 33 songs. There was slight variance between other keys, however most were comparable. 
 
 *Distribution of Spotify Streams by Mode*
@@ -420,6 +422,7 @@ streams_by_bpm_plot <- ggplot(streams_by_bpm, aes(x = bpm, y = total_streams, fi
 
 streams_by_bpm_plot
 ```
+
 The distribution of total streams by BPM shows that most top songs have a BPM somewhere between 90-150. The data show a slightly right-skewed distribution, suggesting that songs with higher BPMs may be less popular. The sweet spot appears to be 120 BPM, where the greatest number of streams were recorded in 2023.
 
 *Danceability vs. Energy*
@@ -443,6 +446,7 @@ interactive_plot <- ggplotly(p, tooltip = "text")
 
 interactive_plot
 ```
+
 This plot shows where songs stand with danceability and energy ratings. The main cluster of songs occurs between the 70-90 range on danceability and  50-90 range on energy. Few songs rank both low in energy and danceability. 
 
 
@@ -462,6 +466,7 @@ p <- ggplot(spotify2023_df) +
 
 print(p)
 ```
+
 This plot further explains the overlap of danceability and energy through an overlapped plot. 
 
 
@@ -631,11 +636,6 @@ ggplot(top_songs_playlists, aes(x = reorder(track_name, playlists_count), y = pl
   theme(legend.position = "none")  
 
 ```
-These top ten charts display popular songs and artists that made the charts, various spotify playlists, and who created iconic, danceworthy music!
 
+These top ten charts display popular songs and artists that made the charts, various Spotify playlists, and who created iconic, danceworthy music!
 
-
-=======
-This will be the rmd for 2023 analysis...
->>>>>>> a7a6440417c688ea335b86a025c3ebb9866b8ef9
->>>>>>> 6073c2d6c98c0b4391fbec86ffc61b5bc33535b3
