@@ -522,6 +522,7 @@ spotify_df|>
     axis.text.x = element_text(angle = 45, hjust = 1)
   ) 
 ```
+
 *Interpretation*
 There appears to be no correlation between increasing Spotify streams (combined 2023 and 2024 streams) and increasing energy and danceability. Songs with both low and high musical attributes (e.g., danceability and energy) have the highest amount of Spotify streams. It appears that songs with lower liveness have less Spotify streams, where the groups of songs with higher liveness generally have higher  streams.
 
